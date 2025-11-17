@@ -1,48 +1,105 @@
 # Cliente de Azure para acceder a los recursos en nube para la app RAG
 import pandas as pd
+from typing import Dict, List, Optional
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents import SearchClient
 from config.settings import settings
 
-def get_azure_client():
-    if not (settings.AZURE_ENDPOINT and settings.AZURE_INDEX and settings.AZURE_QUERYKEY):
+# Campos base que se requieren para las consultas de deuda.
+_DEFAULT_DEBT_FIELDS = [
+    "Firstname",
+    "Status",
+    "Amount",
+    "actual_agreement_due_date",
+    "TotalDebt",
+    "PrincipalDebt",
+    "Interest",
+    "OrganizationalFee",
+    "InterestAfterDD",
+    "PenaltyCharge",
+]
+
+# Renombres amigables únicamente para la respuesta de deuda.
+_DEFAULT_DEBT_RENAME = {
+    "Firstname": "Nombre",
+    "Status": "Estado",
+    "Amount": "Monto",
+    "actual_agreement_due_date": "Vencimiento",
+    "TotalDebt": "TotalDeuda",
+    "PrincipalDebt": "Principal",
+    "Interest": "Intereses",
+    "OrganizationalFee": "Gastos",
+    "InterestAfterDD": "Mora",
+    "PenaltyCharge": "Penalidad",
+}
+
+# Cacheamos clientes por índice para reutilizarlos sin reconstruirlos en cada petición.
+_SEARCH_CLIENTS: Dict[str, SearchClient] = {}
+
+
+def _get_search_client(index_name: Optional[str]) -> Optional[SearchClient]:
+    """Crea (o reutiliza) un cliente de búsqueda para el índice solicitado."""
+    if not (settings.AZURE_ENDPOINT and settings.AZURE_QUERYKEY and index_name):
         return None
-    
-    return SearchClient(
-        endpoint=settings.AZURE_ENDPOINT,
-        index_name=settings.AZURE_INDEX,
-        credential=AzureKeyCredential(settings.AZURE_QUERYKEY)
-    )
+    if index_name not in _SEARCH_CLIENTS:
+        _SEARCH_CLIENTS[index_name] = SearchClient(
+            endpoint=settings.AZURE_ENDPOINT,
+            index_name=index_name,
+            credential=AzureKeyCredential(settings.AZURE_QUERYKEY)
+        )
+    return _SEARCH_CLIENTS[index_name]
 
-search_client = get_azure_client()
 
-
-def azure_search(field: str, value: str) -> pd.DataFrame:
-    if not search_client:
+def azure_search(
+    field: str,
+    value: str,
+    *,
+    index: Optional[str] = None,
+    select: Optional[List[str]] = None,
+    rename: Optional[Dict[str, str]] = None
+) -> pd.DataFrame:
+    """Ejecuta una búsqueda filtrando por un campo/valor específico sobre el índice dado."""
+    index_name = index or settings.AZURE_INDEX_DEUDA or settings.AZURE_INDEX
+    client = _get_search_client(index_name)
+    if not client:
         return pd.DataFrame()
 
-    flt = f"{field} eq '{value}'"
-    results = search_client.search(
+    if select is None:
+        select_fields = _DEFAULT_DEBT_FIELDS
+        rename_map = _DEFAULT_DEBT_RENAME
+    else:
+        select_fields = select
+        rename_map = rename or {}
+
+    filter_clause = f"{field} eq '{value}'"
+    results = client.search(
         search_text="*",
-        filter=flt,
+        filter=filter_clause,
         top=10,
-        select=(
-            "Firstname,Status,Amount,actual_agreement_due_date,TotalDebt,"
-            "PrincipalDebt,Interest,OrganizationalFee,InterestAfterDD,PenaltyCharge"
-        )
+        select=select_fields
     )
+
     rows = []
-    for r in results:
-        rows.append({
-            "Nombre":      r.get("Firstname"),
-            "Estado":      r.get("Status"),
-            "Monto":       r.get("Amount"),
-            "Vencimiento": r.get("actual_agreement_due_date"),
-            "TotalDeuda":  r.get("TotalDebt"),
-            "Principal":   r.get("PrincipalDebt"),
-            "Intereses":   r.get("Interest"),
-            "Gastos":      r.get("OrganizationalFee"),
-            "Mora":        r.get("InterestAfterDD"),
-            "Penalidad":   r.get("PenaltyCharge"),
-        })
+    for record in results:
+        row = {}
+        for source_field in select_fields:
+            safe_key = rename_map.get(source_field, source_field)
+            row[safe_key] = record.get(source_field)
+        rows.append(row)
+
     return pd.DataFrame(rows)
+
+
+def search_debt_by_dni(dni: str) -> pd.DataFrame:
+    """Búsqueda especializada para deuda usando el DNI del cliente."""
+    return azure_search("DocNum", dni)
+
+
+def search_otp_by_phone(phone: str) -> pd.DataFrame:
+    """Búsqueda especializada para recuperar claves OTP del número registrado."""
+    return azure_search(
+        "Recepient",
+        phone,
+        index=settings.AZURE_INDEX_OTP,
+        select=["Recepient", "Codigo"]
+    )

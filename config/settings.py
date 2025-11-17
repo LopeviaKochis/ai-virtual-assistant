@@ -2,38 +2,40 @@ import os
 from typing import Optional
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field, ValidationError
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 load_dotenv()  # Carga variables de entorno y secretos automáticamente desde .env
 
 
-class Settings(BaseModel):
-    TELEGRAM_TOKEN: str = Field(..., min_length=10)
+class Settings(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file='.env',
+        env_file_encoding='utf-8',
+        case_sensitive=True
+    )
+    
+    # Azure
     AZURE_ENDPOINT: str
     AZURE_QUERYKEY: str
-    OPENAI_API_KEY: str
-    AZURE_INDEX_DEUDA: Optional[str] = None  # Índice dedicado para las consultas de deuda.
-    AZURE_INDEX_OTP: Optional[str] = None    # Índice dedicado para la recuperación de claves OTP.
-    AZURE_INDEX: Optional[str] = None        # Compatibilidad hacia atrás con una sola configuración.
-    APP_ENV: str = "production"  # default si no está definido
+    AZURE_INDEX: Optional[str] = None
+    AZURE_INDEX_DEUDA: Optional[str] = None
+    AZURE_INDEX_OTP: Optional[str] = None
+    
+    # OpenAI
+    OPENAI_API_KEY: Optional[str] = None
+    
+    # Respond.io
+    RESPONDIO_WEBHOOK_SECRET: str
+    RESPONDIO_API_TOKEN: str
+    RESPONDIO_WORKSPACE_ID: str
+    RESPONDIO_API_URL: str = "https://api.respond.io/v2"
+    
+    # Redis
+    REDIS_URL: str = "redis://localhost:6379/0"
+    REDIS_QUEUE_NAME: str = "respondio:events"
+    
+    # Servidor
+    WEBHOOK_HOST: str = "0.0.0.0"
+    WEBHOOK_PORT: int = 8000
 
-    class Config:
-        extra = "ignore"  # Ignora claves desconocidas
-
-
-def load_settings():
-    try:
-        return Settings(
-            TELEGRAM_TOKEN=os.getenv("TELEGRAM_TOKEN"),
-            AZURE_ENDPOINT=os.getenv("AZURE_ENDPOINT"),
-            AZURE_QUERYKEY=os.getenv("AZURE_QUERYKEY"),
-            OPENAI_API_KEY=os.getenv("OPENAI_API_KEY"),
-            AZURE_INDEX_DEUDA=os.getenv("AZURE_INDEX_DEUDA") or os.getenv("AZURE_INDEX"),
-            AZURE_INDEX_OTP=os.getenv("AZURE_INDEX_OTP"),
-            AZURE_INDEX=os.getenv("AZURE_INDEX"),
-            APP_ENV=os.getenv("APP_ENV", "production")
-        )
-    except ValidationError as e:
-        raise RuntimeError(f"Error cargando configuración: {e}")
-
-
-settings = load_settings()
+settings = Settings()

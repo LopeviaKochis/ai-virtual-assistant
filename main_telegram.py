@@ -14,7 +14,7 @@ def main():
     app = build_application()
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, message_handler))
 
-    app.run_polling()
+    app.run_polling() # Long polling para recibir actualizaciones de mensajes de Telegram
 
 if __name__ == "__main__":
     main()
