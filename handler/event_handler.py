@@ -1,4 +1,5 @@
 import logging
+import json
 from typing import Dict, Any
 
 from services.message_processor import process_message_for_webhook
@@ -13,84 +14,65 @@ async def handle_event(event_data: Dict[str, Any]) -> None:
     Args:
         event_data: Datos completos del evento
     """
-    event_type = event_data.get("event") or event_data.get("event_type")
+
+     # NUEVO: Log inicial del evento
+    logger.info("="*60)
+    logger.info(" NUEVO EVENTO RECIBIDO EN HANDLER")
+    logger.info(f" Event data type: {type(event_data)}")
+    logger.info(f" Event data keys: {list(event_data.keys()) if isinstance(event_data, dict) else 'Not a dict!'}")
+    logger.info(f" Event data: {json.dumps(event_data, indent=2, default=str)}")
+    logger.info("="*60)
+
+    event_type = event_data.get("event_type")
     
     if not event_type:
         logger.warning("Event without type received")
+        logger.warning(f"Available keys: {list(event_data.keys())}")
         return
     
     logger.info(f"Processing event: {event_type}")
     
-    # Verificar idempotencia para message.received
+    # EVENTO PRINCIPAL: message.received
     if event_type == "message.received":
-        message_id = _extract_message_id(event_data)
+        message_data = event_data.get("message", {})
+        message_id = message_data.get("messageId")
+
+        logger.info(f"Message ID: {message_id}")
+        logger.info(f"Message data: {message_data}")
         
+        # Verificar idempotencia
         if message_id and is_message_processed(str(message_id)):
             logger.info(f"Message {message_id} already processed, skipping")
             return
         
-        # Procesar el mensaje usando el message_processor unificado
+        # Verificar que sea incoming (no outgoing)
+        traffic = message_data.get("traffic")
+        logger.info(f"Traffic: {traffic}")
+
+        if traffic != "incoming":
+            logger.info(f"Ignoring {traffic} message")
+            return
+        
+        # Procesar mensaje
+        logger.info(f"Processing incoming message: {message_id}")
         await process_message_for_webhook(event_data)
         
+        # Marcar como procesado
         if message_id:
             mark_message_processed(str(message_id))
+            logger.info(f"Message {message_id} processed successfully")
     
-    elif event_type == "message.sent":
-        logger.debug("message.sent event received (no action needed)")
-    
-    elif event_type == "contact.created":
-        contact_id = _extract_contact_id(event_data)
-        logger.info(f"New contact created: {contact_id}")
-    
+    # EVENTO SECUNDARIO: conversation.opened
     elif event_type == "conversation.opened":
-        conv_id = _extract_conversation_id(event_data)
-        logger.info(f"Conversation opened: {conv_id}")
-    
-    elif event_type == "conversation.closed":
-        conv_id = _extract_conversation_id(event_data)
-        logger.info(f"Conversation closed: {conv_id}")
+        conversation_data = event_data.get("conversation", {})
+        logger.info(f"Conversation opened at {conversation_data.get('conversationOpenedAt')}")
+        # Opcional: Enviar mensaje de bienvenida aquí
     
     else:
         logger.warning(f"Unknown event type: {event_type}")
 
 def _extract_message_id(event_data: Dict[str, Any]) -> Any:
-    """Extrae message ID de diferentes estructuras posibles."""
-    if "data" in event_data and isinstance(event_data["data"], dict):
-        message_data = event_data["data"].get("message", {})
-        if isinstance(message_data, dict):
-            return message_data.get("id")
-    
-    if "message" in event_data:
-        message_data = event_data["message"]
-        if isinstance(message_data, dict):
-            return message_data.get("id")
-    
-    return None
-
-def _extract_contact_id(event_data: Dict[str, Any]) -> Any:
-    """Extrae contact ID de diferentes estructuras posibles."""
-    if "data" in event_data and isinstance(event_data["data"], dict):
-        contact_data = event_data["data"].get("contact", {})
-        if isinstance(contact_data, dict):
-            return contact_data.get("id")
-    
-    if "contact" in event_data:
-        contact_data = event_data["contact"]
-        if isinstance(contact_data, dict):
-            return contact_data.get("id")
-    
-    return None
-
-def _extract_conversation_id(event_data: Dict[str, Any]) -> Any:
-    """Extrae conversation ID de diferentes estructuras posibles."""
-    if "data" in event_data and isinstance(event_data["data"], dict):
-        conv_data = event_data["data"].get("conversation", {})
-        if isinstance(conv_data, dict):
-            return conv_data.get("id")
-    
-    if "conversation" in event_data:
-        conv_data = event_data["conversation"]
-        if isinstance(conv_data, dict):
-            return conv_data.get("id")
-    
+    """Extrae message ID del evento"""
+    if "message" in event_data and isinstance(event_data["message"], dict):
+        return event_data["message"].get("messageId")
     return None

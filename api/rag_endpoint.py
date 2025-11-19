@@ -90,7 +90,7 @@ async def health_check():
     return {
         "status": "healthy",
         "service": "RAG API",
-        "version": "2.0.0"
+        "version": "1.0.0"
     }
 
 @app.get("/session/{contact_id}", 

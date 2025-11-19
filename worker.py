@@ -1,4 +1,5 @@
 import asyncio
+import json
 import logging
 from utils.logging import setup_logging
 from clients.queue_client import dequeue_event
@@ -17,14 +18,20 @@ async def worker_loop():
             event_data = dequeue_event(timeout=5)
             
             if event_data:
-                logger.info(f"Processing event: {event_data.get('event')}")
+                logger.info("="*60)
+                logger.info(" WORKER: EVENTO DEENCOLADO")
+                logger.info(f"Event type: {type(event_data)}")
+                logger.info(f"Event keys: {list(event_data.keys()) if isinstance(event_data, dict) else 'Not a dict!'}")
+                logger.info(f"Event content: {json.dumps(event_data, indent=2, default=str)}")
+                logger.info(f"Event type field: {event_data.get('event_type') if isinstance(event_data, dict) else 'N/A'}")
+                logger.info("="*60)
                 await handle_event(event_data)
             
         except KeyboardInterrupt:
             logger.info("Worker stopped by user")
             break
-        except Exception:
-            logger.exception("Error processing event")
+        except Exception as e:
+            logger.exception(f"Error processing event: {e}")
             await asyncio.sleep(1)  # Evitar loops intensos en caso de error
 
 if __name__ == "__main__":

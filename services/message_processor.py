@@ -1,4 +1,5 @@
 import logging
+import json
 from typing import Dict, Any, Optional
 
 from services.router_service import route_message
@@ -13,40 +14,79 @@ logger = logging.getLogger(__name__)
 async def process_message_for_webhook(event_data: Dict[str, Any]) -> None:
     """
     Procesa un evento message.received del webhook de Respond.io.
-    Usado por el worker asíncrono.
+    NUEVA ESTRUCTURA: Extrae datos del payload actualizado.
     
     Args:
         event_data: Datos completos del evento webhook
     """
-    data = event_data.get("data", {})
-    contact = data.get("contact", {})
-    message = data.get("message", {})
-    conversation = data.get("conversation", {})
+
+    # NUEVO: Log inicial del evento completo
+    logger.info("="*60)
+    logger.info("PROCESANDO EVENTO EN MESSAGE_PROCESSOR")
+    logger.info(f"Event data keys: {list(event_data.keys())}")
+    logger.info(f"Event data completo: {json.dumps(event_data, indent=2, default=str)}")
+    logger.info("="*60)
+
+    # Extraer datos del nuevo formato
+    contact = event_data.get("contact", {})
+    message_data = event_data.get("message", {})
+    channel_data = event_data.get("channel", {})
     
+    # NUEVO: Log de extracción
+    logger.info(f"Contact data: {contact}")
+    logger.info(f"Message data: {message_data}")
+    logger.info(f"Channel data: {channel_data}")
+
+    # IDs importantes
     contact_id = str(contact.get("id", ""))
-    message_text = message.get("text", "").strip()
-    conversation_id = conversation.get("id")
+    channel_id = str(channel_data.get("id", ""))
+
+    logger.info(f"🆔 Extracted contact_id: '{contact_id}'")
+    logger.info(f"🆔 Extracted channel_id: '{channel_id}'")
     
-    if not contact_id or not message_text:
-        logger.warning("Missing contact_id or message_text in webhook event")
+    # Contenido del mensaje
+    message_content = message_data.get("message", {})
+    message_text = message_content.get("text", "").strip()
+    
+    logger.info(f"Message content structure: {message_content}")
+    logger.info(f"Extracted message_text: '{message_text}'")
+
+    # Validaciones
+    if not contact_id:
+        logger.warning("Missing contact_id in webhook event")
+        logger.warning(f"Contact dict was: {contact}")
         return
     
-    # Procesar mensaje
+    if not message_text:
+        logger.warning(f"Empty message text for contact {contact_id}")
+        logger.warning(f"Message data was: {message_data}")
+        logger.warning(f"Message content was: {message_content}")
+        return
+    
+    logger.info(f"Validation passed - processing message from contact {contact_id}: '{message_text[:50]}...'")
+    
+    # Procesar mensaje usando lógica interna
     response_text = await process_message_internal(
         contact_id=contact_id,
         message_text=message_text,
-        contact_name=contact.get("first_name"),
+        contact_name=contact.get("firstName"),
         contact_phone=contact.get("phone")
     )
     
     # Enviar respuesta vía API de Respond.io
+    logger.info(f"Sending response to contact {contact_id}")
+    logger.info(f"Response text: {response_text}")
+    logger.info(f"Using channel_id: {channel_id}")
+
     success = await respondio_client.send_message(
         contact_id=contact_id,
         message_text=response_text,
-        conversation_id=conversation_id
+        channel_id=channel_id
     )
     
-    if not success:
+    if success:
+        logger.info(f"Response sent successfully to contact {contact_id}")
+    else:
         logger.error(f"Failed to send response to contact {contact_id}")
 
 async def process_message_for_api(
@@ -58,15 +98,6 @@ async def process_message_for_api(
     """
     Procesa un mensaje desde el endpoint HTTP de la API.
     Usado por el endpoint REST.
-    
-    Args:
-        contact_id: ID del contacto
-        message_text: Texto del mensaje
-        contact_name: Nombre del contacto (opcional)
-        contact_phone: Teléfono del contacto (opcional)
-        
-    Returns:
-        Diccionario con respuesta y metadata
     """
     response_text = await process_message_internal(
         contact_id=contact_id,
@@ -91,17 +122,8 @@ async def process_message_internal(
 ) -> str:
     """
     Lógica interna de procesamiento de mensajes (core).
-    
-    Args:
-        contact_id: ID del contacto
-        message_text: Texto del mensaje
-        contact_name: Nombre del contacto (opcional)
-        contact_phone: Teléfono del contacto (opcional)
-        
-    Returns:
-        Texto de la respuesta personalizada
     """
-    logger.info(f"Processing message from {contact_id}: {message_text[:50]}...")
+    logger.info(f"Processing message internally for contact {contact_id}")
     
     # 1. Obtener y enriquecer sesión
     session = get_session(contact_id)
@@ -147,7 +169,7 @@ async def process_message_internal(
     # 5. Guardar sesión actualizada
     save_session(contact_id, session)
     
-    logger.info(f"Response ready for {contact_id}")
+    logger.info(f"Response ready for contact {contact_id}")
     return response_text
 
 async def _process_debt_intent(
@@ -212,3 +234,4 @@ async def _process_otp_intent(
         # Teléfono faltante - marcar como pendiente
         set_pending_intent(contact_id, "otp", reason, message_text)
         return route.get("followup_question", "Para encontrar tu clave OTP, necesito tu número de celular (9 dígitos).")
+    

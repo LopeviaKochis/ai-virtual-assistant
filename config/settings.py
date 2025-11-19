@@ -15,11 +15,9 @@ class Settings(BaseSettings):
         extra='ignore'  # Esto corrige el error de "Extra inputs are not permitted"
     )
     
-    # Azure (Campos requeridos sin valor por defecto)
+    # Azure
     AZURE_ENDPOINT: str
     AZURE_QUERYKEY: str
-    
-    # Azure (Campos opcionales con = None)
     AZURE_INDEX: Optional[str] = None
     AZURE_INDEX_DEUDA: Optional[str] = None
     AZURE_INDEX_OTP: Optional[str] = None
@@ -30,13 +28,12 @@ class Settings(BaseSettings):
     # Telegram
     TELEGRAM_TOKEN: Optional[str] = None
     
-    # Respond.io (Campos requeridos sin valor por defecto)
-    RESPONDIO_WEBHOOK_SECRET: str
+    # Respond.io - Múltiples webhooks con secretos diferentes
+    RESPONDIO_WEBHOOK_CHAT_OPEN_SECRET: str
+    RESPONDIO_WEBHOOK_INCOMING_MESSAGE_SECRET: str
     RESPONDIO_API_TOKEN: str
     RESPONDIO_WORKSPACE_ID: str
-    
-    # Respond.io (Campos opcionales con valor por defecto)
-    RESPONDIO_API_URL: str = "https://api.respond.io/v2"
+    RESPONDIO_API_URL: str = "https://api.respond.io/v2/messages"
     RESPONDIO_CHANNEL_ID: Optional[str] = None
     
     # Redis

@@ -3,8 +3,8 @@ from fastapi import FastAPI
 from utils.logging import setup_logging
 from config.settings import settings
 
-# Importar sub-aplicaciones
-from webhook.listener import app as webhook_app
+# Importar routers
+from webhook.listener import router as webhook_router
 from api.rag_endpoint import app as rag_app
 
 setup_logging()
@@ -16,8 +16,8 @@ app = FastAPI(
     description="Servidor unificado para integrar un sistema RAG con canales de comunicación de Respond.io y workflows."
 )
 
-# Montar sub-aplicaciones
-app.mount("/webhook", webhook_app)
+# Incluir routers
+app.include_router(webhook_router)
 app.mount("/api", rag_app)
 
 @app.get("/")
@@ -28,8 +28,9 @@ async def root():
         "version": "1.0.0",
         "endpoints": {
             "webhook": {
-                "base": "/webhook",
-                "test": "/webhook/health"
+                "post": "/webhook",
+                "health": "/webhook/health",
+                "test": "/webhook-test"
             },
             "rag_api": {
                 "base": "/api",
@@ -57,9 +58,10 @@ if __name__ == "__main__":
     print(f"Port: {settings.WEBHOOK_PORT}")
     print("")
     print("Endpoints disponibles:")
-    print(f"  • Webhook: http://localhost:{settings.WEBHOOK_PORT}/webhook")
+    print(f"  • Webhook POST: http://localhost:{settings.WEBHOOK_PORT}/webhook")
+    print(f"  • Webhook Health: http://localhost:{settings.WEBHOOK_PORT}/webhook/health")
     print(f"  • RAG API: http://localhost:{settings.WEBHOOK_PORT}/api/process-message")
-    print(f"  • Health:  http://localhost:{settings.WEBHOOK_PORT}/health")
+    print(f"  • Health Global: http://localhost:{settings.WEBHOOK_PORT}/health")
     print("=" * 60)
     
     uvicorn.run(
