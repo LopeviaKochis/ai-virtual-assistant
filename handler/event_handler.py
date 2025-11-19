@@ -1,7 +1,7 @@
 import logging
 from typing import Dict, Any
 
-from services.message_processor import process_message_received
+from services.message_processor import process_message_for_webhook
 from utils.idempotency import is_message_processed, mark_message_processed
 
 logger = logging.getLogger(__name__)
@@ -13,7 +13,6 @@ async def handle_event(event_data: Dict[str, Any]) -> None:
     Args:
         event_data: Datos completos del evento
     """
-    # Normalizar el campo event (puede venir como 'event' o 'event_type')
     event_type = event_data.get("event") or event_data.get("event_type")
     
     if not event_type:
@@ -24,30 +23,15 @@ async def handle_event(event_data: Dict[str, Any]) -> None:
     
     # Verificar idempotencia para message.received
     if event_type == "message.received":
-        # Intentar obtener el message ID de diferentes estructuras posibles
-        message_id = None
+        message_id = _extract_message_id(event_data)
         
-        # Formato 1: data.message.id (producción)
-        if "data" in event_data and isinstance(event_data["data"], dict):
-            message_data = event_data["data"].get("message", {})
-            if isinstance(message_data, dict):
-                message_id = message_data.get("id")
-        
-        # Formato 2: message.id (directo en root - formato de prueba)
-        if not message_id and "message" in event_data:
-            message_data = event_data["message"]
-            if isinstance(message_data, dict):
-                message_id = message_data.get("id")
-        
-        # Verificar si ya fue procesado
         if message_id and is_message_processed(str(message_id)):
             logger.info(f"Message {message_id} already processed, skipping")
             return
         
-        # Procesar el mensaje
-        await process_message_received(event_data)
+        # Procesar el mensaje usando el message_processor unificado
+        await process_message_for_webhook(event_data)
         
-        # Marcar como procesado
         if message_id:
             mark_message_processed(str(message_id))
     
@@ -55,47 +39,58 @@ async def handle_event(event_data: Dict[str, Any]) -> None:
         logger.debug("message.sent event received (no action needed)")
     
     elif event_type == "contact.created":
-        # Intentar obtener contact_id de diferentes estructuras
-        contact_id = None
-        if "data" in event_data and isinstance(event_data["data"], dict):
-            contact_data = event_data["data"].get("contact", {})
-            if isinstance(contact_data, dict):
-                contact_id = contact_data.get("id")
-        if not contact_id and "contact" in event_data:
-            contact_data = event_data["contact"]
-            if isinstance(contact_data, dict):
-                contact_id = contact_data.get("id")
-        
+        contact_id = _extract_contact_id(event_data)
         logger.info(f"New contact created: {contact_id}")
     
     elif event_type == "conversation.opened":
-        # Intentar obtener conversation_id de diferentes estructuras
-        conv_id = None
-        if "data" in event_data and isinstance(event_data["data"], dict):
-            conv_data = event_data["data"].get("conversation", {})
-            if isinstance(conv_data, dict):
-                conv_id = conv_data.get("id")
-        if not conv_id and "conversation" in event_data:
-            conv_data = event_data["conversation"]
-            if isinstance(conv_data, dict):
-                conv_id = conv_data.get("id")
-        
+        conv_id = _extract_conversation_id(event_data)
         logger.info(f"Conversation opened: {conv_id}")
     
     elif event_type == "conversation.closed":
-        # Intentar obtener conversation_id de diferentes estructuras
-        conv_id = None
-        if "data" in event_data and isinstance(event_data["data"], dict):
-            conv_data = event_data["data"].get("conversation", {})
-            if isinstance(conv_data, dict):
-                conv_id = conv_data.get("id")
-        if not conv_id and "conversation" in event_data:
-            conv_data = event_data["conversation"]
-            if isinstance(conv_data, dict):
-                conv_id = conv_data.get("id")
-        
+        conv_id = _extract_conversation_id(event_data)
         logger.info(f"Conversation closed: {conv_id}")
     
     else:
         logger.warning(f"Unknown event type: {event_type}")
+
+def _extract_message_id(event_data: Dict[str, Any]) -> Any:
+    """Extrae message ID de diferentes estructuras posibles."""
+    if "data" in event_data and isinstance(event_data["data"], dict):
+        message_data = event_data["data"].get("message", {})
+        if isinstance(message_data, dict):
+            return message_data.get("id")
     
+    if "message" in event_data:
+        message_data = event_data["message"]
+        if isinstance(message_data, dict):
+            return message_data.get("id")
+    
+    return None
+
+def _extract_contact_id(event_data: Dict[str, Any]) -> Any:
+    """Extrae contact ID de diferentes estructuras posibles."""
+    if "data" in event_data and isinstance(event_data["data"], dict):
+        contact_data = event_data["data"].get("contact", {})
+        if isinstance(contact_data, dict):
+            return contact_data.get("id")
+    
+    if "contact" in event_data:
+        contact_data = event_data["contact"]
+        if isinstance(contact_data, dict):
+            return contact_data.get("id")
+    
+    return None
+
+def _extract_conversation_id(event_data: Dict[str, Any]) -> Any:
+    """Extrae conversation ID de diferentes estructuras posibles."""
+    if "data" in event_data and isinstance(event_data["data"], dict):
+        conv_data = event_data["data"].get("conversation", {})
+        if isinstance(conv_data, dict):
+            return conv_data.get("id")
+    
+    if "conversation" in event_data:
+        conv_data = event_data["conversation"]
+        if isinstance(conv_data, dict):
+            return conv_data.get("id")
+    
+    return None
