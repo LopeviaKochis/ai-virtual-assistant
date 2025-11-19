@@ -9,9 +9,7 @@ from services.session_service import get_session, clear_session
 logger = logging.getLogger(__name__)
 
 app = FastAPI(
-    title="RAG API for Respond.io Integration",
-    version="1.0.0",
-    description="API para integrar un sistema RAG con canales de comunicación de Respond.io y workflows."
+    title="RAG API for Respond.io Integration"
     )
 
 # ==========================================
