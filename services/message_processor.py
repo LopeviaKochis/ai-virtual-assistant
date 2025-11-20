@@ -1,11 +1,11 @@
 import logging
-import json
 from typing import Dict, Any, Optional
 
 from services.router_service import route_message
 from services.rag_service import build_personalized_answer
 from services.session_service import get_session, save_session, set_pending_intent, clear_pending_intent
 from services.extraction_service import enrich_session_from_message, format_response_with_name
+
 from clients.azure_client import search_debt_by_dni, search_otp_by_phone
 from clients.respondio_client import respondio_client
 
@@ -19,8 +19,9 @@ async def process_message_for_webhook(event_data: Dict[str, Any]) -> None:
     Args:
         event_data: Datos completos del evento webhook
     """
+    import json
 
-    # NUEVO: Log inicial del evento completo
+    # Log inicial del evento completo
     logger.info("="*60)
     logger.info("PROCESANDO EVENTO EN MESSAGE_PROCESSOR")
     logger.info(f"Event data keys: {list(event_data.keys())}")
@@ -32,38 +33,35 @@ async def process_message_for_webhook(event_data: Dict[str, Any]) -> None:
     message_data = event_data.get("message", {})
     channel_data = event_data.get("channel", {})
     
-    # NUEVO: Log de extracción
+    # Log de extracción
     logger.info(f"Contact data: {contact}")
     logger.info(f"Message data: {message_data}")
     logger.info(f"Channel data: {channel_data}")
 
-    # IDs importantes
+    # Usar Contact ID de Respond.io
     contact_id = str(contact.get("id", ""))
     channel_id = str(channel_data.get("id", ""))
-
-    logger.info(f"🆔 Extracted contact_id: '{contact_id}'")
-    logger.info(f"🆔 Extracted channel_id: '{channel_id}'")
     
     # Contenido del mensaje
     message_content = message_data.get("message", {})
     message_text = message_content.get("text", "").strip()
     
-    logger.info(f"Message content structure: {message_content}")
-    logger.info(f"Extracted message_text: '{message_text}'")
+    logger.info(f"Contact ID (Respond.io): {contact_id}")
+    logger.info(f"Channel ID: {channel_id}")
+    logger.info(f"Message text: '{message_text}'")
 
     # Validaciones
     if not contact_id:
         logger.warning("Missing contact_id in webhook event")
-        logger.warning(f"Contact dict was: {contact}")
+        logger.warning(f"   Contact dict was: {contact}")
         return
     
     if not message_text:
         logger.warning(f"Empty message text for contact {contact_id}")
-        logger.warning(f"Message data was: {message_data}")
-        logger.warning(f"Message content was: {message_content}")
+        logger.warning(f"   Message data was: {message_data}")
         return
     
-    logger.info(f"Validation passed - processing message from contact {contact_id}: '{message_text[:50]}...'")
+    logger.info(f"Validation passed - processing message from contact {contact_id}")
     
     # Procesar mensaje usando lógica interna
     response_text = await process_message_internal(
@@ -74,7 +72,7 @@ async def process_message_for_webhook(event_data: Dict[str, Any]) -> None:
     )
     
     # Enviar respuesta vía API de Respond.io
-    logger.info(f"Sending response to contact {contact_id}")
+    logger.info(f"Sending response to contact_id: {contact_id}")
     logger.info(f"Response text: {response_text}")
     logger.info(f"Using channel_id: {channel_id}")
 
@@ -122,8 +120,17 @@ async def process_message_internal(
 ) -> str:
     """
     Lógica interna de procesamiento de mensajes (core).
+    
+    Args:
+        contact_id: Contact ID de Respond.io
+        message_text: Texto del mensaje
+        contact_name: Nombre del contacto (opcional)
+        contact_phone: Teléfono del contacto (opcional)
+        
+    Returns:
+        Texto de respuesta personalizada
     """
-    logger.info(f"Processing message internally for contact {contact_id}")
+    logger.info(f" Processing message internally for contact {contact_id}")
     
     # 1. Obtener y enriquecer sesión
     session = get_session(contact_id)
@@ -234,4 +241,3 @@ async def _process_otp_intent(
         # Teléfono faltante - marcar como pendiente
         set_pending_intent(contact_id, "otp", reason, message_text)
         return route.get("followup_question", "Para encontrar tu clave OTP, necesito tu número de celular (9 dígitos).")
-    

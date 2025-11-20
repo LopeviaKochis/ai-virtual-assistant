@@ -17,7 +17,7 @@ class RespondIOClient:
             "Content-Type": "application/json"
         }
     
-    def _format_identifier(self):
+    def _format_identifier(self, identifier: str) -> str:
         """
         Formatea el identificador según el formato requerido por Respond.io API.
         

@@ -16,12 +16,19 @@ class Settings(BaseSettings):
     )
     
     # Azure
+    # AI Search
     AZURE_ENDPOINT: str
     AZURE_QUERYKEY: str
     AZURE_INDEX: Optional[str] = None
     AZURE_INDEX_DEUDA: Optional[str] = None
     AZURE_INDEX_OTP: Optional[str] = None
     
+    # Cosmos DB
+    COSMOS_ENDPOINT: str
+    COSMOS_KEY: str
+    COSMOS_DATABASE: str = "assistantdb"
+    COSMOS_CONTAINER: str = "user_profiles"
+
     # OpenAI
     OPENAI_API_KEY: Optional[str] = None
 
@@ -33,7 +40,7 @@ class Settings(BaseSettings):
     RESPONDIO_WEBHOOK_INCOMING_MESSAGE_SECRET: str
     RESPONDIO_API_TOKEN: str
     RESPONDIO_WORKSPACE_ID: str
-    RESPONDIO_API_URL: str = "https://api.respond.io/v2/messages"
+    RESPONDIO_API_URL: str = "https://api.respond.io/v2"
     RESPONDIO_CHANNEL_ID: Optional[str] = None
     
     # Redis
