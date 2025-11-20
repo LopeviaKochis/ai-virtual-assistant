@@ -1,6 +1,6 @@
 import httpx
 import logging
-from typing import Optional
+from typing import Optional, Any
 from config.settings import settings
 
 logger = logging.getLogger(__name__)
@@ -17,6 +17,38 @@ class RespondIOClient:
             "Content-Type": "application/json"
         }
     
+    def _format_identifier(self):
+        """
+        Formatea el identificador según el formato requerido por Respond.io API.
+        
+        Según la documentación oficial:
+        - Telegram ID numérico: "id:7986242435"
+        - Email: "email:user@example.com"
+        - Teléfono: "phone:+60121233112"
+        - Contact ID: "id:347713428"
+        
+        Args:
+            identifier: Identificador raw (puede ser ID, email o teléfono)
+            
+        Returns:
+            Identificador formateado con prefijo correcto
+        """
+        # Si ya tiene prefijo, devolverlo tal cual
+        if identifier.startswith(("id:", "email:", "phone:")):
+            return identifier
+        
+        # Detectar tipo de identificador
+        if "@" in identifier:
+            # Es un email
+            return f"email:{identifier}"
+        elif identifier.startswith("+") or (identifier.startswith("9") and len(identifier) == 9):
+            # Es un teléfono (con o sin código de país)
+            phone = identifier if identifier.startswith("+") else f"+51{identifier}"
+            return f"phone:{phone}"
+        else:
+            # Es un ID numérico (Telegram ID o Contact ID)
+            return f"id:{identifier}"
+
     async def send_message(
         self,
         contact_id: str,
@@ -27,27 +59,37 @@ class RespondIOClient:
         Envía un mensaje de texto a un contacto vía Respond.io.
         
         Args:
-            contact_id: ID del contacto en Respond.io
+            contact_id: ID del contacto en Respond.io (ID, email o teléfono)
             message_text: Texto del mensaje a enviar
             channel_id: ID del canal (opcional, usa default si no se provee)
             
         Returns:
             True si se envió correctamente
         """
-        endpoint = f"{self.base_url}/message/send"
+        # Formateo identificador con prefijo correcto "id:"
+        formatted_identifier = self._format_identifier(contact_id)
+
+        # Endpoint correcto según documentación oficial
+        endpoint = f"{self.base_url}/contact/{formatted_identifier}/message"
         
         # Usar channel_id provisto o el configurado por defecto
         target_channel_id = channel_id or settings.RESPONDIO_CHANNEL_ID
         
-        payload = {
-            "contactId": int(contact_id),
-            "channelId": int(target_channel_id) if target_channel_id else None,
+        # Payload según documentación oficial
+        payload: dict[str, Any] = {
             "message": {
                 "type": "text",
                 "text": message_text
             }
         }
         
+        # Agregar channelId solo si está disponible (opcional según docs)
+        if target_channel_id:
+            payload["channelId"] = int(target_channel_id)
+
+        logger.debug(f"Original identifier: {contact_id}")
+        logger.debug(f"Formatted identifier: {formatted_identifier}")        
+        logger.debug(f"Sending message to endpoint: {endpoint}")
         logger.debug(f"Sending message payload: {payload}")
         
         try:
@@ -59,7 +101,7 @@ class RespondIOClient:
                 )
                 
                 if response.status_code in [200, 201]:
-                    logger.info(f"Message sent to contact {contact_id} via channel {target_channel_id}")
+                    logger.info(f"Message sent to {formatted_identifier} via channel {target_channel_id}")
                     return True
                 else:
                     logger.error(f"Failed to send message: {response.status_code} - {response.text}")
