@@ -75,13 +75,13 @@ async def message_received_handler(
     try:
         payload = json.loads(raw_body)
         
-        # NUEVO: Log completo del payload para debugging
+        # Log completo del payload para debugging
         logger.info("="*60)
         logger.info("PAYLOAD COMPLETO RECIBIDO:")
         logger.info(json.dumps(payload, indent=2, ensure_ascii=False))
         logger.info("="*60)
         
-        # NUEVO: Log de campos específicos
+        # Log de campos específicos
         logger.info(f"event_type: {payload.get('event_type')}")
         logger.info(f"event_id: {payload.get('event_id')}")
         logger.info(f"contact keys: {list(payload.get('contact', {}).keys())}")
@@ -96,7 +96,7 @@ async def message_received_handler(
         
         event = WebhookEvent(**payload)
 
-        # NUEVO: Log del objeto parseado
+        # Log del objeto parseado
         logger.info(f"WebhookEvent created successfully")
         logger.info(f"   - Contact: {event.get_contact()}")
         logger.info(f"   - Message: {event.get_message()}")

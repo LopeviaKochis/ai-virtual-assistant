@@ -59,38 +59,37 @@ class RespondIOClient:
         Envía un mensaje de texto a un contacto vía Respond.io.
         
         Args:
-            contact_id: ID del contacto en Respond.io (ID, email o teléfono)
+            contact_id: ID del contacto en Respond.io
             message_text: Texto del mensaje a enviar
-            channel_id: ID del canal (opcional, usa default si no se provee)
+            channel_id: ID del canal (OBLIGATORIO para multi-canal)
             
         Returns:
             True si se envió correctamente
         """
-        # Formateo identificador con prefijo correcto "id:"
+        # Formatear identificador
         formatted_identifier = self._format_identifier(contact_id)
 
-        # Endpoint correcto según documentación oficial
+        # Endpoint correcto
         endpoint = f"{self.base_url}/contact/{formatted_identifier}/message"
         
-        # Usar channel_id provisto o el configurado por defecto
+        # NUEVO: Priorizar channel_id provisto sobre el default
         target_channel_id = channel_id or settings.RESPONDIO_CHANNEL_ID
         
-        # Payload según documentación oficial
+        if not target_channel_id:
+            logger.error(f"No channel_id provided and no default configured")
+            return False
+        
+        # Payload
         payload: dict[str, Any] = {
             "message": {
                 "type": "text",
                 "text": message_text
-            }
+            },
+            "channelId": int(target_channel_id)  # SIEMPRE incluir channelId
         }
-        
-        # Agregar channelId solo si está disponible (opcional según docs)
-        if target_channel_id:
-            payload["channelId"] = int(target_channel_id)
 
-        logger.debug(f"Original identifier: {contact_id}")
-        logger.debug(f"Formatted identifier: {formatted_identifier}")        
-        logger.debug(f"Sending message to endpoint: {endpoint}")
-        logger.debug(f"Sending message payload: {payload}")
+        logger.info(f"[Respond.io] Sending to {formatted_identifier} via channel {target_channel_id}")
+        logger.debug(f"[Respond.io] Payload: {payload}")
         
         try:
             async with httpx.AsyncClient(timeout=10.0) as client:
@@ -101,15 +100,58 @@ class RespondIOClient:
                 )
                 
                 if response.status_code in [200, 201]:
-                    logger.info(f"Message sent to {formatted_identifier} via channel {target_channel_id}")
+                    logger.info(f"Message sent successfully to {formatted_identifier}")
                     return True
                 else:
-                    logger.error(f"Failed to send message: {response.status_code} - {response.text}")
+                    logger.error(f" API Error {response.status_code}: {response.text}")
                     return False
                     
         except Exception as e:
-            logger.exception(f"Error sending message: {e}")
+            logger.exception(f"Exception sending message: {e}")
             return False
+
+    async def mark_message_read(
+        self,
+        message_id: str,
+        channel_id: str
+    ) -> bool:
+        """
+        Marca un mensaje como leído en Respond.io.
+        Esto pone el doble check azul/gris inmediatamente.
+        
+        Args:
+            message_id: ID del mensaje a marcar
+            channel_id: ID del canal
+            
+        Returns:
+            True si se marcó correctamente
+        """
+        endpoint = f"{self.base_url}/message/{message_id}/read"
+        
+        payload = {
+            "channelId": int(channel_id)
+        }
+        
+        logger.debug(f"Marking message {message_id} as read on channel {channel_id}")
+        
+        try:
+            async with httpx.AsyncClient(timeout=3.0) as client:  # Timeout corto
+                response = await client.post(
+                    endpoint,
+                    json=payload,
+                    headers=self.headers
+                )
+                
+                if response.status_code in [200, 201, 204]:
+                    logger.debug(f"Message {message_id} marked as read")
+                    return True
+                else:
+                    logger.warning(f"Failed to mark as read: {response.status_code}")
+                    return False
+                    
+        except Exception as e:
+            logger.warning(f"Exception marking as read (non-critical): {e}")
+            return False  # Fail silently
 
 # Cliente singleton
 respondio_client = RespondIOClient()

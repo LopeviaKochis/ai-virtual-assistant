@@ -1,0 +1,1453 @@
+============================================================
+RESPOND.IO INTEGRATION SERVER
+============================================================
+Host: 0.0.0.0
+Port: 8000
+
+Endpoints disponibles:
+  • Webhook POST: http://localhost:8000/webhook
+  • Webhook Health: http://localhost:8000/webhook/health
+  • RAG API: http://localhost:8000/api/process-message
+  • Health Global: http://localhost:8000/health
+============================================================
+INFO:     Started server process [39202]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     209.45.19.42:0 - "GET /webhook/ HTTP/1.1" 404 Not Found
+INFO:     209.45.19.42:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     209.45.19.42:0 - "GET /webhook/ HTTP/1.1" 404 Not Found
+INFO:     209.45.19.42:0 - "GET /webhook/ HTTP/1.1" 404 Not Found
+2025-11-21 15:56:26,979 DEBUG webhook.listener: ==================== MESSAGE RECEIVED EVENT ====================
+2025-11-21 15:56:26,979 DEBUG webhook.listener: RAW BODY: {"contact":{"id":1,"firstName":"John","lastName":"Doe","phone":"+60123456789","email":"johndoe@sample.com","language":"en","profilePic":"https://cdn.chatapi.net/johndoe.png","countryCode":"MY","status":"open","assignee":{"id":2,"firstName":"John","lastName":"Doe","email":"johndoe@sample.com"},"created_at":1663274081},"message":{"messageId":1262965213,"channelMessageId":123,"contactId":123,"channelId":123,"traffic":"incoming","message":{"type":"text","text":"Message text","messageTag":"ACCOUNT_UPDATE"},"timestamp":1662965213,"status":[{"value":"pending","timestamp":1662965213},{"value":"failed","timestamp":1662965213,"message":"Failed reason"}]},"channel":{"id":1,"name":"string","source":"facebook","meta":"{}","created_at":1663274081},"event_type":"message.received","event_id":"88088c27-a3d7-450e-87c7-5ec6e2ab5afd"}
+2025-11-21 15:56:26,979 DEBUG webhook.listener: SIGNATURE: GWHnGHdEErf0l/+1YONVGrXp8QJH3uhARL3osxUQEZM=
+2025-11-21 15:56:26,984 DEBUG webhook.validator: Expected signature: GWHnGHdEErf0l/+1YONVGrXp8QJH3uhARL3osxUQEZM=
+2025-11-21 15:56:26,984 DEBUG webhook.validator: Received signature: GWHnGHdEErf0l/+1YONVGrXp8QJH3uhARL3osxUQEZM=
+2025-11-21 15:56:26,984 DEBUG webhook.validator: Webhook type: message
+2025-11-21 15:56:26,984 DEBUG webhook.validator: Secret (first 10 chars): rq9GrfJaFW...
+2025-11-21 15:56:26,984 INFO webhook.listener: Signature validated for message.received
+2025-11-21 15:56:26,985 INFO webhook.listener: ============================================================
+2025-11-21 15:56:26,985 INFO webhook.listener: PAYLOAD COMPLETO RECIBIDO:
+2025-11-21 15:56:26,985 INFO webhook.listener: {
+  "contact": {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "phone": "+60123456789",
+    "email": "johndoe@sample.com",
+    "language": "en",
+    "profilePic": "https://cdn.chatapi.net/johndoe.png",
+    "countryCode": "MY",
+    "status": "open",
+    "assignee": {
+      "id": 2,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "johndoe@sample.com"
+    },
+    "created_at": 1663274081
+  },
+  "message": {
+    "messageId": 1262965213,
+    "channelMessageId": 123,
+    "contactId": 123,
+    "channelId": 123,
+    "traffic": "incoming",
+    "message": {
+      "type": "text",
+      "text": "Message text",
+      "messageTag": "ACCOUNT_UPDATE"
+    },
+    "timestamp": 1662965213,
+    "status": [
+      {
+        "value": "pending",
+        "timestamp": 1662965213
+      },
+      {
+        "value": "failed",
+        "timestamp": 1662965213,
+        "message": "Failed reason"
+      }
+    ]
+  },
+  "channel": {
+    "id": 1,
+    "name": "string",
+    "source": "facebook",
+    "meta": "{}",
+    "created_at": 1663274081
+  },
+  "event_type": "message.received",
+  "event_id": "88088c27-a3d7-450e-87c7-5ec6e2ab5afd"
+}
+2025-11-21 15:56:26,985 INFO webhook.listener: ============================================================
+2025-11-21 15:56:26,985 INFO webhook.listener: event_type: message.received
+2025-11-21 15:56:26,985 INFO webhook.listener: event_id: 88088c27-a3d7-450e-87c7-5ec6e2ab5afd
+2025-11-21 15:56:26,985 INFO webhook.listener: contact keys: ['id', 'firstName', 'lastName', 'phone', 'email', 'language', 'profilePic', 'countryCode', 'status', 'assignee', 'created_at']
+2025-11-21 15:56:26,985 INFO webhook.listener: message keys: ['messageId', 'channelMessageId', 'contactId', 'channelId', 'traffic', 'message', 'timestamp', 'status']
+2025-11-21 15:56:26,985 INFO webhook.listener: channel keys: ['id', 'name', 'source', 'meta', 'created_at']
+2025-11-21 15:56:26,989 INFO webhook.listener: WebhookEvent created successfully
+2025-11-21 15:56:26,989 INFO webhook.listener:    - Contact: id=1 firstName='John' lastName='Doe' phone='+60123456789' email='johndoe@sample.com' language='en' profilePic='https://cdn.chatapi.net/johndoe.png' countryCode='MY' status='open' assignee={'id': 2, 'firstName': 'John', 'lastName': 'Doe', 'email': 'johndoe@sample.com'} created_at=1663274081 lifecycle=None customFields={}
+2025-11-21 15:56:26,989 INFO webhook.listener:    - Message: messageId=1262965213 channelMessageId=123 contactId=123 channelId=123 traffic='incoming' timestamp=1662965213 message=MessageContent(type='text', text='Message text', messageTag='ACCOUNT_UPDATE')
+2025-11-21 15:56:26,989 INFO webhook.listener:    - Channel: id=1 name='string' source='facebook' meta='{}' created_at=1663274081
+2025-11-21 15:56:26,990 INFO webhook.listener: Enqueuing event: {
+  "event_type": "message.received",
+  "event_id": "88088c27-a3d7-450e-87c7-5ec6e2ab5afd",
+  "contact": {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "phone": "+60123456789",
+    "email": "johndoe@sample.com",
+    "language": "en",
+    "profilePic": "https://cdn.chatapi.net/johndoe.png",
+    "countryCode": "MY",
+    "status": "open",
+    "assignee": {
+      "id": 2,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "johndoe@sample.com"
+    },
+    "created_at": 1663274081,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1262965213,
+    "channelMessageId": 123,
+    "contactId": 123,
+    "channelId": 123,
+    "traffic": "incoming",
+    "timestamp": 1662965213,
+    "message": {
+      "type": "text",
+      "text": "Message text",
+      "messageTag": "ACCOUNT_UPDATE"
+    }
+  },
+  "channel": {
+    "id": 1,
+    "name": "string",
+    "source": "facebook",
+    "meta": "{}",
+    "created_at": 1663274081
+  },
+  "conversation": null
+}
+2025-11-21 15:56:27,011 DEBUG clients.queue_client: Event enqueued: None
+2025-11-21 15:56:27,011 INFO webhook.listener: Message 1262965213 enqueued for processing
+INFO:     52.74.35.155:0 - "POST /webhook/message-received HTTP/1.1" 200 OK
+2025-11-21 15:58:43,465 DEBUG webhook.listener: ==================== MESSAGE RECEIVED EVENT ====================
+2025-11-21 15:58:43,466 DEBUG webhook.listener: RAW BODY: {"event_type":"message.received","event_id":"f55717ca-fb8f-4db4-92a8-3a14835cd8af","contact":{"id":348845550,"firstName":"Pedro López","lastName":"Chavarría","phone":"+51960103874","email":null,"language":null,"profilePic":null,"countryCode":"PE","status":"open","assignee":{"id":null,"firstName":null,"lastName":null,"email":null},"created_at":1763737368},"message":{"messageId":1763758718000000,"channelMessageId":"wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzdCMEU3NTMyMDBDQUYxRkQ0MkQ2NjQ2OERDNkM5OQA=","contactId":348845550,"channelId":440215,"traffic":"incoming","timestamp":1763758718000,"message":{"type":"text","text":"Hola doc, ya soy trascendente?"}},"channel":{"id":440215,"name":"Whatsapp Business","source":"whatsapp_business","meta":null,"created_at":1763733796}}
+2025-11-21 15:58:43,466 DEBUG webhook.listener: SIGNATURE: kMooS94oyGfG5+n9W+f+kS0oNWpa2hg6lhiLLHcHguE=
+2025-11-21 15:58:43,466 DEBUG webhook.validator: Expected signature: kMooS94oyGfG5+n9W+f+kS0oNWpa2hg6lhiLLHcHguE=
+2025-11-21 15:58:43,466 DEBUG webhook.validator: Received signature: kMooS94oyGfG5+n9W+f+kS0oNWpa2hg6lhiLLHcHguE=
+2025-11-21 15:58:43,466 DEBUG webhook.validator: Webhook type: message
+2025-11-21 15:58:43,466 DEBUG webhook.validator: Secret (first 10 chars): rq9GrfJaFW...
+2025-11-21 15:58:43,466 INFO webhook.listener: Signature validated for message.received
+2025-11-21 15:58:43,466 INFO webhook.listener: ============================================================
+2025-11-21 15:58:43,466 INFO webhook.listener: PAYLOAD COMPLETO RECIBIDO:
+2025-11-21 15:58:43,466 INFO webhook.listener: {
+  "event_type": "message.received",
+  "event_id": "f55717ca-fb8f-4db4-92a8-3a14835cd8af",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro López",
+    "lastName": "Chavarría",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368
+  },
+  "message": {
+    "messageId": 1763758718000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzdCMEU3NTMyMDBDQUYxRkQ0MkQ2NjQ2OERDNkM5OQA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763758718000,
+    "message": {
+      "type": "text",
+      "text": "Hola doc, ya soy trascendente?"
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  }
+}
+2025-11-21 15:58:43,466 INFO webhook.listener: ============================================================
+2025-11-21 15:58:43,466 INFO webhook.listener: event_type: message.received
+2025-11-21 15:58:43,466 INFO webhook.listener: event_id: f55717ca-fb8f-4db4-92a8-3a14835cd8af
+2025-11-21 15:58:43,466 INFO webhook.listener: contact keys: ['id', 'firstName', 'lastName', 'phone', 'email', 'language', 'profilePic', 'countryCode', 'status', 'assignee', 'created_at']
+2025-11-21 15:58:43,466 INFO webhook.listener: message keys: ['messageId', 'channelMessageId', 'contactId', 'channelId', 'traffic', 'timestamp', 'message']
+2025-11-21 15:58:43,466 INFO webhook.listener: channel keys: ['id', 'name', 'source', 'meta', 'created_at']
+2025-11-21 15:58:43,466 INFO webhook.listener: WebhookEvent created successfully
+2025-11-21 15:58:43,466 INFO webhook.listener:    - Contact: id=348845550 firstName='Pedro López' lastName='Chavarría' phone='+51960103874' email=None language=None profilePic=None countryCode='PE' status='open' assignee={'id': None, 'firstName': None, 'lastName': None, 'email': None} created_at=1763737368 lifecycle=None customFields={}
+2025-11-21 15:58:43,466 INFO webhook.listener:    - Message: messageId=1763758718000000 channelMessageId='wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzdCMEU3NTMyMDBDQUYxRkQ0MkQ2NjQ2OERDNkM5OQA=' contactId=348845550 channelId=440215 traffic='incoming' timestamp=1763758718000 message=MessageContent(type='text', text='Hola doc, ya soy trascendente?', messageTag=None)
+2025-11-21 15:58:43,467 INFO webhook.listener:    - Channel: id=440215 name='Whatsapp Business' source='whatsapp_business' meta=None created_at=1763733796
+2025-11-21 15:58:43,467 INFO webhook.listener: Enqueuing event: {
+  "event_type": "message.received",
+  "event_id": "f55717ca-fb8f-4db4-92a8-3a14835cd8af",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763758718000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzdCMEU3NTMyMDBDQUYxRkQ0MkQ2NjQ2OERDNkM5OQA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763758718000,
+    "message": {
+      "type": "text",
+      "text": "Hola doc, ya soy trascendente?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 15:58:43,468 DEBUG clients.queue_client: Event enqueued: None
+2025-11-21 15:58:43,468 INFO webhook.listener: Message 1763758718000000 enqueued for processing
+INFO:     54.169.155.20:0 - "POST /webhook/message-received HTTP/1.1" 200 OK
+2025-11-21 16:00:17,200 DEBUG webhook.listener: ==================== MESSAGE RECEIVED EVENT ====================
+2025-11-21 16:00:17,200 DEBUG webhook.listener: RAW BODY: {"event_type":"message.received","event_id":"c311908c-83b4-4306-a314-125d878193e2","contact":{"id":348845550,"firstName":"Pedro López","lastName":"Chavarría","phone":"+51960103874","email":null,"language":null,"profilePic":null,"countryCode":"PE","status":"open","assignee":{"id":null,"firstName":null,"lastName":null,"email":null},"created_at":1763737368},"message":{"messageId":1763758803000000,"channelMessageId":"wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0REOTBBOEIwN0RGOTZFMURGNjRCNUQ2OTc1MzQxNwA=","contactId":348845550,"channelId":440215,"traffic":"incoming","timestamp":1763758803000,"message":{"type":"text","text":"Hola soy Marlonia no Pedro :v"}},"channel":{"id":440215,"name":"Whatsapp Business","source":"whatsapp_business","meta":null,"created_at":1763733796}}
+2025-11-21 16:00:17,200 DEBUG webhook.listener: SIGNATURE: BJlH3tca/5oz7SW7oeX7gz9pegGUjUjfETTxX6hFGCM=
+2025-11-21 16:00:17,200 DEBUG webhook.validator: Expected signature: BJlH3tca/5oz7SW7oeX7gz9pegGUjUjfETTxX6hFGCM=
+2025-11-21 16:00:17,200 DEBUG webhook.validator: Received signature: BJlH3tca/5oz7SW7oeX7gz9pegGUjUjfETTxX6hFGCM=
+2025-11-21 16:00:17,200 DEBUG webhook.validator: Webhook type: message
+2025-11-21 16:00:17,200 DEBUG webhook.validator: Secret (first 10 chars): rq9GrfJaFW...
+2025-11-21 16:00:17,200 INFO webhook.listener: Signature validated for message.received
+2025-11-21 16:00:17,200 INFO webhook.listener: ============================================================
+2025-11-21 16:00:17,200 INFO webhook.listener: PAYLOAD COMPLETO RECIBIDO:
+2025-11-21 16:00:17,200 INFO webhook.listener: {
+  "event_type": "message.received",
+  "event_id": "c311908c-83b4-4306-a314-125d878193e2",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro López",
+    "lastName": "Chavarría",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368
+  },
+  "message": {
+    "messageId": 1763758803000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0REOTBBOEIwN0RGOTZFMURGNjRCNUQ2OTc1MzQxNwA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763758803000,
+    "message": {
+      "type": "text",
+      "text": "Hola soy Marlonia no Pedro :v"
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  }
+}
+2025-11-21 16:00:17,200 INFO webhook.listener: ============================================================
+2025-11-21 16:00:17,201 INFO webhook.listener: event_type: message.received
+2025-11-21 16:00:17,201 INFO webhook.listener: event_id: c311908c-83b4-4306-a314-125d878193e2
+2025-11-21 16:00:17,201 INFO webhook.listener: contact keys: ['id', 'firstName', 'lastName', 'phone', 'email', 'language', 'profilePic', 'countryCode', 'status', 'assignee', 'created_at']
+2025-11-21 16:00:17,201 INFO webhook.listener: message keys: ['messageId', 'channelMessageId', 'contactId', 'channelId', 'traffic', 'timestamp', 'message']
+2025-11-21 16:00:17,201 INFO webhook.listener: channel keys: ['id', 'name', 'source', 'meta', 'created_at']
+2025-11-21 16:00:17,201 INFO webhook.listener: WebhookEvent created successfully
+2025-11-21 16:00:17,201 INFO webhook.listener:    - Contact: id=348845550 firstName='Pedro López' lastName='Chavarría' phone='+51960103874' email=None language=None profilePic=None countryCode='PE' status='open' assignee={'id': None, 'firstName': None, 'lastName': None, 'email': None} created_at=1763737368 lifecycle=None customFields={}
+2025-11-21 16:00:17,201 INFO webhook.listener:    - Message: messageId=1763758803000000 channelMessageId='wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0REOTBBOEIwN0RGOTZFMURGNjRCNUQ2OTc1MzQxNwA=' contactId=348845550 channelId=440215 traffic='incoming' timestamp=1763758803000 message=MessageContent(type='text', text='Hola soy Marlonia no Pedro :v', messageTag=None)
+2025-11-21 16:00:17,201 INFO webhook.listener:    - Channel: id=440215 name='Whatsapp Business' source='whatsapp_business' meta=None created_at=1763733796
+2025-11-21 16:00:17,201 INFO webhook.listener: Enqueuing event: {
+  "event_type": "message.received",
+  "event_id": "c311908c-83b4-4306-a314-125d878193e2",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763758803000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0REOTBBOEIwN0RGOTZFMURGNjRCNUQ2OTc1MzQxNwA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763758803000,
+    "message": {
+      "type": "text",
+      "text": "Hola soy Marlonia no Pedro :v",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:00:17,202 DEBUG clients.queue_client: Event enqueued: None
+2025-11-21 16:00:17,202 INFO webhook.listener: Message 1763758803000000 enqueued for processing
+INFO:     54.169.155.20:0 - "POST /webhook/message-received HTTP/1.1" 200 OK
+2025-11-21 16:01:00,882 DEBUG webhook.listener: ==================== MESSAGE RECEIVED EVENT ====================
+2025-11-21 16:01:00,883 DEBUG webhook.listener: RAW BODY: {"event_type":"message.received","event_id":"be5c64e0-0338-4085-b642-ccab42d4f4e9","contact":{"id":348845550,"firstName":"Pedro López","lastName":"Chavarría","phone":"+51960103874","email":null,"language":null,"profilePic":null,"countryCode":"PE","status":"open","assignee":{"id":null,"firstName":null,"lastName":null,"email":null},"created_at":1763737368},"message":{"messageId":1763758856000000,"channelMessageId":"wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0Q3MzI5NEQ5QzU1QzVDNkNBQ0UxOEY3MTFGNkMxNQA=","contactId":348845550,"channelId":440215,"traffic":"incoming","timestamp":1763758856000,"message":{"type":"text","text":"Ya quedó el proyecto, ahora me quedé sin chamba 💀"}},"channel":{"id":440215,"name":"Whatsapp Business","source":"whatsapp_business","meta":null,"created_at":1763733796}}
+2025-11-21 16:01:00,883 DEBUG webhook.listener: SIGNATURE: 8nt+LluorVCa9m0kaW/yLSfeEyCTRuDU2BfzdYmCTkY=
+2025-11-21 16:01:00,883 DEBUG webhook.validator: Expected signature: 8nt+LluorVCa9m0kaW/yLSfeEyCTRuDU2BfzdYmCTkY=
+2025-11-21 16:01:00,883 DEBUG webhook.validator: Received signature: 8nt+LluorVCa9m0kaW/yLSfeEyCTRuDU2BfzdYmCTkY=
+2025-11-21 16:01:00,883 DEBUG webhook.validator: Webhook type: message
+2025-11-21 16:01:00,883 DEBUG webhook.validator: Secret (first 10 chars): rq9GrfJaFW...
+2025-11-21 16:01:00,883 INFO webhook.listener: Signature validated for message.received
+2025-11-21 16:01:00,883 INFO webhook.listener: ============================================================
+2025-11-21 16:01:00,883 INFO webhook.listener: PAYLOAD COMPLETO RECIBIDO:
+2025-11-21 16:01:00,883 INFO webhook.listener: {
+  "event_type": "message.received",
+  "event_id": "be5c64e0-0338-4085-b642-ccab42d4f4e9",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro López",
+    "lastName": "Chavarría",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368
+  },
+  "message": {
+    "messageId": 1763758856000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0Q3MzI5NEQ5QzU1QzVDNkNBQ0UxOEY3MTFGNkMxNQA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763758856000,
+    "message": {
+      "type": "text",
+      "text": "Ya quedó el proyecto, ahora me quedé sin chamba 💀"
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  }
+}
+2025-11-21 16:01:00,883 INFO webhook.listener: ============================================================
+2025-11-21 16:01:00,883 INFO webhook.listener: event_type: message.received
+2025-11-21 16:01:00,883 INFO webhook.listener: event_id: be5c64e0-0338-4085-b642-ccab42d4f4e9
+2025-11-21 16:01:00,883 INFO webhook.listener: contact keys: ['id', 'firstName', 'lastName', 'phone', 'email', 'language', 'profilePic', 'countryCode', 'status', 'assignee', 'created_at']
+2025-11-21 16:01:00,883 INFO webhook.listener: message keys: ['messageId', 'channelMessageId', 'contactId', 'channelId', 'traffic', 'timestamp', 'message']
+2025-11-21 16:01:00,883 INFO webhook.listener: channel keys: ['id', 'name', 'source', 'meta', 'created_at']
+2025-11-21 16:01:00,883 INFO webhook.listener: WebhookEvent created successfully
+2025-11-21 16:01:00,883 INFO webhook.listener:    - Contact: id=348845550 firstName='Pedro López' lastName='Chavarría' phone='+51960103874' email=None language=None profilePic=None countryCode='PE' status='open' assignee={'id': None, 'firstName': None, 'lastName': None, 'email': None} created_at=1763737368 lifecycle=None customFields={}
+2025-11-21 16:01:00,884 INFO webhook.listener:    - Message: messageId=1763758856000000 channelMessageId='wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0Q3MzI5NEQ5QzU1QzVDNkNBQ0UxOEY3MTFGNkMxNQA=' contactId=348845550 channelId=440215 traffic='incoming' timestamp=1763758856000 message=MessageContent(type='text', text='Ya quedó el proyecto, ahora me quedé sin chamba 💀', messageTag=None)
+2025-11-21 16:01:00,884 INFO webhook.listener:    - Channel: id=440215 name='Whatsapp Business' source='whatsapp_business' meta=None created_at=1763733796
+2025-11-21 16:01:00,884 INFO webhook.listener: Enqueuing event: {
+  "event_type": "message.received",
+  "event_id": "be5c64e0-0338-4085-b642-ccab42d4f4e9",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763758856000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0Q3MzI5NEQ5QzU1QzVDNkNBQ0UxOEY3MTFGNkMxNQA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763758856000,
+    "message": {
+      "type": "text",
+      "text": "Ya qued\u00f3 el proyecto, ahora me qued\u00e9 sin chamba \ud83d\udc80",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:01:00,884 DEBUG clients.queue_client: Event enqueued: None
+2025-11-21 16:01:00,885 INFO webhook.listener: Message 1763758856000000 enqueued for processing
+INFO:     18.138.31.163:0 - "POST /webhook/message-received HTTP/1.1" 200 OK
+2025-11-21 16:01:40,419 DEBUG webhook.listener: ==================== MESSAGE RECEIVED EVENT ====================
+2025-11-21 16:01:40,419 DEBUG webhook.listener: RAW BODY: {"event_type":"message.received","event_id":"a300e5e6-48fd-4697-9e23-0e907ad60ec1","contact":{"id":348845550,"firstName":"Pedro López","lastName":"Chavarría","phone":"+51960103874","email":null,"language":null,"profilePic":null,"countryCode":"PE","status":"open","assignee":{"id":null,"firstName":null,"lastName":null,"email":null},"created_at":1763737368},"message":{"messageId":1763758894000000,"channelMessageId":"wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0ZDNEZBQjcwM0Y3NUQ3QTJCRkY1ODBEQUUxQzMxMQA=","contactId":348845550,"channelId":440215,"traffic":"incoming","timestamp":1763758894000,"message":{"type":"text","text":"Hola Pedro bot"}},"channel":{"id":440215,"name":"Whatsapp Business","source":"whatsapp_business","meta":null,"created_at":1763733796}}
+2025-11-21 16:01:40,420 DEBUG webhook.listener: SIGNATURE: ExE4pJPauyA4gkIY7AfmSwhhisb0RvK1NdKK4GV2d+U=
+2025-11-21 16:01:40,420 DEBUG webhook.validator: Expected signature: ExE4pJPauyA4gkIY7AfmSwhhisb0RvK1NdKK4GV2d+U=
+2025-11-21 16:01:40,420 DEBUG webhook.validator: Received signature: ExE4pJPauyA4gkIY7AfmSwhhisb0RvK1NdKK4GV2d+U=
+2025-11-21 16:01:40,420 DEBUG webhook.validator: Webhook type: message
+2025-11-21 16:01:40,420 DEBUG webhook.validator: Secret (first 10 chars): rq9GrfJaFW...
+2025-11-21 16:01:40,420 INFO webhook.listener: Signature validated for message.received
+2025-11-21 16:01:40,420 INFO webhook.listener: ============================================================
+2025-11-21 16:01:40,420 INFO webhook.listener: PAYLOAD COMPLETO RECIBIDO:
+2025-11-21 16:01:40,420 INFO webhook.listener: {
+  "event_type": "message.received",
+  "event_id": "a300e5e6-48fd-4697-9e23-0e907ad60ec1",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro López",
+    "lastName": "Chavarría",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368
+  },
+  "message": {
+    "messageId": 1763758894000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0ZDNEZBQjcwM0Y3NUQ3QTJCRkY1ODBEQUUxQzMxMQA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763758894000,
+    "message": {
+      "type": "text",
+      "text": "Hola Pedro bot"
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  }
+}
+2025-11-21 16:01:40,420 INFO webhook.listener: ============================================================
+2025-11-21 16:01:40,420 INFO webhook.listener: event_type: message.received
+2025-11-21 16:01:40,420 INFO webhook.listener: event_id: a300e5e6-48fd-4697-9e23-0e907ad60ec1
+2025-11-21 16:01:40,420 INFO webhook.listener: contact keys: ['id', 'firstName', 'lastName', 'phone', 'email', 'language', 'profilePic', 'countryCode', 'status', 'assignee', 'created_at']
+2025-11-21 16:01:40,420 INFO webhook.listener: message keys: ['messageId', 'channelMessageId', 'contactId', 'channelId', 'traffic', 'timestamp', 'message']
+2025-11-21 16:01:40,420 INFO webhook.listener: channel keys: ['id', 'name', 'source', 'meta', 'created_at']
+2025-11-21 16:01:40,420 INFO webhook.listener: WebhookEvent created successfully
+2025-11-21 16:01:40,420 INFO webhook.listener:    - Contact: id=348845550 firstName='Pedro López' lastName='Chavarría' phone='+51960103874' email=None language=None profilePic=None countryCode='PE' status='open' assignee={'id': None, 'firstName': None, 'lastName': None, 'email': None} created_at=1763737368 lifecycle=None customFields={}
+2025-11-21 16:01:40,420 INFO webhook.listener:    - Message: messageId=1763758894000000 channelMessageId='wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0ZDNEZBQjcwM0Y3NUQ3QTJCRkY1ODBEQUUxQzMxMQA=' contactId=348845550 channelId=440215 traffic='incoming' timestamp=1763758894000 message=MessageContent(type='text', text='Hola Pedro bot', messageTag=None)
+2025-11-21 16:01:40,420 INFO webhook.listener:    - Channel: id=440215 name='Whatsapp Business' source='whatsapp_business' meta=None created_at=1763733796
+2025-11-21 16:01:40,421 INFO webhook.listener: Enqueuing event: {
+  "event_type": "message.received",
+  "event_id": "a300e5e6-48fd-4697-9e23-0e907ad60ec1",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763758894000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0ZDNEZBQjcwM0Y3NUQ3QTJCRkY1ODBEQUUxQzMxMQA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763758894000,
+    "message": {
+      "type": "text",
+      "text": "Hola Pedro bot",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:01:40,421 DEBUG clients.queue_client: Event enqueued: None
+2025-11-21 16:01:40,421 INFO webhook.listener: Message 1763758894000000 enqueued for processing
+INFO:     54.169.155.20:0 - "POST /webhook/message-received HTTP/1.1" 200 OK
+2025-11-21 16:44:53,746 DEBUG webhook.listener: ==================== MESSAGE RECEIVED EVENT ====================
+2025-11-21 16:44:55,428 DEBUG webhook.listener: RAW BODY: {"event_type":"message.received","event_id":"54cdf1a8-db7a-4833-a282-dc4314b02745","contact":{"id":348845550,"firstName":"Pedro López","lastName":"Chavarría","phone":"+51960103874","email":null,"language":null,"profilePic":null,"countryCode":"PE","status":"open","assignee":{"id":null,"firstName":null,"lastName":null,"email":null},"created_at":1763737368},"message":{"messageId":1763761465000000,"channelMessageId":"wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0U1RURDQ0U0QkQyNUM2QUZDQjY5RDI1QUY4RDIzMAA=","contactId":348845550,"channelId":440215,"traffic":"incoming","timestamp":1763761465000,"message":{"type":"text","text":"Cuál es mi clave Otp?"}},"channel":{"id":440215,"name":"Whatsapp Business","source":"whatsapp_business","meta":null,"created_at":1763733796}}
+2025-11-21 16:44:55,463 DEBUG webhook.listener: SIGNATURE: O5kHrzQJMzpvmUvvCNQiQXNo7W2F2nKiQcl69lOUJO8=
+2025-11-21 16:44:57,223 DEBUG webhook.validator: Expected signature: O5kHrzQJMzpvmUvvCNQiQXNo7W2F2nKiQcl69lOUJO8=
+2025-11-21 16:44:57,225 DEBUG webhook.validator: Received signature: O5kHrzQJMzpvmUvvCNQiQXNo7W2F2nKiQcl69lOUJO8=
+2025-11-21 16:44:57,227 DEBUG webhook.validator: Webhook type: message
+2025-11-21 16:44:57,227 DEBUG webhook.validator: Secret (first 10 chars): rq9GrfJaFW...
+2025-11-21 16:44:57,274 INFO webhook.listener: Signature validated for message.received
+2025-11-21 16:44:58,532 INFO webhook.listener: ============================================================
+2025-11-21 16:44:58,534 INFO webhook.listener: PAYLOAD COMPLETO RECIBIDO:
+2025-11-21 16:44:58,700 INFO webhook.listener: {
+  "event_type": "message.received",
+  "event_id": "54cdf1a8-db7a-4833-a282-dc4314b02745",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro López",
+    "lastName": "Chavarría",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368
+  },
+  "message": {
+    "messageId": 1763761465000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0U1RURDQ0U0QkQyNUM2QUZDQjY5RDI1QUY4RDIzMAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763761465000,
+    "message": {
+      "type": "text",
+      "text": "Cuál es mi clave Otp?"
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  }
+}
+2025-11-21 16:44:58,739 INFO webhook.listener: ============================================================
+2025-11-21 16:44:58,741 INFO webhook.listener: event_type: message.received
+2025-11-21 16:44:58,742 INFO webhook.listener: event_id: 54cdf1a8-db7a-4833-a282-dc4314b02745
+2025-11-21 16:44:58,834 INFO webhook.listener: contact keys: ['id', 'firstName', 'lastName', 'phone', 'email', 'language', 'profilePic', 'countryCode', 'status', 'assignee', 'created_at']
+2025-11-21 16:44:58,891 INFO webhook.listener: message keys: ['messageId', 'channelMessageId', 'contactId', 'channelId', 'traffic', 'timestamp', 'message']
+2025-11-21 16:44:58,892 INFO webhook.listener: channel keys: ['id', 'name', 'source', 'meta', 'created_at']
+2025-11-21 16:45:00,442 INFO webhook.listener: WebhookEvent created successfully
+2025-11-21 16:45:00,592 INFO webhook.listener:    - Contact: id=348845550 firstName='Pedro López' lastName='Chavarría' phone='+51960103874' email=None language=None profilePic=None countryCode='PE' status='open' assignee={'id': None, 'firstName': None, 'lastName': None, 'email': None} created_at=1763737368 lifecycle=None customFields={}
+2025-11-21 16:45:00,697 INFO webhook.listener:    - Message: messageId=1763761465000000 channelMessageId='wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0U1RURDQ0U0QkQyNUM2QUZDQjY5RDI1QUY4RDIzMAA=' contactId=348845550 channelId=440215 traffic='incoming' timestamp=1763761465000 message=MessageContent(type='text', text='Cuál es mi clave Otp?', messageTag=None)
+2025-11-21 16:45:00,764 INFO webhook.listener:    - Channel: id=440215 name='Whatsapp Business' source='whatsapp_business' meta=None created_at=1763733796
+2025-11-21 16:45:01,267 INFO webhook.listener: Enqueuing event: {
+  "event_type": "message.received",
+  "event_id": "54cdf1a8-db7a-4833-a282-dc4314b02745",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763761465000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0U1RURDQ0U0QkQyNUM2QUZDQjY5RDI1QUY4RDIzMAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763761465000,
+    "message": {
+      "type": "text",
+      "text": "Cu\u00e1l es mi clave Otp?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:45:04,941 DEBUG clients.queue_client: Event enqueued: None
+2025-11-21 16:45:04,944 INFO webhook.listener: Message 1763761465000000 enqueued for processing
+INFO:     54.169.155.20:0 - "POST /webhook/message-received HTTP/1.1" 200 OK
+2025-11-21 16:45:08,941 DEBUG webhook.listener: ==================== MESSAGE RECEIVED EVENT ====================
+2025-11-21 16:45:08,944 DEBUG webhook.listener: RAW BODY: {"event_type":"message.received","event_id":"54cdf1a8-db7a-4833-a282-dc4314b02745","contact":{"id":348845550,"firstName":"Pedro López","lastName":"Chavarría","phone":"+51960103874","email":null,"language":null,"profilePic":null,"countryCode":"PE","status":"open","assignee":{"id":null,"firstName":null,"lastName":null,"email":null},"created_at":1763737368},"message":{"messageId":1763761465000000,"channelMessageId":"wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0U1RURDQ0U0QkQyNUM2QUZDQjY5RDI1QUY4RDIzMAA=","contactId":348845550,"channelId":440215,"traffic":"incoming","timestamp":1763761465000,"message":{"type":"text","text":"Cuál es mi clave Otp?"}},"channel":{"id":440215,"name":"Whatsapp Business","source":"whatsapp_business","meta":null,"created_at":1763733796}}
+2025-11-21 16:45:08,946 DEBUG webhook.listener: SIGNATURE: O5kHrzQJMzpvmUvvCNQiQXNo7W2F2nKiQcl69lOUJO8=
+2025-11-21 16:45:08,949 DEBUG webhook.validator: Expected signature: O5kHrzQJMzpvmUvvCNQiQXNo7W2F2nKiQcl69lOUJO8=
+2025-11-21 16:45:08,949 DEBUG webhook.validator: Received signature: O5kHrzQJMzpvmUvvCNQiQXNo7W2F2nKiQcl69lOUJO8=
+2025-11-21 16:45:08,950 DEBUG webhook.validator: Webhook type: message
+2025-11-21 16:45:08,950 DEBUG webhook.validator: Secret (first 10 chars): rq9GrfJaFW...
+2025-11-21 16:45:08,951 INFO webhook.listener: Signature validated for message.received
+2025-11-21 16:45:08,960 INFO webhook.listener: ============================================================
+2025-11-21 16:45:08,962 INFO webhook.listener: PAYLOAD COMPLETO RECIBIDO:
+2025-11-21 16:45:09,171 INFO webhook.listener: {
+  "event_type": "message.received",
+  "event_id": "54cdf1a8-db7a-4833-a282-dc4314b02745",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro López",
+    "lastName": "Chavarría",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368
+  },
+  "message": {
+    "messageId": 1763761465000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0U1RURDQ0U0QkQyNUM2QUZDQjY5RDI1QUY4RDIzMAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763761465000,
+    "message": {
+      "type": "text",
+      "text": "Cuál es mi clave Otp?"
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  }
+}
+2025-11-21 16:45:09,172 INFO webhook.listener: ============================================================
+2025-11-21 16:45:09,175 INFO webhook.listener: event_type: message.received
+2025-11-21 16:45:09,176 INFO webhook.listener: event_id: 54cdf1a8-db7a-4833-a282-dc4314b02745
+2025-11-21 16:45:09,178 INFO webhook.listener: contact keys: ['id', 'firstName', 'lastName', 'phone', 'email', 'language', 'profilePic', 'countryCode', 'status', 'assignee', 'created_at']
+2025-11-21 16:45:09,179 INFO webhook.listener: message keys: ['messageId', 'channelMessageId', 'contactId', 'channelId', 'traffic', 'timestamp', 'message']
+2025-11-21 16:45:09,179 INFO webhook.listener: channel keys: ['id', 'name', 'source', 'meta', 'created_at']
+2025-11-21 16:45:09,181 INFO webhook.listener: WebhookEvent created successfully
+2025-11-21 16:45:09,189 INFO webhook.listener:    - Contact: id=348845550 firstName='Pedro López' lastName='Chavarría' phone='+51960103874' email=None language=None profilePic=None countryCode='PE' status='open' assignee={'id': None, 'firstName': None, 'lastName': None, 'email': None} created_at=1763737368 lifecycle=None customFields={}
+2025-11-21 16:45:09,191 INFO webhook.listener:    - Message: messageId=1763761465000000 channelMessageId='wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0U1RURDQ0U0QkQyNUM2QUZDQjY5RDI1QUY4RDIzMAA=' contactId=348845550 channelId=440215 traffic='incoming' timestamp=1763761465000 message=MessageContent(type='text', text='Cuál es mi clave Otp?', messageTag=None)
+2025-11-21 16:45:09,271 INFO webhook.listener:    - Channel: id=440215 name='Whatsapp Business' source='whatsapp_business' meta=None created_at=1763733796
+2025-11-21 16:45:09,276 INFO webhook.listener: Enqueuing event: {
+  "event_type": "message.received",
+  "event_id": "54cdf1a8-db7a-4833-a282-dc4314b02745",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763761465000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0U1RURDQ0U0QkQyNUM2QUZDQjY5RDI1QUY4RDIzMAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763761465000,
+    "message": {
+      "type": "text",
+      "text": "Cu\u00e1l es mi clave Otp?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:45:09,664 DEBUG clients.queue_client: Event enqueued: None
+2025-11-21 16:45:09,667 INFO webhook.listener: Message 1763761465000000 enqueued for processing
+INFO:     18.138.31.163:0 - "POST /webhook/message-received HTTP/1.1" 200 OK
+2025-11-21 16:45:58,637 DEBUG webhook.listener: ==================== MESSAGE RECEIVED EVENT ====================
+2025-11-21 16:45:58,639 DEBUG webhook.listener: RAW BODY: {"event_type":"message.received","event_id":"1a782fb9-2419-496c-a6d3-f521acaba28a","contact":{"id":348845550,"firstName":"Pedro López","lastName":"Chavarría","phone":"+51960103874","email":null,"language":null,"profilePic":null,"countryCode":"PE","status":"open","assignee":{"id":null,"firstName":null,"lastName":null,"email":null},"created_at":1763737368},"message":{"messageId":1763761550000000,"channelMessageId":"wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzAyNDJFRTMyN0MyRDgzMUI2NTQ1QTQzMkQyN0JENAA=","contactId":348845550,"channelId":440215,"traffic":"incoming","timestamp":1763761550000,"message":{"type":"text","text":"Hola?"}},"channel":{"id":440215,"name":"Whatsapp Business","source":"whatsapp_business","meta":null,"created_at":1763733796}}
+2025-11-21 16:45:58,640 DEBUG webhook.listener: SIGNATURE: XjjibQAdxLrRL79en4DaeJvskn1x1PI9aXcEuYUx/sc=
+2025-11-21 16:45:58,708 DEBUG webhook.validator: Expected signature: XjjibQAdxLrRL79en4DaeJvskn1x1PI9aXcEuYUx/sc=
+2025-11-21 16:45:58,709 DEBUG webhook.validator: Received signature: XjjibQAdxLrRL79en4DaeJvskn1x1PI9aXcEuYUx/sc=
+2025-11-21 16:45:58,710 DEBUG webhook.validator: Webhook type: message
+2025-11-21 16:45:58,781 DEBUG webhook.validator: Secret (first 10 chars): rq9GrfJaFW...
+2025-11-21 16:45:58,782 INFO webhook.listener: Signature validated for message.received
+2025-11-21 16:45:58,912 INFO webhook.listener: ============================================================
+2025-11-21 16:45:58,913 INFO webhook.listener: PAYLOAD COMPLETO RECIBIDO:
+2025-11-21 16:45:58,915 INFO webhook.listener: {
+  "event_type": "message.received",
+  "event_id": "1a782fb9-2419-496c-a6d3-f521acaba28a",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro López",
+    "lastName": "Chavarría",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368
+  },
+  "message": {
+    "messageId": 1763761550000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzAyNDJFRTMyN0MyRDgzMUI2NTQ1QTQzMkQyN0JENAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763761550000,
+    "message": {
+      "type": "text",
+      "text": "Hola?"
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  }
+}
+2025-11-21 16:45:58,918 INFO webhook.listener: ============================================================
+2025-11-21 16:45:58,919 INFO webhook.listener: event_type: message.received
+2025-11-21 16:45:58,920 INFO webhook.listener: event_id: 1a782fb9-2419-496c-a6d3-f521acaba28a
+2025-11-21 16:45:58,920 INFO webhook.listener: contact keys: ['id', 'firstName', 'lastName', 'phone', 'email', 'language', 'profilePic', 'countryCode', 'status', 'assignee', 'created_at']
+2025-11-21 16:45:58,921 INFO webhook.listener: message keys: ['messageId', 'channelMessageId', 'contactId', 'channelId', 'traffic', 'timestamp', 'message']
+2025-11-21 16:45:58,921 INFO webhook.listener: channel keys: ['id', 'name', 'source', 'meta', 'created_at']
+2025-11-21 16:45:58,921 INFO webhook.listener: WebhookEvent created successfully
+2025-11-21 16:45:59,022 INFO webhook.listener:    - Contact: id=348845550 firstName='Pedro López' lastName='Chavarría' phone='+51960103874' email=None language=None profilePic=None countryCode='PE' status='open' assignee={'id': None, 'firstName': None, 'lastName': None, 'email': None} created_at=1763737368 lifecycle=None customFields={}
+2025-11-21 16:45:59,024 INFO webhook.listener:    - Message: messageId=1763761550000000 channelMessageId='wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzAyNDJFRTMyN0MyRDgzMUI2NTQ1QTQzMkQyN0JENAA=' contactId=348845550 channelId=440215 traffic='incoming' timestamp=1763761550000 message=MessageContent(type='text', text='Hola?', messageTag=None)
+2025-11-21 16:45:59,025 INFO webhook.listener:    - Channel: id=440215 name='Whatsapp Business' source='whatsapp_business' meta=None created_at=1763733796
+2025-11-21 16:45:59,029 INFO webhook.listener: Enqueuing event: {
+  "event_type": "message.received",
+  "event_id": "1a782fb9-2419-496c-a6d3-f521acaba28a",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763761550000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzAyNDJFRTMyN0MyRDgzMUI2NTQ1QTQzMkQyN0JENAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763761550000,
+    "message": {
+      "type": "text",
+      "text": "Hola?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:45:59,239 DEBUG clients.queue_client: Event enqueued: None
+2025-11-21 16:45:59,240 INFO webhook.listener: Message 1763761550000000 enqueued for processing
+INFO:     54.169.155.20:0 - "POST /webhook/message-received HTTP/1.1" 200 OK
+2025-11-21 16:55:41,348 DEBUG webhook.listener: ==================== MESSAGE RECEIVED EVENT ====================
+2025-11-21 16:55:41,349 DEBUG webhook.listener: RAW BODY: {"event_type":"message.received","event_id":"4ae82f64-8b38-4b88-9314-bfe9fcec3ca9","contact":{"id":348845550,"firstName":"Pedro López","lastName":"Chavarría","phone":"+51960103874","email":null,"language":null,"profilePic":null,"countryCode":"PE","status":"open","assignee":{"id":null,"firstName":null,"lastName":null,"email":null},"created_at":1763737368},"message":{"messageId":1763762136000000,"channelMessageId":"wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzRGMkM1RTE3MzVGNTM5MzQxODhDRUUzRTEyMjI4RAA=","contactId":348845550,"channelId":440215,"traffic":"incoming","timestamp":1763762136000,"message":{"type":"text","text":"Cuál es el.estado de mi deuda?"}},"channel":{"id":440215,"name":"Whatsapp Business","source":"whatsapp_business","meta":null,"created_at":1763733796}}
+2025-11-21 16:55:41,349 DEBUG webhook.listener: SIGNATURE: bDD8COqQO4vLeV1K2OPOSHhgMcP5lcyUaojAM9jC3lM=
+2025-11-21 16:55:41,349 DEBUG webhook.validator: Expected signature: bDD8COqQO4vLeV1K2OPOSHhgMcP5lcyUaojAM9jC3lM=
+2025-11-21 16:55:41,349 DEBUG webhook.validator: Received signature: bDD8COqQO4vLeV1K2OPOSHhgMcP5lcyUaojAM9jC3lM=
+2025-11-21 16:55:41,349 DEBUG webhook.validator: Webhook type: message
+2025-11-21 16:55:41,349 DEBUG webhook.validator: Secret (first 10 chars): rq9GrfJaFW...
+2025-11-21 16:55:41,349 INFO webhook.listener: Signature validated for message.received
+2025-11-21 16:55:41,349 INFO webhook.listener: ============================================================
+2025-11-21 16:55:41,349 INFO webhook.listener: PAYLOAD COMPLETO RECIBIDO:
+2025-11-21 16:55:41,349 INFO webhook.listener: {
+  "event_type": "message.received",
+  "event_id": "4ae82f64-8b38-4b88-9314-bfe9fcec3ca9",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro López",
+    "lastName": "Chavarría",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368
+  },
+  "message": {
+    "messageId": 1763762136000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzRGMkM1RTE3MzVGNTM5MzQxODhDRUUzRTEyMjI4RAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762136000,
+    "message": {
+      "type": "text",
+      "text": "Cuál es el.estado de mi deuda?"
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  }
+}
+2025-11-21 16:55:41,350 INFO webhook.listener: ============================================================
+2025-11-21 16:55:41,350 INFO webhook.listener: event_type: message.received
+2025-11-21 16:55:41,350 INFO webhook.listener: event_id: 4ae82f64-8b38-4b88-9314-bfe9fcec3ca9
+2025-11-21 16:55:41,350 INFO webhook.listener: contact keys: ['id', 'firstName', 'lastName', 'phone', 'email', 'language', 'profilePic', 'countryCode', 'status', 'assignee', 'created_at']
+2025-11-21 16:55:41,350 INFO webhook.listener: message keys: ['messageId', 'channelMessageId', 'contactId', 'channelId', 'traffic', 'timestamp', 'message']
+2025-11-21 16:55:41,350 INFO webhook.listener: channel keys: ['id', 'name', 'source', 'meta', 'created_at']
+2025-11-21 16:55:41,350 INFO webhook.listener: WebhookEvent created successfully
+2025-11-21 16:55:41,350 INFO webhook.listener:    - Contact: id=348845550 firstName='Pedro López' lastName='Chavarría' phone='+51960103874' email=None language=None profilePic=None countryCode='PE' status='open' assignee={'id': None, 'firstName': None, 'lastName': None, 'email': None} created_at=1763737368 lifecycle=None customFields={}
+2025-11-21 16:55:41,350 INFO webhook.listener:    - Message: messageId=1763762136000000 channelMessageId='wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzRGMkM1RTE3MzVGNTM5MzQxODhDRUUzRTEyMjI4RAA=' contactId=348845550 channelId=440215 traffic='incoming' timestamp=1763762136000 message=MessageContent(type='text', text='Cuál es el.estado de mi deuda?', messageTag=None)
+2025-11-21 16:55:41,350 INFO webhook.listener:    - Channel: id=440215 name='Whatsapp Business' source='whatsapp_business' meta=None created_at=1763733796
+2025-11-21 16:55:41,351 INFO webhook.listener: Enqueuing event: {
+  "event_type": "message.received",
+  "event_id": "4ae82f64-8b38-4b88-9314-bfe9fcec3ca9",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763762136000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzRGMkM1RTE3MzVGNTM5MzQxODhDRUUzRTEyMjI4RAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762136000,
+    "message": {
+      "type": "text",
+      "text": "Cu\u00e1l es el.estado de mi deuda?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:55:41,351 DEBUG clients.queue_client: Event enqueued: None
+2025-11-21 16:55:41,351 INFO webhook.listener: Message 1763762136000000 enqueued for processing
+INFO:     54.169.155.20:0 - "POST /webhook/message-received HTTP/1.1" 200 OK
+2025-11-21 16:55:56,784 DEBUG webhook.listener: ==================== MESSAGE RECEIVED EVENT ====================
+2025-11-21 16:55:56,784 DEBUG webhook.listener: RAW BODY: {"event_type":"message.received","event_id":"5c201fe8-2af4-4253-9173-cefee1234b7a","contact":{"id":348845550,"firstName":"Pedro López","lastName":"Chavarría","phone":"+51960103874","email":null,"language":null,"profilePic":null,"countryCode":"PE","status":"open","assignee":{"id":null,"firstName":null,"lastName":null,"email":null},"created_at":1763737368},"message":{"messageId":1763762151000000,"channelMessageId":"wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzEwODM4OTIzMTI4REE4ODUwQjMzQTU1NEIxQzQ3QwA=","contactId":348845550,"channelId":440215,"traffic":"incoming","timestamp":1763762151000,"message":{"type":"text","text":"73895873"}},"channel":{"id":440215,"name":"Whatsapp Business","source":"whatsapp_business","meta":null,"created_at":1763733796}}
+2025-11-21 16:55:56,784 DEBUG webhook.listener: SIGNATURE: fpQg0muKHoeorEjU6iv0KNhwKkuFI4DKjMZTG9Q3Es8=
+2025-11-21 16:55:56,784 DEBUG webhook.validator: Expected signature: fpQg0muKHoeorEjU6iv0KNhwKkuFI4DKjMZTG9Q3Es8=
+2025-11-21 16:55:56,784 DEBUG webhook.validator: Received signature: fpQg0muKHoeorEjU6iv0KNhwKkuFI4DKjMZTG9Q3Es8=
+2025-11-21 16:55:56,784 DEBUG webhook.validator: Webhook type: message
+2025-11-21 16:55:56,784 DEBUG webhook.validator: Secret (first 10 chars): rq9GrfJaFW...
+2025-11-21 16:55:56,784 INFO webhook.listener: Signature validated for message.received
+2025-11-21 16:55:56,784 INFO webhook.listener: ============================================================
+2025-11-21 16:55:56,784 INFO webhook.listener: PAYLOAD COMPLETO RECIBIDO:
+2025-11-21 16:55:56,785 INFO webhook.listener: {
+  "event_type": "message.received",
+  "event_id": "5c201fe8-2af4-4253-9173-cefee1234b7a",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro López",
+    "lastName": "Chavarría",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368
+  },
+  "message": {
+    "messageId": 1763762151000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzEwODM4OTIzMTI4REE4ODUwQjMzQTU1NEIxQzQ3QwA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762151000,
+    "message": {
+      "type": "text",
+      "text": "73895873"
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  }
+}
+2025-11-21 16:55:56,785 INFO webhook.listener: ============================================================
+2025-11-21 16:55:56,785 INFO webhook.listener: event_type: message.received
+2025-11-21 16:55:56,785 INFO webhook.listener: event_id: 5c201fe8-2af4-4253-9173-cefee1234b7a
+2025-11-21 16:55:56,785 INFO webhook.listener: contact keys: ['id', 'firstName', 'lastName', 'phone', 'email', 'language', 'profilePic', 'countryCode', 'status', 'assignee', 'created_at']
+2025-11-21 16:55:56,785 INFO webhook.listener: message keys: ['messageId', 'channelMessageId', 'contactId', 'channelId', 'traffic', 'timestamp', 'message']
+2025-11-21 16:55:56,785 INFO webhook.listener: channel keys: ['id', 'name', 'source', 'meta', 'created_at']
+2025-11-21 16:55:56,785 INFO webhook.listener: WebhookEvent created successfully
+2025-11-21 16:55:56,785 INFO webhook.listener:    - Contact: id=348845550 firstName='Pedro López' lastName='Chavarría' phone='+51960103874' email=None language=None profilePic=None countryCode='PE' status='open' assignee={'id': None, 'firstName': None, 'lastName': None, 'email': None} created_at=1763737368 lifecycle=None customFields={}
+2025-11-21 16:55:56,785 INFO webhook.listener:    - Message: messageId=1763762151000000 channelMessageId='wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzEwODM4OTIzMTI4REE4ODUwQjMzQTU1NEIxQzQ3QwA=' contactId=348845550 channelId=440215 traffic='incoming' timestamp=1763762151000 message=MessageContent(type='text', text='73895873', messageTag=None)
+2025-11-21 16:55:56,785 INFO webhook.listener:    - Channel: id=440215 name='Whatsapp Business' source='whatsapp_business' meta=None created_at=1763733796
+2025-11-21 16:55:56,785 INFO webhook.listener: Enqueuing event: {
+  "event_type": "message.received",
+  "event_id": "5c201fe8-2af4-4253-9173-cefee1234b7a",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763762151000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzEwODM4OTIzMTI4REE4ODUwQjMzQTU1NEIxQzQ3QwA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762151000,
+    "message": {
+      "type": "text",
+      "text": "73895873",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:55:56,786 DEBUG clients.queue_client: Event enqueued: None
+2025-11-21 16:55:56,786 INFO webhook.listener: Message 1763762151000000 enqueued for processing
+INFO:     18.138.31.163:0 - "POST /webhook/message-received HTTP/1.1" 200 OK
+2025-11-21 16:57:31,031 DEBUG webhook.listener: ==================== MESSAGE RECEIVED EVENT ====================
+2025-11-21 16:57:31,032 DEBUG webhook.listener: RAW BODY: {"event_type":"message.received","event_id":"4ac9b129-c841-4de5-8fdc-df92b1c4356e","contact":{"id":348845550,"firstName":"Pedro López","lastName":"Chavarría","phone":"+51960103874","email":null,"language":null,"profilePic":null,"countryCode":"PE","status":"open","assignee":{"id":null,"firstName":null,"lastName":null,"email":null},"created_at":1763737368},"message":{"messageId":1763762244000000,"channelMessageId":"wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzdDRkQ0NTZBOUE4N0RBNDY3NkU0RUM1OTk2REI2QQA=","contactId":348845550,"channelId":440215,"traffic":"incoming","timestamp":1763762244000,"message":{"type":"text","text":"Te pregunté por el estado de mi deuda, no mi otp"}},"channel":{"id":440215,"name":"Whatsapp Business","source":"whatsapp_business","meta":null,"created_at":1763733796}}
+2025-11-21 16:57:31,032 DEBUG webhook.listener: SIGNATURE: WL60UfNOAptDkk7sWZip2rtNlmSwUu1bgGD3aacIA08=
+2025-11-21 16:57:31,032 DEBUG webhook.validator: Expected signature: WL60UfNOAptDkk7sWZip2rtNlmSwUu1bgGD3aacIA08=
+2025-11-21 16:57:31,032 DEBUG webhook.validator: Received signature: WL60UfNOAptDkk7sWZip2rtNlmSwUu1bgGD3aacIA08=
+2025-11-21 16:57:31,032 DEBUG webhook.validator: Webhook type: message
+2025-11-21 16:57:31,032 DEBUG webhook.validator: Secret (first 10 chars): rq9GrfJaFW...
+2025-11-21 16:57:31,032 INFO webhook.listener: Signature validated for message.received
+2025-11-21 16:57:31,032 INFO webhook.listener: ============================================================
+2025-11-21 16:57:31,032 INFO webhook.listener: PAYLOAD COMPLETO RECIBIDO:
+2025-11-21 16:57:31,033 INFO webhook.listener: {
+  "event_type": "message.received",
+  "event_id": "4ac9b129-c841-4de5-8fdc-df92b1c4356e",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro López",
+    "lastName": "Chavarría",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368
+  },
+  "message": {
+    "messageId": 1763762244000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzdDRkQ0NTZBOUE4N0RBNDY3NkU0RUM1OTk2REI2QQA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762244000,
+    "message": {
+      "type": "text",
+      "text": "Te pregunté por el estado de mi deuda, no mi otp"
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  }
+}
+2025-11-21 16:57:31,033 INFO webhook.listener: ============================================================
+2025-11-21 16:57:31,033 INFO webhook.listener: event_type: message.received
+2025-11-21 16:57:31,033 INFO webhook.listener: event_id: 4ac9b129-c841-4de5-8fdc-df92b1c4356e
+2025-11-21 16:57:31,033 INFO webhook.listener: contact keys: ['id', 'firstName', 'lastName', 'phone', 'email', 'language', 'profilePic', 'countryCode', 'status', 'assignee', 'created_at']
+2025-11-21 16:57:31,033 INFO webhook.listener: message keys: ['messageId', 'channelMessageId', 'contactId', 'channelId', 'traffic', 'timestamp', 'message']
+2025-11-21 16:57:31,033 INFO webhook.listener: channel keys: ['id', 'name', 'source', 'meta', 'created_at']
+2025-11-21 16:57:31,033 INFO webhook.listener: WebhookEvent created successfully
+2025-11-21 16:57:31,033 INFO webhook.listener:    - Contact: id=348845550 firstName='Pedro López' lastName='Chavarría' phone='+51960103874' email=None language=None profilePic=None countryCode='PE' status='open' assignee={'id': None, 'firstName': None, 'lastName': None, 'email': None} created_at=1763737368 lifecycle=None customFields={}
+2025-11-21 16:57:31,033 INFO webhook.listener:    - Message: messageId=1763762244000000 channelMessageId='wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzdDRkQ0NTZBOUE4N0RBNDY3NkU0RUM1OTk2REI2QQA=' contactId=348845550 channelId=440215 traffic='incoming' timestamp=1763762244000 message=MessageContent(type='text', text='Te pregunté por el estado de mi deuda, no mi otp', messageTag=None)
+2025-11-21 16:57:31,033 INFO webhook.listener:    - Channel: id=440215 name='Whatsapp Business' source='whatsapp_business' meta=None created_at=1763733796
+2025-11-21 16:57:31,033 INFO webhook.listener: Enqueuing event: {
+  "event_type": "message.received",
+  "event_id": "4ac9b129-c841-4de5-8fdc-df92b1c4356e",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763762244000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzdDRkQ0NTZBOUE4N0RBNDY3NkU0RUM1OTk2REI2QQA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762244000,
+    "message": {
+      "type": "text",
+      "text": "Te pregunt\u00e9 por el estado de mi deuda, no mi otp",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:57:31,034 DEBUG clients.queue_client: Event enqueued: None
+2025-11-21 16:57:31,034 INFO webhook.listener: Message 1763762244000000 enqueued for processing
+INFO:     54.169.155.20:0 - "POST /webhook/message-received HTTP/1.1" 200 OK
+2025-11-21 16:58:50,815 DEBUG webhook.listener: ==================== MESSAGE RECEIVED EVENT ====================
+2025-11-21 16:58:50,815 DEBUG webhook.listener: RAW BODY: {"event_type":"message.received","event_id":"38988f27-7ec7-494e-9653-3f1841dbe8ee","contact":{"id":348845550,"firstName":"Pedro López","lastName":"Chavarría","phone":"+51960103874","email":null,"language":null,"profilePic":null,"countryCode":"PE","status":"open","assignee":{"id":null,"firstName":null,"lastName":null,"email":null},"created_at":1763737368},"message":{"messageId":1763762326000000,"channelMessageId":"wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0VGOTlDOTJFNzVEQkQxRjRCOUVEMEY2NTNFQjY3NAA=","contactId":348845550,"channelId":440215,"traffic":"incoming","timestamp":1763762326000,"message":{"type":"text","text":"Tengo mora?"}},"channel":{"id":440215,"name":"Whatsapp Business","source":"whatsapp_business","meta":null,"created_at":1763733796}}
+2025-11-21 16:58:50,815 DEBUG webhook.listener: SIGNATURE: Y/f5IqK4szy5R18IxYW0LO2mR2Y5YdoYDzDA8cdieH0=
+2025-11-21 16:58:50,815 DEBUG webhook.validator: Expected signature: Y/f5IqK4szy5R18IxYW0LO2mR2Y5YdoYDzDA8cdieH0=
+2025-11-21 16:58:50,815 DEBUG webhook.validator: Received signature: Y/f5IqK4szy5R18IxYW0LO2mR2Y5YdoYDzDA8cdieH0=
+2025-11-21 16:58:50,815 DEBUG webhook.validator: Webhook type: message
+2025-11-21 16:58:50,815 DEBUG webhook.validator: Secret (first 10 chars): rq9GrfJaFW...
+2025-11-21 16:58:50,815 INFO webhook.listener: Signature validated for message.received
+2025-11-21 16:58:50,815 INFO webhook.listener: ============================================================
+2025-11-21 16:58:50,815 INFO webhook.listener: PAYLOAD COMPLETO RECIBIDO:
+2025-11-21 16:58:50,815 INFO webhook.listener: {
+  "event_type": "message.received",
+  "event_id": "38988f27-7ec7-494e-9653-3f1841dbe8ee",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro López",
+    "lastName": "Chavarría",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368
+  },
+  "message": {
+    "messageId": 1763762326000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0VGOTlDOTJFNzVEQkQxRjRCOUVEMEY2NTNFQjY3NAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762326000,
+    "message": {
+      "type": "text",
+      "text": "Tengo mora?"
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  }
+}
+2025-11-21 16:58:50,815 INFO webhook.listener: ============================================================
+2025-11-21 16:58:50,815 INFO webhook.listener: event_type: message.received
+2025-11-21 16:58:50,815 INFO webhook.listener: event_id: 38988f27-7ec7-494e-9653-3f1841dbe8ee
+2025-11-21 16:58:50,815 INFO webhook.listener: contact keys: ['id', 'firstName', 'lastName', 'phone', 'email', 'language', 'profilePic', 'countryCode', 'status', 'assignee', 'created_at']
+2025-11-21 16:58:50,815 INFO webhook.listener: message keys: ['messageId', 'channelMessageId', 'contactId', 'channelId', 'traffic', 'timestamp', 'message']
+2025-11-21 16:58:50,815 INFO webhook.listener: channel keys: ['id', 'name', 'source', 'meta', 'created_at']
+2025-11-21 16:58:50,816 INFO webhook.listener: WebhookEvent created successfully
+2025-11-21 16:58:50,816 INFO webhook.listener:    - Contact: id=348845550 firstName='Pedro López' lastName='Chavarría' phone='+51960103874' email=None language=None profilePic=None countryCode='PE' status='open' assignee={'id': None, 'firstName': None, 'lastName': None, 'email': None} created_at=1763737368 lifecycle=None customFields={}
+2025-11-21 16:58:50,816 INFO webhook.listener:    - Message: messageId=1763762326000000 channelMessageId='wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0VGOTlDOTJFNzVEQkQxRjRCOUVEMEY2NTNFQjY3NAA=' contactId=348845550 channelId=440215 traffic='incoming' timestamp=1763762326000 message=MessageContent(type='text', text='Tengo mora?', messageTag=None)
+2025-11-21 16:58:50,816 INFO webhook.listener:    - Channel: id=440215 name='Whatsapp Business' source='whatsapp_business' meta=None created_at=1763733796
+2025-11-21 16:58:50,816 INFO webhook.listener: Enqueuing event: {
+  "event_type": "message.received",
+  "event_id": "38988f27-7ec7-494e-9653-3f1841dbe8ee",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763762326000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0VGOTlDOTJFNzVEQkQxRjRCOUVEMEY2NTNFQjY3NAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762326000,
+    "message": {
+      "type": "text",
+      "text": "Tengo mora?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:58:50,816 DEBUG clients.queue_client: Event enqueued: None
+2025-11-21 16:58:50,817 INFO webhook.listener: Message 1763762326000000 enqueued for processing
+INFO:     52.74.35.155:0 - "POST /webhook/message-received HTTP/1.1" 200 OK
+2025-11-21 16:59:12,044 DEBUG webhook.listener: ==================== MESSAGE RECEIVED EVENT ====================
+2025-11-21 16:59:12,044 DEBUG webhook.listener: RAW BODY: {"event_type":"message.received","event_id":"7ea6b185-cd8e-47c2-a55b-7336f7e93ad1","contact":{"id":348845550,"firstName":"Pedro López","lastName":"Chavarría","phone":"+51960103874","email":null,"language":null,"profilePic":null,"countryCode":"PE","status":"open","assignee":{"id":null,"firstName":null,"lastName":null,"email":null},"created_at":1763737368},"message":{"messageId":1763762348000000,"channelMessageId":"wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzA3RjY4NUUzRDExOEQ4Qzk1OEJBQTU4NEM0NUU5RgA=","contactId":348845550,"channelId":440215,"traffic":"incoming","timestamp":1763762348000,"message":{"type":"text","text":"Chevre, me voy a dormir"}},"channel":{"id":440215,"name":"Whatsapp Business","source":"whatsapp_business","meta":null,"created_at":1763733796}}
+2025-11-21 16:59:12,044 DEBUG webhook.listener: SIGNATURE: g8Gw6TykvUDyEn5p5vm72MMTwMHHhbO3fDj0T+oMqeE=
+2025-11-21 16:59:12,044 DEBUG webhook.validator: Expected signature: g8Gw6TykvUDyEn5p5vm72MMTwMHHhbO3fDj0T+oMqeE=
+2025-11-21 16:59:12,044 DEBUG webhook.validator: Received signature: g8Gw6TykvUDyEn5p5vm72MMTwMHHhbO3fDj0T+oMqeE=
+2025-11-21 16:59:12,044 DEBUG webhook.validator: Webhook type: message
+2025-11-21 16:59:12,044 DEBUG webhook.validator: Secret (first 10 chars): rq9GrfJaFW...
+2025-11-21 16:59:12,045 INFO webhook.listener: Signature validated for message.received
+2025-11-21 16:59:12,045 INFO webhook.listener: ============================================================
+2025-11-21 16:59:12,045 INFO webhook.listener: PAYLOAD COMPLETO RECIBIDO:
+2025-11-21 16:59:12,045 INFO webhook.listener: {
+  "event_type": "message.received",
+  "event_id": "7ea6b185-cd8e-47c2-a55b-7336f7e93ad1",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro López",
+    "lastName": "Chavarría",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368
+  },
+  "message": {
+    "messageId": 1763762348000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzA3RjY4NUUzRDExOEQ4Qzk1OEJBQTU4NEM0NUU5RgA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762348000,
+    "message": {
+      "type": "text",
+      "text": "Chevre, me voy a dormir"
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  }
+}
+2025-11-21 16:59:12,045 INFO webhook.listener: ============================================================
+2025-11-21 16:59:12,045 INFO webhook.listener: event_type: message.received
+2025-11-21 16:59:12,045 INFO webhook.listener: event_id: 7ea6b185-cd8e-47c2-a55b-7336f7e93ad1
+2025-11-21 16:59:12,045 INFO webhook.listener: contact keys: ['id', 'firstName', 'lastName', 'phone', 'email', 'language', 'profilePic', 'countryCode', 'status', 'assignee', 'created_at']
+2025-11-21 16:59:12,045 INFO webhook.listener: message keys: ['messageId', 'channelMessageId', 'contactId', 'channelId', 'traffic', 'timestamp', 'message']
+2025-11-21 16:59:12,045 INFO webhook.listener: channel keys: ['id', 'name', 'source', 'meta', 'created_at']
+2025-11-21 16:59:12,046 INFO webhook.listener: WebhookEvent created successfully
+2025-11-21 16:59:12,046 INFO webhook.listener:    - Contact: id=348845550 firstName='Pedro López' lastName='Chavarría' phone='+51960103874' email=None language=None profilePic=None countryCode='PE' status='open' assignee={'id': None, 'firstName': None, 'lastName': None, 'email': None} created_at=1763737368 lifecycle=None customFields={}
+2025-11-21 16:59:12,046 INFO webhook.listener:    - Message: messageId=1763762348000000 channelMessageId='wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzA3RjY4NUUzRDExOEQ4Qzk1OEJBQTU4NEM0NUU5RgA=' contactId=348845550 channelId=440215 traffic='incoming' timestamp=1763762348000 message=MessageContent(type='text', text='Chevre, me voy a dormir', messageTag=None)
+2025-11-21 16:59:12,046 INFO webhook.listener:    - Channel: id=440215 name='Whatsapp Business' source='whatsapp_business' meta=None created_at=1763733796
+2025-11-21 16:59:12,046 INFO webhook.listener: Enqueuing event: {
+  "event_type": "message.received",
+  "event_id": "7ea6b185-cd8e-47c2-a55b-7336f7e93ad1",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763762348000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzA3RjY4NUUzRDExOEQ4Qzk1OEJBQTU4NEM0NUU5RgA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762348000,
+    "message": {
+      "type": "text",
+      "text": "Chevre, me voy a dormir",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:59:12,048 DEBUG clients.queue_client: Event enqueued: None
+2025-11-21 16:59:12,048 INFO webhook.listener: Message 1763762348000000 enqueued for processing
+INFO:     18.138.31.163:0 - "POST /webhook/message-received HTTP/1.1" 200 OK
+^CINFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39202]

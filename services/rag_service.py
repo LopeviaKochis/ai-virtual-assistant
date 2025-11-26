@@ -1,42 +1,48 @@
 # Servicio para iniciar el flujo RAG, envía un esquema de payload a OpenAI para generar la respuesta al usuario
 import json
-from typing import Optional
+from typing import Optional, Dict, Any
 from clients.openai_client import openai_client
 
 def build_personalized_answer(
     user_msg: str,
     df,
-    user_name: str | None = None,
+    session: Dict[str, Any],  # Cambiar de user_name a session completa
     reason: str | None = None,
     intent: str = "debt",
     phone: str | None = None
 ) -> str:
     """
-    Genera una respuesta personalizada a partir de los datos de Azure Search.
-    Se limita a la información necesaria para preservar la privacidad.
+    Genera respuesta usando nombre original para búsqueda, preferido para saludo.
+    
+    Args:
+        session: Sesión completa (contiene name y preferred_name)
     """
     if df.empty:
+        display_name = session.get("preferred_name") or session.get("name") or "Cliente"
         if intent == "otp":
-            return "No encontré una clave OTP activa para ese número. ¿Podemos revisarlo de nuevo?"
-        prefix = f"{user_name}, " if user_name else ""
-        return f"{prefix}no encontré información para tu DNI."
-
-    # Para OTP devolvemos una respuesta directa sin involucrar a OpenAI.
+            return f"{display_name}, no encontré una clave OTP activa. ¿Podemos revisar el número?"
+        return f"{display_name}, no encontré información para tu DNI."
+    
+    # Para OTP: usar nombre preferido
     if intent == "otp":
         record = df.iloc[0]
         code = record.get("Codigo")
         if not code:
-            return "No pude recuperar la clave OTP en este momento. Intenta nuevamente en unos minutos."
-        digits = "".join(filter(str.isdigit, str(record.get("Recepient") or "")))
-        if not digits and phone:
-            digits = phone
+            return "No pude recuperar la clave OTP en este momento."
+        
+        digits = "".join(filter(str.isdigit, str(record.get("Recepient") or ""))) or phone or ""
+        display_name = session.get("preferred_name") or session.get("name") or "Listo"
         suffix = f" asociada al número que termina en {digits[-4:]}" if digits else ""
-        intro = f"Listo {user_name}," if user_name else "Listo,"
-        return f"{intro} tu clave OTP{suffix} es {code}. ¿Necesitas algo más?"
-
+        
+        return f"{display_name}, tu clave OTP{suffix} es **{code}**. ¿Necesitas algo más?"
+    
+    # Para DEBT: usar nombre original (del perfil) para búsqueda en AI Search
+    # pero nombre preferido para saludo
     payload = df.to_dict(orient="records")
     record = payload[0]
-    display_name = user_name or record.get("Nombre") or record.get("Firstname") or "Cliente"
+    
+    search_name = session.get("name") or record.get("Firstname") or "Cliente"  # Para prompt de OpenAI
+    display_name = session.get("preferred_name") or search_name  # Para saludo
 
     if not openai_client:
         total = record.get("TotalDeuda") or record.get("TotalDebt")

@@ -35,13 +35,14 @@ class Settings(BaseSettings):
     # Telegram
     TELEGRAM_TOKEN: Optional[str] = None
     
-    # Respond.io - Múltiples webhooks con secretos diferentes
+    # Respond.io
     RESPONDIO_WEBHOOK_CHAT_OPEN_SECRET: str
     RESPONDIO_WEBHOOK_INCOMING_MESSAGE_SECRET: str
     RESPONDIO_API_TOKEN: str
     RESPONDIO_WORKSPACE_ID: str
     RESPONDIO_API_URL: str = "https://api.respond.io/v2"
     RESPONDIO_CHANNEL_ID: Optional[str] = None
+    RESPONDIO_WHATSAPP_CHANNEL_ID: Optional[str] = None
     
     # Redis
     REDIS_URL: str = "redis://localhost:6379/0"

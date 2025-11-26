@@ -52,7 +52,9 @@ def extract_phone(text: str) -> Optional[str]:
 def normalize_phone_from_contact(phone_raw: str) -> Optional[str]:
     """
     Normaliza un teléfono que viene del campo de contacto de Respond.io.
-    Puede venir con prefijos internacionales (+51, 51, etc).
+    
+    TELEGRAM: Puede venir como ID numérico o teléfono con código (+51...)
+    WHATSAPP: Siempre viene con código de país (+51987654321)
     
     Args:
         phone_raw: Teléfono raw del contacto
@@ -63,22 +65,26 @@ def normalize_phone_from_contact(phone_raw: str) -> Optional[str]:
     if not phone_raw:
         return None
     
+    # Eliminar espacios y caracteres no numéricos excepto el +
+    phone_raw = phone_raw.strip()
+    
     # Extraer solo dígitos
     digits = re.sub(r"\D", "", phone_raw)
     
-    # Si tiene código de país (51), ignorarlo
+    # Si tiene código de país (51), removerlo
+    # WhatsApp: +51987654321 → 51987654321 → 987654321
     if digits.startswith("51") and len(digits) >= 11:
         digits = digits[2:]  # Remover el 51
     
     # Tomar últimos 9 dígitos
     normalized = digits[-9:]
     
-    # Validar formato
+    # Validar formato peruano (9 dígitos que empiezan en 9)
     if len(normalized) == 9 and normalized.startswith("9"):
-        logger.debug(f"Phone normalized from contact: {normalized}")
+        logger.debug(f"Phone normalized: {phone_raw} → {normalized}")
         return normalized
     
-    logger.warning(f"Invalid phone format from contact: {phone_raw}")
+    logger.warning(f"Invalid phone format: {phone_raw}")
     return None
 
 def extract_name(text: str, contact_name: Optional[str] = None) -> Optional[str]:
@@ -106,6 +112,38 @@ def extract_name(text: str, contact_name: Optional[str] = None) -> Optional[str]
     
     return None
 
+def extract_preferred_name(text: str) -> Optional[str]:
+    """
+    Detecta cuando el usuario corrige su nombre.
+    
+    Patrones:
+    - "Me llamo X"
+    - "Soy X" (no seguido de "de", "del")
+    - "Dime X"
+    - "Llámame X"
+    
+    Returns:
+        Nombre preferido o None
+    """
+    text = text.lower().strip()
+    
+    patterns = [
+        r"(?:me llamo|mi nombre es)\s+([a-záéíóúñ]+)",
+        r"(?:^|\s)soy\s+([a-záéíóúñ]+)(?:\s|$|,)",  # Evita "soy de Lima"
+        r"(?:dime|llamame|llámame)\s+([a-záéíóúñ]+)",
+    ]
+    
+    for pattern in patterns:
+        if match := re.search(pattern, text):
+            name = match.group(1).strip().title()
+            # Validar que no sea una palabra común (ciudad, verbo, etc.)
+            if len(name) >= 3 and name not in ["Lima", "Peru", "Bien", "Aquí"]:
+                logger.info(f"Preferred name detected: {name}")
+                return name
+    
+    return None
+
+
 def enrich_session_from_message(
     session: Dict[str, Any],
     message_text: str,
@@ -113,7 +151,8 @@ def enrich_session_from_message(
     contact_phone: Optional[str] = None
 ) -> Dict[str, Any]:
     """
-    Enriquece la sesión extrayendo datos del mensaje y contacto.
+    Enriquece la sesión extrayendo datos del mensaje y contacto
+    priorizando nombre preferido (si existe).
     
     Args:
         session: Sesión actual del usuario
@@ -126,10 +165,15 @@ def enrich_session_from_message(
     """
     updates = {}
     
-    # Extraer nombre si no lo tenemos
-    if "name" not in session:
-        if name := extract_name(message_text, contact_name):
-            updates["name"] = name
+    # P1-1: Detectar nombre preferido
+    if preferred := extract_preferred_name(message_text):
+        updates["preferred_name"] = preferred
+        logger.info(f"User prefers to be called: {preferred}")
+    
+    # Nombre original (para búsquedas)
+    if "name" not in session and contact_name:
+        first_name = contact_name.split()[0].strip().title()
+        updates["name"] = first_name
     
     # Extraer DNI del mensaje
     if dni := extract_dni(message_text):
@@ -153,20 +197,25 @@ def enrich_session_from_message(
     
     return session
 
-def format_response_with_name(name: Optional[str], text: str) -> str:
+
+def format_response_with_name(
+    session: Dict[str, Any],  # Ahora recibe toda la sesión
+    text: str
+) -> str:
     """
-    Añade el nombre al inicio del mensaje de forma natural.
-    Evita duplicaciones si el nombre ya está al inicio.
+    Formatea respuesta usando nombre preferido > nombre original.
     
     Args:
-        name: Nombre del usuario
+        session: Sesión completa (contiene preferred_name y name)
         text: Texto de la respuesta
         
     Returns:
         Respuesta personalizada
     """
-    if not name or text.startswith(name):
+    # Prioridad: preferred_name > name > sin nombre
+    name = session.get("preferred_name") or session.get("name")
+    
+    if not name or text.lower().startswith(name.lower()):
         return text
     
-    # Añadir nombre de forma natural
     return f"{name}, {text.lstrip()}"

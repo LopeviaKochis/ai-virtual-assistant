@@ -1,15 +1,17 @@
 import logging
 import json
 from typing import Dict, Any
+import asyncio
 
 from services.message_processor import process_message_for_webhook
 from utils.idempotency import is_message_processed, mark_message_processed
+from clients.respondio_client import respondio_client
 
 logger = logging.getLogger(__name__)
 
 async def handle_event(event_data: Dict[str, Any]) -> None:
     """
-    Enruta eventos según su tipo.
+    Enruta eventos con rate limiting y feedback visual inmediato.
     
     Args:
         event_data: Datos completos del evento
@@ -36,11 +38,18 @@ async def handle_event(event_data: Dict[str, Any]) -> None:
     if event_type == "message.received":
         message_data = event_data.get("message", {})
         message_id = message_data.get("messageId")
-
-        logger.info(f"Message ID: {message_id}")
-        logger.info(f"Message data: {message_data}")
+        contact = event_data.get("contact", {})
+        contact_id = str(contact.get("id", ""))
+        channel_data = event_data.get("channel", {})
+        channel_id = str(channel_data.get("id", ""))
         
-        # Verificar idempotencia
+        # P0-1: Marcar como leído INMEDIATAMENTE
+        if message_id and channel_id:
+            asyncio.create_task(
+                respondio_client.mark_message_read(str(message_id), channel_id)
+            )
+        
+        # 1. Verificar idempotencia
         if message_id and is_message_processed(str(message_id)):
             logger.info(f"Message {message_id} already processed, skipping")
             return

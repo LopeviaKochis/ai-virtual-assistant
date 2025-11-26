@@ -1,0 +1,2305 @@
+2025-11-21 15:59:02,661 DEBUG asyncio: Using selector: EpollSelector
+2025-11-21 15:59:02,662 INFO __main__: Worker started, waiting for events...
+2025-11-21 15:59:02,670 INFO __main__: ============================================================
+2025-11-21 15:59:02,670 INFO __main__:  WORKER: EVENTO DEENCOLADO
+2025-11-21 15:59:02,670 INFO __main__: Event type: <class 'dict'>
+2025-11-21 15:59:02,670 INFO __main__: Event keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 15:59:02,670 INFO __main__: Event content: {
+  "event_type": "message.received",
+  "event_id": "88088c27-a3d7-450e-87c7-5ec6e2ab5afd",
+  "contact": {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "phone": "+60123456789",
+    "email": "johndoe@sample.com",
+    "language": "en",
+    "profilePic": "https://cdn.chatapi.net/johndoe.png",
+    "countryCode": "MY",
+    "status": "open",
+    "assignee": {
+      "id": 2,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "johndoe@sample.com"
+    },
+    "created_at": 1663274081,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1262965213,
+    "channelMessageId": 123,
+    "contactId": 123,
+    "channelId": 123,
+    "traffic": "incoming",
+    "timestamp": 1662965213,
+    "message": {
+      "type": "text",
+      "text": "Message text",
+      "messageTag": "ACCOUNT_UPDATE"
+    }
+  },
+  "channel": {
+    "id": 1,
+    "name": "string",
+    "source": "facebook",
+    "meta": "{}",
+    "created_at": 1663274081
+  },
+  "conversation": null
+}
+2025-11-21 15:59:02,670 INFO __main__: Event type field: message.received
+2025-11-21 15:59:02,670 INFO __main__: ============================================================
+2025-11-21 15:59:02,670 INFO handler.event_handler: ============================================================
+2025-11-21 15:59:02,670 INFO handler.event_handler:  NUEVO EVENTO RECIBIDO EN HANDLER
+2025-11-21 15:59:02,670 INFO handler.event_handler:  Event data type: <class 'dict'>
+2025-11-21 15:59:02,670 INFO handler.event_handler:  Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 15:59:02,670 INFO handler.event_handler:  Event data: {
+  "event_type": "message.received",
+  "event_id": "88088c27-a3d7-450e-87c7-5ec6e2ab5afd",
+  "contact": {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "phone": "+60123456789",
+    "email": "johndoe@sample.com",
+    "language": "en",
+    "profilePic": "https://cdn.chatapi.net/johndoe.png",
+    "countryCode": "MY",
+    "status": "open",
+    "assignee": {
+      "id": 2,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "johndoe@sample.com"
+    },
+    "created_at": 1663274081,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1262965213,
+    "channelMessageId": 123,
+    "contactId": 123,
+    "channelId": 123,
+    "traffic": "incoming",
+    "timestamp": 1662965213,
+    "message": {
+      "type": "text",
+      "text": "Message text",
+      "messageTag": "ACCOUNT_UPDATE"
+    }
+  },
+  "channel": {
+    "id": 1,
+    "name": "string",
+    "source": "facebook",
+    "meta": "{}",
+    "created_at": 1663274081
+  },
+  "conversation": null
+}
+2025-11-21 15:59:02,671 INFO handler.event_handler: ============================================================
+2025-11-21 15:59:02,671 INFO handler.event_handler: Processing event: message.received
+2025-11-21 15:59:02,671 INFO handler.event_handler: Message ID: 1262965213
+2025-11-21 15:59:02,671 INFO handler.event_handler: Message data: {'messageId': 1262965213, 'channelMessageId': 123, 'contactId': 123, 'channelId': 123, 'traffic': 'incoming', 'timestamp': 1662965213, 'message': {'type': 'text', 'text': 'Message text', 'messageTag': 'ACCOUNT_UPDATE'}}
+2025-11-21 15:59:02,671 INFO handler.event_handler: Traffic: incoming
+2025-11-21 15:59:02,671 INFO handler.event_handler: Processing incoming message: 1262965213
+2025-11-21 15:59:02,671 INFO services.message_processor: ============================================================
+2025-11-21 15:59:02,671 INFO services.message_processor: PROCESANDO EVENTO EN MESSAGE_PROCESSOR
+2025-11-21 15:59:02,671 INFO services.message_processor: Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 15:59:02,671 INFO services.message_processor: ============================================================
+2025-11-21 15:59:02,671 INFO services.message_processor: Contact ID: 1
+2025-11-21 15:59:02,671 INFO services.message_processor: Channel ID: 1
+2025-11-21 15:59:02,671 INFO services.message_processor: Channel Source: facebook
+2025-11-21 15:59:02,671 INFO services.message_processor: Message text: 'Message text'
+2025-11-21 15:59:02,671 INFO services.message_processor: ✓ Validation passed - processing message from facebook
+2025-11-21 15:59:02,671 INFO services.message_processor: Processing message internally for 1 via facebook
+2025-11-21 15:59:02,672 DEBUG services.session_service: No session found for contact 1, returning empty
+2025-11-21 15:59:02,672 DEBUG services.extraction_service: Name from contact: John
+2025-11-21 15:59:02,672 WARNING services.extraction_service: Invalid phone format: +60123456789
+2025-11-21 15:59:02,672 INFO services.extraction_service: Session enriched with: ['name']
+2025-11-21 15:59:15,552 DEBUG openai._base_client: Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-12ea8eee-bb3c-4a9d-a903-77a818f28317', 'json_data': {'messages': [{'role': 'system', 'content': "Eres un asistente financiero. Responde SOLO en JSON con los campos: {intent, requires_identity, reason, concise_answer, followup_question}.\nintent puede ser: 'debt', 'otp', 'general'."}, {'role': 'user', 'content': 'Message text'}], 'model': 'gpt-4o-mini', 'response_format': {'type': 'json_object'}, 'temperature': 0.2}}
+2025-11-21 15:59:15,559 DEBUG openai._base_client: Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-11-21 15:59:15,560 DEBUG httpcore.connection: connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-11-21 15:59:15,809 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa400b1150>
+2025-11-21 15:59:15,809 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa657c6570> server_hostname='api.openai.com' timeout=5.0
+2025-11-21 15:59:15,926 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa400b1210>
+2025-11-21 15:59:15,927 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 15:59:15,927 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 15:59:15,927 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 15:59:15,927 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 15:59:15,927 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 15:59:19,042 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 21 Nov 2025 20:59:19 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-vavvh5igg1nn0pltmq1qgdlb'), (b'openai-processing-ms', b'1814'), (b'openai-project', b'proj_kuW8f325WLa4LAdBJa3ICcix'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'2161'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199948'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'15ms'), (b'x-request-id', b'req_7cd288d4acb24ce38fe41bc8179d3f69'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=MGmXZ4lM6BChXShVj_cqsAZQp6UDVFfNicx1LmPHrMI-1763758759-1.0.1.1-KBLdwGDF1LKkaBthb65XjnEiyE1rG9j8f6TPM2Y3Mv70fmsTQ8o96eOxY3gHcm2kxJg142FOQVaYdhUS9fSqVj.ex3__l2Va4piNjRzGJi8; path=/; expires=Fri, 21-Nov-25 21:29:19 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=fEAUn3wq0V_uczfLqqdoK0a0E3zcASuc0AdkgLjcqLk-1763758759146-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9a231c21cdc8b4dd-SCL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-11-21 15:59:19,043 INFO httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-21 15:59:19,045 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 15:59:19,046 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 15:59:19,046 DEBUG httpcore.http11: response_closed.started
+2025-11-21 15:59:19,046 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 15:59:19,046 DEBUG openai._base_client: HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Fri, 21 Nov 2025 20:59:19 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-vavvh5igg1nn0pltmq1qgdlb'), ('openai-processing-ms', '1814'), ('openai-project', 'proj_kuW8f325WLa4LAdBJa3ICcix'), ('openai-version', '2020-10-01'), ('x-envoy-upstream-service-time', '2161'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '200000'), ('x-ratelimit-remaining-requests', '9999'), ('x-ratelimit-remaining-tokens', '199948'), ('x-ratelimit-reset-requests', '8.64s'), ('x-ratelimit-reset-tokens', '15ms'), ('x-request-id', 'req_7cd288d4acb24ce38fe41bc8179d3f69'), ('x-openai-proxy-wasm', 'v0.1'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=MGmXZ4lM6BChXShVj_cqsAZQp6UDVFfNicx1LmPHrMI-1763758759-1.0.1.1-KBLdwGDF1LKkaBthb65XjnEiyE1rG9j8f6TPM2Y3Mv70fmsTQ8o96eOxY3gHcm2kxJg142FOQVaYdhUS9fSqVj.ex3__l2Va4piNjRzGJi8; path=/; expires=Fri, 21-Nov-25 21:29:19 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=fEAUn3wq0V_uczfLqqdoK0a0E3zcASuc0AdkgLjcqLk-1763758759146-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '9a231c21cdc8b4dd-SCL'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2025-11-21 15:59:19,046 DEBUG openai._base_client: request_id: req_7cd288d4acb24ce38fe41bc8179d3f69
+2025-11-21 15:59:19,051 INFO services.message_processor: Intent: general, requires_identity: False
+2025-11-21 15:59:19,052 DEBUG services.session_service: No session found for contact 1, returning empty
+2025-11-21 15:59:19,053 DEBUG services.session_service: Session saved for contact 1
+2025-11-21 15:59:19,053 DEBUG services.session_service: Pending intent cleared for 1
+2025-11-21 15:59:19,054 DEBUG services.session_service: Session saved for contact 1
+2025-11-21 15:59:19,054 INFO services.message_processor: Response ready for 1 via facebook
+2025-11-21 15:59:19,054 INFO services.message_processor: Sending response to 1 via channel 1 (facebook)
+2025-11-21 15:59:19,054 INFO services.message_processor: Response: John, Por favor, proporciona más detalles sobre tu consulta financiera....
+2025-11-21 15:59:19,054 INFO clients.respondio_client: [Respond.io] Sending to id:1 via channel 1
+2025-11-21 15:59:19,054 DEBUG clients.respondio_client: [Respond.io] Payload: {'message': {'type': 'text', 'text': 'John, Por favor, proporciona más detalles sobre tu consulta financiera.'}, 'channelId': 1}
+2025-11-21 15:59:19,179 DEBUG httpcore.connection: connect_tcp.started host='api.respond.io' port=443 local_address=None timeout=10.0 socket_options=None
+2025-11-21 15:59:19,421 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa400cf1d0>
+2025-11-21 15:59:19,421 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa402e79b0> server_hostname='api.respond.io' timeout=10.0
+2025-11-21 15:59:19,439 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa4116ac50>
+2025-11-21 15:59:19,439 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 15:59:19,439 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 15:59:19,439 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 15:59:19,439 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 15:59:19,439 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 15:59:20,927 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 404, b'Not Found', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'43'), (b'Connection', b'keep-alive'), (b'Date', b'Fri, 21 Nov 2025 20:59:20 GMT'), (b'ETag', b'W/"2b-btZ3OYIRWp6R+HF0hW2a1PCc/r8"'), (b'Cache-Control', b'no-store'), (b'Access-Control-Allow-Origin', b'*'), (b'X-RateLimit-Limit', b'20'), (b'X-RateLimit-Remaining', b'19'), (b'X-Cache', b'Error from cloudfront'), (b'Via', b'1.1 d57b2a5738f58b3120f0223cecca8c6c.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'LIM50-P2'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'szUFIo91VLks_n8eyno3caBve2ulxrWt5oylykeoEovzuGFELto4YQ==')])
+2025-11-21 15:59:20,928 INFO httpx: HTTP Request: POST https://api.respond.io/v2/contact/id:1/message "HTTP/1.1 404 Not Found"
+2025-11-21 15:59:20,928 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 15:59:20,928 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 15:59:20,928 DEBUG httpcore.http11: response_closed.started
+2025-11-21 15:59:20,928 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 15:59:20,929 ERROR clients.respondio_client:  API Error 404: {"code":404,"message":"Contact not found!"}
+2025-11-21 15:59:20,929 DEBUG httpcore.connection: close.started
+2025-11-21 15:59:20,929 DEBUG httpcore.connection: close.complete
+2025-11-21 15:59:20,929 ERROR services.message_processor: ✗ Failed to send response via facebook
+2025-11-21 15:59:20,930 DEBUG utils.idempotency: Message 1262965213 marked as processed
+2025-11-21 15:59:20,930 INFO handler.event_handler: Message 1262965213 processed successfully
+2025-11-21 15:59:20,930 INFO __main__: ============================================================
+2025-11-21 15:59:20,931 INFO __main__:  WORKER: EVENTO DEENCOLADO
+2025-11-21 15:59:20,931 INFO __main__: Event type: <class 'dict'>
+2025-11-21 15:59:20,931 INFO __main__: Event keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 15:59:20,931 INFO __main__: Event content: {
+  "event_type": "message.received",
+  "event_id": "f55717ca-fb8f-4db4-92a8-3a14835cd8af",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763758718000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzdCMEU3NTMyMDBDQUYxRkQ0MkQ2NjQ2OERDNkM5OQA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763758718000,
+    "message": {
+      "type": "text",
+      "text": "Hola doc, ya soy trascendente?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 15:59:20,931 INFO __main__: Event type field: message.received
+2025-11-21 15:59:20,931 INFO __main__: ============================================================
+2025-11-21 15:59:20,931 INFO handler.event_handler: ============================================================
+2025-11-21 15:59:20,931 INFO handler.event_handler:  NUEVO EVENTO RECIBIDO EN HANDLER
+2025-11-21 15:59:20,931 INFO handler.event_handler:  Event data type: <class 'dict'>
+2025-11-21 15:59:20,931 INFO handler.event_handler:  Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 15:59:20,931 INFO handler.event_handler:  Event data: {
+  "event_type": "message.received",
+  "event_id": "f55717ca-fb8f-4db4-92a8-3a14835cd8af",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763758718000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzdCMEU3NTMyMDBDQUYxRkQ0MkQ2NjQ2OERDNkM5OQA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763758718000,
+    "message": {
+      "type": "text",
+      "text": "Hola doc, ya soy trascendente?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 15:59:20,931 INFO handler.event_handler: ============================================================
+2025-11-21 15:59:20,931 INFO handler.event_handler: Processing event: message.received
+2025-11-21 15:59:20,931 INFO handler.event_handler: Message ID: 1763758718000000
+2025-11-21 15:59:20,931 INFO handler.event_handler: Message data: {'messageId': 1763758718000000, 'channelMessageId': 'wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzdCMEU3NTMyMDBDQUYxRkQ0MkQ2NjQ2OERDNkM5OQA=', 'contactId': 348845550, 'channelId': 440215, 'traffic': 'incoming', 'timestamp': 1763758718000, 'message': {'type': 'text', 'text': 'Hola doc, ya soy trascendente?', 'messageTag': None}}
+2025-11-21 15:59:20,931 INFO handler.event_handler: Traffic: incoming
+2025-11-21 15:59:20,931 INFO handler.event_handler: Processing incoming message: 1763758718000000
+2025-11-21 15:59:20,931 INFO services.message_processor: ============================================================
+2025-11-21 15:59:20,931 INFO services.message_processor: PROCESANDO EVENTO EN MESSAGE_PROCESSOR
+2025-11-21 15:59:20,931 INFO services.message_processor: Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 15:59:20,931 INFO services.message_processor: ============================================================
+2025-11-21 15:59:20,932 INFO services.message_processor: Contact ID: 348845550
+2025-11-21 15:59:20,932 INFO services.message_processor: Channel ID: 440215
+2025-11-21 15:59:20,932 INFO services.message_processor: Channel Source: whatsapp_business
+2025-11-21 15:59:20,932 INFO services.message_processor: Message text: 'Hola doc, ya soy trascendente?'
+2025-11-21 15:59:20,932 INFO services.message_processor: ✓ Validation passed - processing message from whatsapp_business
+2025-11-21 15:59:20,932 INFO services.message_processor: Processing message internally for 348845550 via whatsapp_business
+2025-11-21 15:59:20,932 DEBUG services.session_service: No session found for contact 348845550, returning empty
+2025-11-21 15:59:20,932 DEBUG services.extraction_service: Name from contact: Pedro
+2025-11-21 15:59:20,932 DEBUG services.extraction_service: Phone normalized: +51960103874 → 960103874
+2025-11-21 15:59:20,932 INFO services.extraction_service: Session enriched with: ['name', 'phone']
+2025-11-21 15:59:20,933 DEBUG openai._base_client: Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-d4f20d07-12a0-4058-add4-57eb5da7dcd2', 'json_data': {'messages': [{'role': 'system', 'content': "Eres un asistente financiero. Responde SOLO en JSON con los campos: {intent, requires_identity, reason, concise_answer, followup_question}.\nintent puede ser: 'debt', 'otp', 'general'."}, {'role': 'user', 'content': 'Hola doc, ya soy trascendente?'}], 'model': 'gpt-4o-mini', 'response_format': {'type': 'json_object'}, 'temperature': 0.2}}
+2025-11-21 15:59:20,933 DEBUG openai._base_client: Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-11-21 15:59:20,933 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 15:59:20,934 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 15:59:20,934 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 15:59:20,934 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 15:59:20,934 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 15:59:24,412 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 21 Nov 2025 20:59:24 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-vavvh5igg1nn0pltmq1qgdlb'), (b'openai-processing-ms', b'2190'), (b'openai-project', b'proj_kuW8f325WLa4LAdBJa3ICcix'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'2490'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9998'), (b'x-ratelimit-remaining-tokens', b'199943'), (b'x-ratelimit-reset-requests', b'12.266s'), (b'x-ratelimit-reset-tokens', b'17ms'), (b'x-request-id', b'req_63ec2a51e4d345c08f451c0e8809be47'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9a231c410ac5b4dd-SCL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-11-21 15:59:24,412 INFO httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-21 15:59:24,413 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 15:59:24,413 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 15:59:24,413 DEBUG httpcore.http11: response_closed.started
+2025-11-21 15:59:24,413 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 15:59:24,414 DEBUG openai._base_client: HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 21 Nov 2025 20:59:24 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'user-vavvh5igg1nn0pltmq1qgdlb', 'openai-processing-ms': '2190', 'openai-project': 'proj_kuW8f325WLa4LAdBJa3ICcix', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '2490', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '200000', 'x-ratelimit-remaining-requests': '9998', 'x-ratelimit-remaining-tokens': '199943', 'x-ratelimit-reset-requests': '12.266s', 'x-ratelimit-reset-tokens': '17ms', 'x-request-id': 'req_63ec2a51e4d345c08f451c0e8809be47', 'x-openai-proxy-wasm': 'v0.1', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '9a231c410ac5b4dd-SCL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-11-21 15:59:24,414 DEBUG openai._base_client: request_id: req_63ec2a51e4d345c08f451c0e8809be47
+2025-11-21 15:59:24,415 INFO services.message_processor: Intent: general, requires_identity: False
+2025-11-21 15:59:24,415 DEBUG services.session_service: No session found for contact 348845550, returning empty
+2025-11-21 15:59:24,416 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 15:59:24,416 DEBUG services.session_service: Pending intent cleared for 348845550
+2025-11-21 15:59:24,416 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 15:59:24,417 INFO services.message_processor: Response ready for 348845550 via whatsapp_business
+2025-11-21 15:59:24,417 INFO services.message_processor: Sending response to 348845550 via channel 440215 (whatsapp_business)
+2025-11-21 15:59:24,417 INFO services.message_processor: Response: Pedro, La trascendencia es subjetiva y depende de tus propias experiencias y creencias....
+2025-11-21 15:59:24,417 INFO clients.respondio_client: [Respond.io] Sending to id:348845550 via channel 440215
+2025-11-21 15:59:24,417 DEBUG clients.respondio_client: [Respond.io] Payload: {'message': {'type': 'text', 'text': 'Pedro, La trascendencia es subjetiva y depende de tus propias experiencias y creencias.'}, 'channelId': 440215}
+2025-11-21 15:59:24,485 DEBUG httpcore.connection: connect_tcp.started host='api.respond.io' port=443 local_address=None timeout=10.0 socket_options=None
+2025-11-21 15:59:24,507 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa405a32d0>
+2025-11-21 15:59:24,507 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa402e7da0> server_hostname='api.respond.io' timeout=10.0
+2025-11-21 15:59:24,522 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa4116ac50>
+2025-11-21 15:59:24,522 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 15:59:24,522 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 15:59:24,522 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 15:59:24,522 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 15:59:24,522 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 15:59:25,947 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'52'), (b'Connection', b'keep-alive'), (b'Date', b'Fri, 21 Nov 2025 20:59:25 GMT'), (b'ETag', b'W/"34-x9Ck9Bpq2In1Scqo7a1JmbmBHIQ"'), (b'Cache-Control', b'no-store'), (b'Access-Control-Allow-Origin', b'*'), (b'X-RateLimit-Limit', b'20'), (b'X-RateLimit-Remaining', b'19'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 3ada05fad048eee420193600539b1d16.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'LIM50-P2'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'hq-OCyQvBpc_v_QOq9_BKhrhWmY7qu8-jNstcDQ1vI2VSblrCWqJyA==')])
+2025-11-21 15:59:25,948 INFO httpx: HTTP Request: POST https://api.respond.io/v2/contact/id:348845550/message "HTTP/1.1 200 OK"
+2025-11-21 15:59:25,948 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 15:59:25,948 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 15:59:25,948 DEBUG httpcore.http11: response_closed.started
+2025-11-21 15:59:25,948 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 15:59:25,949 INFO clients.respondio_client: Message sent successfully to id:348845550
+2025-11-21 15:59:25,949 DEBUG httpcore.connection: close.started
+2025-11-21 15:59:25,949 DEBUG httpcore.connection: close.complete
+2025-11-21 15:59:25,949 INFO services.message_processor: ✓ Response sent successfully via whatsapp_business
+2025-11-21 15:59:25,949 DEBUG utils.idempotency: Message 1763758718000000 marked as processed
+2025-11-21 15:59:25,949 INFO handler.event_handler: Message 1763758718000000 processed successfully
+2025-11-21 16:00:17,202 INFO __main__: ============================================================
+2025-11-21 16:00:17,202 INFO __main__:  WORKER: EVENTO DEENCOLADO
+2025-11-21 16:00:17,202 INFO __main__: Event type: <class 'dict'>
+2025-11-21 16:00:17,202 INFO __main__: Event keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:00:17,202 INFO __main__: Event content: {
+  "event_type": "message.received",
+  "event_id": "c311908c-83b4-4306-a314-125d878193e2",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763758803000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0REOTBBOEIwN0RGOTZFMURGNjRCNUQ2OTc1MzQxNwA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763758803000,
+    "message": {
+      "type": "text",
+      "text": "Hola soy Marlonia no Pedro :v",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:00:17,202 INFO __main__: Event type field: message.received
+2025-11-21 16:00:17,202 INFO __main__: ============================================================
+2025-11-21 16:00:17,202 INFO handler.event_handler: ============================================================
+2025-11-21 16:00:17,202 INFO handler.event_handler:  NUEVO EVENTO RECIBIDO EN HANDLER
+2025-11-21 16:00:17,202 INFO handler.event_handler:  Event data type: <class 'dict'>
+2025-11-21 16:00:17,202 INFO handler.event_handler:  Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:00:17,202 INFO handler.event_handler:  Event data: {
+  "event_type": "message.received",
+  "event_id": "c311908c-83b4-4306-a314-125d878193e2",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763758803000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0REOTBBOEIwN0RGOTZFMURGNjRCNUQ2OTc1MzQxNwA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763758803000,
+    "message": {
+      "type": "text",
+      "text": "Hola soy Marlonia no Pedro :v",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:00:17,203 INFO handler.event_handler: ============================================================
+2025-11-21 16:00:17,203 INFO handler.event_handler: Processing event: message.received
+2025-11-21 16:00:17,203 INFO handler.event_handler: Message ID: 1763758803000000
+2025-11-21 16:00:17,203 INFO handler.event_handler: Message data: {'messageId': 1763758803000000, 'channelMessageId': 'wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0REOTBBOEIwN0RGOTZFMURGNjRCNUQ2OTc1MzQxNwA=', 'contactId': 348845550, 'channelId': 440215, 'traffic': 'incoming', 'timestamp': 1763758803000, 'message': {'type': 'text', 'text': 'Hola soy Marlonia no Pedro :v', 'messageTag': None}}
+2025-11-21 16:00:17,203 INFO handler.event_handler: Traffic: incoming
+2025-11-21 16:00:17,203 INFO handler.event_handler: Processing incoming message: 1763758803000000
+2025-11-21 16:00:17,203 INFO services.message_processor: ============================================================
+2025-11-21 16:00:17,203 INFO services.message_processor: PROCESANDO EVENTO EN MESSAGE_PROCESSOR
+2025-11-21 16:00:17,203 INFO services.message_processor: Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:00:17,204 INFO services.message_processor: ============================================================
+2025-11-21 16:00:17,204 INFO services.message_processor: Contact ID: 348845550
+2025-11-21 16:00:17,204 INFO services.message_processor: Channel ID: 440215
+2025-11-21 16:00:17,204 INFO services.message_processor: Channel Source: whatsapp_business
+2025-11-21 16:00:17,204 INFO services.message_processor: Message text: 'Hola soy Marlonia no Pedro :v'
+2025-11-21 16:00:17,204 INFO services.message_processor: ✓ Validation passed - processing message from whatsapp_business
+2025-11-21 16:00:17,204 INFO services.message_processor: Processing message internally for 348845550 via whatsapp_business
+2025-11-21 16:00:17,205 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:00:17,205 DEBUG services.extraction_service: Phone normalized: +51960103874 → 960103874
+2025-11-21 16:00:17,205 INFO services.extraction_service: Session enriched with: ['phone']
+2025-11-21 16:00:17,206 DEBUG openai._base_client: Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-69dcaed0-cdd5-48ed-8c9b-32cad86a6b75', 'json_data': {'messages': [{'role': 'system', 'content': "Eres un asistente financiero. Responde SOLO en JSON con los campos: {intent, requires_identity, reason, concise_answer, followup_question}.\nintent puede ser: 'debt', 'otp', 'general'."}, {'role': 'user', 'content': 'Hola soy Marlonia no Pedro :v'}], 'model': 'gpt-4o-mini', 'response_format': {'type': 'json_object'}, 'temperature': 0.2}}
+2025-11-21 16:00:17,206 DEBUG openai._base_client: Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-11-21 16:00:17,206 DEBUG httpcore.connection: close.started
+2025-11-21 16:00:17,207 DEBUG httpcore.connection: close.complete
+2025-11-21 16:00:17,207 DEBUG httpcore.connection: connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-11-21 16:00:17,357 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3ff2a650>
+2025-11-21 16:00:17,357 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa657c6570> server_hostname='api.openai.com' timeout=5.0
+2025-11-21 16:00:17,367 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3ff2bf10>
+2025-11-21 16:00:17,367 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:00:17,367 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:00:17,367 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:00:17,367 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:00:17,367 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:00:20,526 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 21 Nov 2025 21:00:20 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-vavvh5igg1nn0pltmq1qgdlb'), (b'openai-processing-ms', b'1564'), (b'openai-project', b'proj_kuW8f325WLa4LAdBJa3ICcix'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'2129'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199944'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'16ms'), (b'x-request-id', b'req_4638a8f031c94ab8b83c7159eeb05fce'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9a231da1a9fea9ea-LIM'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-11-21 16:00:20,527 INFO httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-21 16:00:20,527 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:00:20,527 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:00:20,528 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:00:20,528 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:00:20,528 DEBUG openai._base_client: HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 21 Nov 2025 21:00:20 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'user-vavvh5igg1nn0pltmq1qgdlb', 'openai-processing-ms': '1564', 'openai-project': 'proj_kuW8f325WLa4LAdBJa3ICcix', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '2129', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '200000', 'x-ratelimit-remaining-requests': '9999', 'x-ratelimit-remaining-tokens': '199944', 'x-ratelimit-reset-requests': '8.64s', 'x-ratelimit-reset-tokens': '16ms', 'x-request-id': 'req_4638a8f031c94ab8b83c7159eeb05fce', 'x-openai-proxy-wasm': 'v0.1', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '9a231da1a9fea9ea-LIM', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-11-21 16:00:20,528 DEBUG openai._base_client: request_id: req_4638a8f031c94ab8b83c7159eeb05fce
+2025-11-21 16:00:20,529 INFO services.message_processor: Intent: general, requires_identity: False
+2025-11-21 16:00:20,530 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:00:20,530 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:00:20,531 DEBUG services.session_service: Pending intent cleared for 348845550
+2025-11-21 16:00:20,531 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:00:20,531 INFO services.message_processor: Response ready for 348845550 via whatsapp_business
+2025-11-21 16:00:20,531 INFO services.message_processor: Sending response to 348845550 via channel 440215 (whatsapp_business)
+2025-11-21 16:00:20,531 INFO services.message_processor: Response: Pedro, Hola Marlonia, ¿en qué puedo ayudarte hoy?...
+2025-11-21 16:00:20,531 INFO clients.respondio_client: [Respond.io] Sending to id:348845550 via channel 440215
+2025-11-21 16:00:20,531 DEBUG clients.respondio_client: [Respond.io] Payload: {'message': {'type': 'text', 'text': 'Pedro, Hola Marlonia, ¿en qué puedo ayudarte hoy?'}, 'channelId': 440215}
+2025-11-21 16:00:20,638 DEBUG httpcore.connection: connect_tcp.started host='api.respond.io' port=443 local_address=None timeout=10.0 socket_options=None
+2025-11-21 16:00:20,772 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa400ced90>
+2025-11-21 16:00:20,772 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa402e7ad0> server_hostname='api.respond.io' timeout=10.0
+2025-11-21 16:00:20,784 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3ff30a10>
+2025-11-21 16:00:20,784 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:00:20,785 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:00:20,785 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:00:20,785 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:00:20,785 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:00:22,573 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'52'), (b'Connection', b'keep-alive'), (b'Date', b'Fri, 21 Nov 2025 21:00:22 GMT'), (b'ETag', b'W/"34-NLaj4AkKTUhCZkivayOYckdrviE"'), (b'Cache-Control', b'no-store'), (b'Access-Control-Allow-Origin', b'*'), (b'X-RateLimit-Limit', b'20'), (b'X-RateLimit-Remaining', b'19'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 9dfde75cb555907976b663017043cf04.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'LIM50-P2'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'XN_FsSScBKQpS4tEHW8s3gJBGVdPQieiSqHymkBD1lU59h4Osamd9w==')])
+2025-11-21 16:00:22,573 INFO httpx: HTTP Request: POST https://api.respond.io/v2/contact/id:348845550/message "HTTP/1.1 200 OK"
+2025-11-21 16:00:22,573 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:00:22,573 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:00:22,573 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:00:22,573 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:00:22,574 INFO clients.respondio_client: Message sent successfully to id:348845550
+2025-11-21 16:00:22,574 DEBUG httpcore.connection: close.started
+2025-11-21 16:00:22,574 DEBUG httpcore.connection: close.complete
+2025-11-21 16:00:22,574 INFO services.message_processor: ✓ Response sent successfully via whatsapp_business
+2025-11-21 16:00:22,575 DEBUG utils.idempotency: Message 1763758803000000 marked as processed
+2025-11-21 16:00:22,575 INFO handler.event_handler: Message 1763758803000000 processed successfully
+2025-11-21 16:01:00,885 INFO __main__: ============================================================
+2025-11-21 16:01:00,885 INFO __main__:  WORKER: EVENTO DEENCOLADO
+2025-11-21 16:01:00,885 INFO __main__: Event type: <class 'dict'>
+2025-11-21 16:01:00,885 INFO __main__: Event keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:01:00,885 INFO __main__: Event content: {
+  "event_type": "message.received",
+  "event_id": "be5c64e0-0338-4085-b642-ccab42d4f4e9",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763758856000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0Q3MzI5NEQ5QzU1QzVDNkNBQ0UxOEY3MTFGNkMxNQA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763758856000,
+    "message": {
+      "type": "text",
+      "text": "Ya qued\u00f3 el proyecto, ahora me qued\u00e9 sin chamba \ud83d\udc80",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:01:00,885 INFO __main__: Event type field: message.received
+2025-11-21 16:01:00,885 INFO __main__: ============================================================
+2025-11-21 16:01:00,886 INFO handler.event_handler: ============================================================
+2025-11-21 16:01:00,886 INFO handler.event_handler:  NUEVO EVENTO RECIBIDO EN HANDLER
+2025-11-21 16:01:00,886 INFO handler.event_handler:  Event data type: <class 'dict'>
+2025-11-21 16:01:00,886 INFO handler.event_handler:  Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:01:00,887 INFO handler.event_handler:  Event data: {
+  "event_type": "message.received",
+  "event_id": "be5c64e0-0338-4085-b642-ccab42d4f4e9",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763758856000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0Q3MzI5NEQ5QzU1QzVDNkNBQ0UxOEY3MTFGNkMxNQA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763758856000,
+    "message": {
+      "type": "text",
+      "text": "Ya qued\u00f3 el proyecto, ahora me qued\u00e9 sin chamba \ud83d\udc80",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:01:00,887 INFO handler.event_handler: ============================================================
+2025-11-21 16:01:00,887 INFO handler.event_handler: Processing event: message.received
+2025-11-21 16:01:00,887 INFO handler.event_handler: Message ID: 1763758856000000
+2025-11-21 16:01:00,887 INFO handler.event_handler: Message data: {'messageId': 1763758856000000, 'channelMessageId': 'wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0Q3MzI5NEQ5QzU1QzVDNkNBQ0UxOEY3MTFGNkMxNQA=', 'contactId': 348845550, 'channelId': 440215, 'traffic': 'incoming', 'timestamp': 1763758856000, 'message': {'type': 'text', 'text': 'Ya quedó el proyecto, ahora me quedé sin chamba 💀', 'messageTag': None}}
+2025-11-21 16:01:00,888 INFO handler.event_handler: Traffic: incoming
+2025-11-21 16:01:00,888 INFO handler.event_handler: Processing incoming message: 1763758856000000
+2025-11-21 16:01:00,888 INFO services.message_processor: ============================================================
+2025-11-21 16:01:00,888 INFO services.message_processor: PROCESANDO EVENTO EN MESSAGE_PROCESSOR
+2025-11-21 16:01:00,889 INFO services.message_processor: Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:01:00,889 INFO services.message_processor: ============================================================
+2025-11-21 16:01:00,889 INFO services.message_processor: Contact ID: 348845550
+2025-11-21 16:01:00,889 INFO services.message_processor: Channel ID: 440215
+2025-11-21 16:01:00,889 INFO services.message_processor: Channel Source: whatsapp_business
+2025-11-21 16:01:00,889 INFO services.message_processor: Message text: 'Ya quedó el proyecto, ahora me quedé sin chamba 💀'
+2025-11-21 16:01:00,889 INFO services.message_processor: ✓ Validation passed - processing message from whatsapp_business
+2025-11-21 16:01:00,889 INFO services.message_processor: Processing message internally for 348845550 via whatsapp_business
+2025-11-21 16:01:00,889 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:01:00,889 DEBUG services.extraction_service: Phone normalized: +51960103874 → 960103874
+2025-11-21 16:01:00,889 INFO services.extraction_service: Session enriched with: ['phone']
+2025-11-21 16:01:00,891 DEBUG openai._base_client: Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-fbbdc72a-4ce8-4767-9e4d-e0fada5be0c6', 'json_data': {'messages': [{'role': 'system', 'content': "Eres un asistente financiero. Responde SOLO en JSON con los campos: {intent, requires_identity, reason, concise_answer, followup_question}.\nintent puede ser: 'debt', 'otp', 'general'."}, {'role': 'user', 'content': 'Ya quedó el proyecto, ahora me quedé sin chamba 💀'}], 'model': 'gpt-4o-mini', 'response_format': {'type': 'json_object'}, 'temperature': 0.2}}
+2025-11-21 16:01:00,892 DEBUG openai._base_client: Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-11-21 16:01:00,893 DEBUG httpcore.connection: close.started
+2025-11-21 16:01:00,893 DEBUG httpcore.connection: close.complete
+2025-11-21 16:01:00,893 DEBUG httpcore.connection: connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-11-21 16:01:01,110 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3ff32f90>
+2025-11-21 16:01:01,110 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa657c6570> server_hostname='api.openai.com' timeout=5.0
+2025-11-21 16:01:01,191 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3ff32fd0>
+2025-11-21 16:01:01,191 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:01:01,191 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:01:01,191 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:01:01,192 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:01:01,192 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:01:03,160 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 21 Nov 2025 21:01:03 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-vavvh5igg1nn0pltmq1qgdlb'), (b'openai-processing-ms', b'1744'), (b'openai-project', b'proj_kuW8f325WLa4LAdBJa3ICcix'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'1757'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199937'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'18ms'), (b'x-request-id', b'req_c7fa92fe543d42819b3cc53d0e266945'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9a231eb398c9b539-SCL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-11-21 16:01:03,160 INFO httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-21 16:01:03,160 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:01:03,163 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:01:03,163 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:01:03,163 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:01:03,163 DEBUG openai._base_client: HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 21 Nov 2025 21:01:03 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'user-vavvh5igg1nn0pltmq1qgdlb', 'openai-processing-ms': '1744', 'openai-project': 'proj_kuW8f325WLa4LAdBJa3ICcix', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '1757', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '200000', 'x-ratelimit-remaining-requests': '9999', 'x-ratelimit-remaining-tokens': '199937', 'x-ratelimit-reset-requests': '8.64s', 'x-ratelimit-reset-tokens': '18ms', 'x-request-id': 'req_c7fa92fe543d42819b3cc53d0e266945', 'x-openai-proxy-wasm': 'v0.1', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '9a231eb398c9b539-SCL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-11-21 16:01:03,163 DEBUG openai._base_client: request_id: req_c7fa92fe543d42819b3cc53d0e266945
+2025-11-21 16:01:03,164 INFO services.message_processor: Intent: general, requires_identity: False
+2025-11-21 16:01:03,164 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:01:03,165 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:01:03,165 DEBUG services.session_service: Pending intent cleared for 348845550
+2025-11-21 16:01:03,165 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:01:03,165 INFO services.message_processor: Response ready for 348845550 via whatsapp_business
+2025-11-21 16:01:03,165 INFO services.message_processor: Sending response to 348845550 via channel 440215 (whatsapp_business)
+2025-11-21 16:01:03,165 INFO services.message_processor: Response: Pedro, Lamento escuchar que te quedaste sin trabajo. Considera actualizar tu currículum y buscar opo...
+2025-11-21 16:01:03,165 INFO clients.respondio_client: [Respond.io] Sending to id:348845550 via channel 440215
+2025-11-21 16:01:03,165 DEBUG clients.respondio_client: [Respond.io] Payload: {'message': {'type': 'text', 'text': 'Pedro, Lamento escuchar que te quedaste sin trabajo. Considera actualizar tu currículum y buscar oportunidades en tu campo.'}, 'channelId': 440215}
+2025-11-21 16:01:03,207 DEBUG httpcore.connection: connect_tcp.started host='api.respond.io' port=443 local_address=None timeout=10.0 socket_options=None
+2025-11-21 16:01:03,218 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3ff40f90>
+2025-11-21 16:01:03,219 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa402e7ec0> server_hostname='api.respond.io' timeout=10.0
+2025-11-21 16:01:03,234 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3ff32850>
+2025-11-21 16:01:03,234 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:01:03,234 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:01:03,234 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:01:03,234 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:01:03,234 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:01:04,761 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'52'), (b'Connection', b'keep-alive'), (b'Date', b'Fri, 21 Nov 2025 21:01:04 GMT'), (b'ETag', b'W/"34-aKsqf7fCswQePemeku/et3S6IZU"'), (b'Cache-Control', b'no-store'), (b'Access-Control-Allow-Origin', b'*'), (b'X-RateLimit-Limit', b'20'), (b'X-RateLimit-Remaining', b'19'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 3c2c64b1941e695387773736d440584e.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'LIM50-P2'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'SSo9yaibWudIm2tH-dEQX5RBHtw640Fzoj8UNo1Ah7lE3Zp4v_n7DQ==')])
+2025-11-21 16:01:04,761 INFO httpx: HTTP Request: POST https://api.respond.io/v2/contact/id:348845550/message "HTTP/1.1 200 OK"
+2025-11-21 16:01:04,761 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:01:04,761 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:01:04,761 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:01:04,762 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:01:04,762 INFO clients.respondio_client: Message sent successfully to id:348845550
+2025-11-21 16:01:04,762 DEBUG httpcore.connection: close.started
+2025-11-21 16:01:04,762 DEBUG httpcore.connection: close.complete
+2025-11-21 16:01:04,762 INFO services.message_processor: ✓ Response sent successfully via whatsapp_business
+2025-11-21 16:01:04,762 DEBUG utils.idempotency: Message 1763758856000000 marked as processed
+2025-11-21 16:01:04,762 INFO handler.event_handler: Message 1763758856000000 processed successfully
+2025-11-21 16:01:40,421 INFO __main__: ============================================================
+2025-11-21 16:01:40,421 INFO __main__:  WORKER: EVENTO DEENCOLADO
+2025-11-21 16:01:40,421 INFO __main__: Event type: <class 'dict'>
+2025-11-21 16:01:40,421 INFO __main__: Event keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:01:40,421 INFO __main__: Event content: {
+  "event_type": "message.received",
+  "event_id": "a300e5e6-48fd-4697-9e23-0e907ad60ec1",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763758894000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0ZDNEZBQjcwM0Y3NUQ3QTJCRkY1ODBEQUUxQzMxMQA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763758894000,
+    "message": {
+      "type": "text",
+      "text": "Hola Pedro bot",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:01:40,421 INFO __main__: Event type field: message.received
+2025-11-21 16:01:40,421 INFO __main__: ============================================================
+2025-11-21 16:01:40,421 INFO handler.event_handler: ============================================================
+2025-11-21 16:01:40,421 INFO handler.event_handler:  NUEVO EVENTO RECIBIDO EN HANDLER
+2025-11-21 16:01:40,421 INFO handler.event_handler:  Event data type: <class 'dict'>
+2025-11-21 16:01:40,421 INFO handler.event_handler:  Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:01:40,421 INFO handler.event_handler:  Event data: {
+  "event_type": "message.received",
+  "event_id": "a300e5e6-48fd-4697-9e23-0e907ad60ec1",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763758894000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0ZDNEZBQjcwM0Y3NUQ3QTJCRkY1ODBEQUUxQzMxMQA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763758894000,
+    "message": {
+      "type": "text",
+      "text": "Hola Pedro bot",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:01:40,422 INFO handler.event_handler: ============================================================
+2025-11-21 16:01:40,422 INFO handler.event_handler: Processing event: message.received
+2025-11-21 16:01:40,422 INFO handler.event_handler: Message ID: 1763758894000000
+2025-11-21 16:01:40,422 INFO handler.event_handler: Message data: {'messageId': 1763758894000000, 'channelMessageId': 'wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0ZDNEZBQjcwM0Y3NUQ3QTJCRkY1ODBEQUUxQzMxMQA=', 'contactId': 348845550, 'channelId': 440215, 'traffic': 'incoming', 'timestamp': 1763758894000, 'message': {'type': 'text', 'text': 'Hola Pedro bot', 'messageTag': None}}
+2025-11-21 16:01:40,422 INFO handler.event_handler: Traffic: incoming
+2025-11-21 16:01:40,422 INFO handler.event_handler: Processing incoming message: 1763758894000000
+2025-11-21 16:01:40,422 INFO services.message_processor: ============================================================
+2025-11-21 16:01:40,422 INFO services.message_processor: PROCESANDO EVENTO EN MESSAGE_PROCESSOR
+2025-11-21 16:01:40,422 INFO services.message_processor: Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:01:40,422 INFO services.message_processor: ============================================================
+2025-11-21 16:01:40,422 INFO services.message_processor: Contact ID: 348845550
+2025-11-21 16:01:40,422 INFO services.message_processor: Channel ID: 440215
+2025-11-21 16:01:40,422 INFO services.message_processor: Channel Source: whatsapp_business
+2025-11-21 16:01:40,422 INFO services.message_processor: Message text: 'Hola Pedro bot'
+2025-11-21 16:01:40,422 INFO services.message_processor: ✓ Validation passed - processing message from whatsapp_business
+2025-11-21 16:01:40,422 INFO services.message_processor: Processing message internally for 348845550 via whatsapp_business
+2025-11-21 16:01:40,423 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:01:40,423 DEBUG services.extraction_service: Phone normalized: +51960103874 → 960103874
+2025-11-21 16:01:40,423 INFO services.extraction_service: Session enriched with: ['phone']
+2025-11-21 16:01:40,423 DEBUG openai._base_client: Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-810349ec-7c85-4178-b814-8f72fd4eda59', 'json_data': {'messages': [{'role': 'system', 'content': "Eres un asistente financiero. Responde SOLO en JSON con los campos: {intent, requires_identity, reason, concise_answer, followup_question}.\nintent puede ser: 'debt', 'otp', 'general'."}, {'role': 'user', 'content': 'Hola Pedro bot'}], 'model': 'gpt-4o-mini', 'response_format': {'type': 'json_object'}, 'temperature': 0.2}}
+2025-11-21 16:01:40,424 DEBUG openai._base_client: Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-11-21 16:01:40,424 DEBUG httpcore.connection: close.started
+2025-11-21 16:01:40,424 DEBUG httpcore.connection: close.complete
+2025-11-21 16:01:40,424 DEBUG httpcore.connection: connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-11-21 16:01:40,476 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3ff434d0>
+2025-11-21 16:01:40,476 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa657c6570> server_hostname='api.openai.com' timeout=5.0
+2025-11-21 16:01:40,603 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3ff31350>
+2025-11-21 16:01:40,604 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:01:40,604 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:01:40,604 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:01:40,604 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:01:40,604 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:01:42,959 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 21 Nov 2025 21:01:43 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-vavvh5igg1nn0pltmq1qgdlb'), (b'openai-processing-ms', b'2064'), (b'openai-project', b'proj_kuW8f325WLa4LAdBJa3ICcix'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'2078'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199947'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'15ms'), (b'x-request-id', b'req_0547d1c05691412cb8215ac6558ab95f'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9a231fa9f880b522-SCL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-11-21 16:01:42,960 INFO httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-21 16:01:42,960 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:01:42,960 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:01:42,960 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:01:42,960 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:01:42,961 DEBUG openai._base_client: HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 21 Nov 2025 21:01:43 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'user-vavvh5igg1nn0pltmq1qgdlb', 'openai-processing-ms': '2064', 'openai-project': 'proj_kuW8f325WLa4LAdBJa3ICcix', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '2078', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '200000', 'x-ratelimit-remaining-requests': '9999', 'x-ratelimit-remaining-tokens': '199947', 'x-ratelimit-reset-requests': '8.64s', 'x-ratelimit-reset-tokens': '15ms', 'x-request-id': 'req_0547d1c05691412cb8215ac6558ab95f', 'x-openai-proxy-wasm': 'v0.1', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '9a231fa9f880b522-SCL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-11-21 16:01:42,961 DEBUG openai._base_client: request_id: req_0547d1c05691412cb8215ac6558ab95f
+2025-11-21 16:01:42,962 INFO services.message_processor: Intent: general, requires_identity: False
+2025-11-21 16:01:42,963 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:01:42,963 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:01:42,963 DEBUG services.session_service: Pending intent cleared for 348845550
+2025-11-21 16:01:42,963 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:01:42,964 INFO services.message_processor: Response ready for 348845550 via whatsapp_business
+2025-11-21 16:01:42,964 INFO services.message_processor: Sending response to 348845550 via channel 440215 (whatsapp_business)
+2025-11-21 16:01:42,964 INFO services.message_processor: Response: Pedro, ¡Hola! ¿En qué puedo ayudarte hoy?...
+2025-11-21 16:01:42,964 INFO clients.respondio_client: [Respond.io] Sending to id:348845550 via channel 440215
+2025-11-21 16:01:42,964 DEBUG clients.respondio_client: [Respond.io] Payload: {'message': {'type': 'text', 'text': 'Pedro, ¡Hola! ¿En qué puedo ayudarte hoy?'}, 'channelId': 440215}
+2025-11-21 16:01:43,086 DEBUG httpcore.connection: connect_tcp.started host='api.respond.io' port=443 local_address=None timeout=10.0 socket_options=None
+2025-11-21 16:01:43,184 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3ff43d50>
+2025-11-21 16:01:43,184 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa3fef0200> server_hostname='api.respond.io' timeout=10.0
+2025-11-21 16:01:43,197 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3ff436d0>
+2025-11-21 16:01:43,197 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:01:43,198 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:01:43,198 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:01:43,198 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:01:43,198 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:01:44,239 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'52'), (b'Connection', b'keep-alive'), (b'Date', b'Fri, 21 Nov 2025 21:01:44 GMT'), (b'ETag', b'W/"34-c6rtmz048wIDjlI3o/aY0QAT3Z4"'), (b'Cache-Control', b'no-store'), (b'Access-Control-Allow-Origin', b'*'), (b'X-RateLimit-Limit', b'20'), (b'X-RateLimit-Remaining', b'19'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 c4970e6612ae432bb51bdb2884874366.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'LIM50-P2'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'ol4hBCjlb-J9nz9JG-QzRtDpU6jflXKjuFsEikeESHa7PVS7NPvqLg==')])
+2025-11-21 16:01:44,239 INFO httpx: HTTP Request: POST https://api.respond.io/v2/contact/id:348845550/message "HTTP/1.1 200 OK"
+2025-11-21 16:01:44,239 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:01:44,239 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:01:44,240 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:01:44,240 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:01:44,240 INFO clients.respondio_client: Message sent successfully to id:348845550
+2025-11-21 16:01:44,240 DEBUG httpcore.connection: close.started
+2025-11-21 16:01:44,240 DEBUG httpcore.connection: close.complete
+2025-11-21 16:01:44,240 INFO services.message_processor: ✓ Response sent successfully via whatsapp_business
+2025-11-21 16:01:44,241 DEBUG utils.idempotency: Message 1763758894000000 marked as processed
+2025-11-21 16:01:44,241 INFO handler.event_handler: Message 1763758894000000 processed successfully
+2025-11-21 16:45:08,089 INFO __main__: ============================================================
+2025-11-21 16:45:10,634 INFO __main__:  WORKER: EVENTO DEENCOLADO
+2025-11-21 16:45:10,763 INFO __main__: Event type: <class 'dict'>
+2025-11-21 16:45:10,769 INFO __main__: Event keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:45:11,491 INFO __main__: Event content: {
+  "event_type": "message.received",
+  "event_id": "54cdf1a8-db7a-4833-a282-dc4314b02745",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763761465000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0U1RURDQ0U0QkQyNUM2QUZDQjY5RDI1QUY4RDIzMAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763761465000,
+    "message": {
+      "type": "text",
+      "text": "Cu\u00e1l es mi clave Otp?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:45:11,613 INFO __main__: Event type field: message.received
+2025-11-21 16:45:11,614 INFO __main__: ============================================================
+2025-11-21 16:45:11,691 INFO handler.event_handler: ============================================================
+2025-11-21 16:45:11,692 INFO handler.event_handler:  NUEVO EVENTO RECIBIDO EN HANDLER
+2025-11-21 16:45:11,694 INFO handler.event_handler:  Event data type: <class 'dict'>
+2025-11-21 16:45:11,695 INFO handler.event_handler:  Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:45:11,858 INFO handler.event_handler:  Event data: {
+  "event_type": "message.received",
+  "event_id": "54cdf1a8-db7a-4833-a282-dc4314b02745",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763761465000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0U1RURDQ0U0QkQyNUM2QUZDQjY5RDI1QUY4RDIzMAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763761465000,
+    "message": {
+      "type": "text",
+      "text": "Cu\u00e1l es mi clave Otp?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:45:11,859 INFO handler.event_handler: ============================================================
+2025-11-21 16:45:11,860 INFO handler.event_handler: Processing event: message.received
+2025-11-21 16:45:11,861 INFO handler.event_handler: Message ID: 1763761465000000
+2025-11-21 16:45:11,865 INFO handler.event_handler: Message data: {'messageId': 1763761465000000, 'channelMessageId': 'wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0U1RURDQ0U0QkQyNUM2QUZDQjY5RDI1QUY4RDIzMAA=', 'contactId': 348845550, 'channelId': 440215, 'traffic': 'incoming', 'timestamp': 1763761465000, 'message': {'type': 'text', 'text': 'Cuál es mi clave Otp?', 'messageTag': None}}
+2025-11-21 16:45:12,177 INFO handler.event_handler: Traffic: incoming
+2025-11-21 16:45:12,279 INFO handler.event_handler: Processing incoming message: 1763761465000000
+2025-11-21 16:45:12,432 INFO services.message_processor: ============================================================
+2025-11-21 16:45:12,434 INFO services.message_processor: PROCESANDO EVENTO EN MESSAGE_PROCESSOR
+2025-11-21 16:45:12,437 INFO services.message_processor: Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:45:12,438 INFO services.message_processor: ============================================================
+2025-11-21 16:45:12,520 INFO services.message_processor: Contact ID: 348845550
+2025-11-21 16:45:12,521 INFO services.message_processor: Channel ID: 440215
+2025-11-21 16:45:12,523 INFO services.message_processor: Channel Source: whatsapp_business
+2025-11-21 16:45:12,524 INFO services.message_processor: Message text: 'Cuál es mi clave Otp?'
+2025-11-21 16:45:12,528 INFO services.message_processor: ✓ Validation passed - processing message from whatsapp_business
+2025-11-21 16:45:12,608 INFO services.message_processor: Processing message internally for 348845550 via whatsapp_business
+2025-11-21 16:45:12,709 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:45:13,097 DEBUG services.extraction_service: Phone normalized: +51960103874 → 960103874
+2025-11-21 16:45:13,183 INFO services.extraction_service: Session enriched with: ['phone']
+2025-11-21 16:45:23,763 DEBUG openai._base_client: Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-a711784d-716e-4165-8ff4-4c8f6a3441b0', 'json_data': {'messages': [{'role': 'system', 'content': "Eres un asistente financiero. Responde SOLO en JSON con los campos: {intent, requires_identity, reason, concise_answer, followup_question}.\nintent puede ser: 'debt', 'otp', 'general'."}, {'role': 'user', 'content': 'Cuál es mi clave Otp?'}], 'model': 'gpt-4o-mini', 'response_format': {'type': 'json_object'}, 'temperature': 0.2}}
+2025-11-21 16:45:30,816 DEBUG openai._base_client: Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-11-21 16:45:35,020 DEBUG httpcore.connection: close.started
+2025-11-21 16:45:40,609 DEBUG httpcore.connection: close.complete
+2025-11-21 16:45:41,577 DEBUG httpcore.connection: connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-11-21 16:45:44,798 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3ff32010>
+2025-11-21 16:45:45,075 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa657c6570> server_hostname='api.openai.com' timeout=5.0
+2025-11-21 16:45:57,117 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3ff417d0>
+2025-11-21 16:45:57,445 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:45:58,828 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:45:58,829 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:45:58,836 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:45:58,838 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:46:02,139 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 21 Nov 2025 21:46:01 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-vavvh5igg1nn0pltmq1qgdlb'), (b'openai-processing-ms', b'1427'), (b'openai-project', b'proj_kuW8f325WLa4LAdBJa3ICcix'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'1816'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199945'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'16ms'), (b'x-request-id', b'req_564e9ed014b041ee92ffaee2b2d8ec3e'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=drTaKffQZl_.fMG5aUz3BgN793LuXCLtX6XuwF3Kyn0-1763761561-1.0.1.1-M0ovboaS1dYC5u93lKIT.Qb_9ePuxt4iiJV9cX0cMlKhYBFNbTl6uq6YUi_NBxtMiIcH1NkvQcL9oPxIqQqflP8LeRh7OlbUQCe8.US16lc; path=/; expires=Fri, 21-Nov-25 22:16:01 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9a2360906a380da1-SCL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-11-21 16:46:03,636 INFO httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-21 16:46:03,976 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:46:04,504 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:46:04,767 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:46:04,772 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:46:04,939 DEBUG openai._base_client: HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 21 Nov 2025 21:46:01 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'user-vavvh5igg1nn0pltmq1qgdlb', 'openai-processing-ms': '1427', 'openai-project': 'proj_kuW8f325WLa4LAdBJa3ICcix', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '1816', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '200000', 'x-ratelimit-remaining-requests': '9999', 'x-ratelimit-remaining-tokens': '199945', 'x-ratelimit-reset-requests': '8.64s', 'x-ratelimit-reset-tokens': '16ms', 'x-request-id': 'req_564e9ed014b041ee92ffaee2b2d8ec3e', 'x-openai-proxy-wasm': 'v0.1', 'cf-cache-status': 'DYNAMIC', 'set-cookie': '__cf_bm=drTaKffQZl_.fMG5aUz3BgN793LuXCLtX6XuwF3Kyn0-1763761561-1.0.1.1-M0ovboaS1dYC5u93lKIT.Qb_9ePuxt4iiJV9cX0cMlKhYBFNbTl6uq6YUi_NBxtMiIcH1NkvQcL9oPxIqQqflP8LeRh7OlbUQCe8.US16lc; path=/; expires=Fri, 21-Nov-25 22:16:01 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '9a2360906a380da1-SCL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-11-21 16:46:05,351 DEBUG openai._base_client: request_id: req_564e9ed014b041ee92ffaee2b2d8ec3e
+2025-11-21 16:46:07,366 INFO services.message_processor: Intent: otp, requires_identity: True
+2025-11-21 16:46:07,448 INFO services.message_processor: Searching OTP for phone: 960103874
+2025-11-21 16:55:04,772 INFO azure.core.pipeline.policies.http_logging_policy: Request URL: 'https://ais-doctor-sol-rag-dev.search.windows.net/indexes('idx-clave-otp')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '94'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': 'bcbc8e7e-c724-11f0-b2c4-00155d58e299'
+    'User-Agent': 'azsdk-python-search-documents/11.6.0 Python/3.11.14 (Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39)'
+A body is sent with the request
+2025-11-21 16:55:04,867 DEBUG urllib3.connectionpool: Starting new HTTPS connection (1): ais-doctor-sol-rag-dev.search.windows.net:443
+2025-11-21 16:55:06,306 DEBUG urllib3.connectionpool: https://ais-doctor-sol-rag-dev.search.windows.net:443 "POST /indexes('idx-clave-otp')/docs/search.post.search?api-version=2025-09-01 HTTP/1.1" 200 None
+2025-11-21 16:55:06,570 INFO azure.core.pipeline.policies.http_logging_policy: Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': 'bcbc8e7e-c724-11f0-b2c4-00155d58e299'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Fri, 21 Nov 2025 21:55:07 GMT'
+2025-11-21 16:55:06,718 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:55:06,720 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:55:06,720 DEBUG services.session_service: Pending intent cleared for 348845550
+2025-11-21 16:55:06,720 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:55:06,721 INFO services.message_processor: Response ready for 348845550 via whatsapp_business
+2025-11-21 16:55:06,721 INFO services.message_processor: Sending response to 348845550 via channel 440215 (whatsapp_business)
+2025-11-21 16:55:06,721 INFO services.message_processor: Response: Pedro, No encontré una clave OTP activa para el número 960103874. ¿Puedes verificarlo?...
+2025-11-21 16:55:06,721 INFO clients.respondio_client: [Respond.io] Sending to id:348845550 via channel 440215
+2025-11-21 16:55:06,721 DEBUG clients.respondio_client: [Respond.io] Payload: {'message': {'type': 'text', 'text': 'Pedro, No encontré una clave OTP activa para el número 960103874. ¿Puedes verificarlo?'}, 'channelId': 440215}
+2025-11-21 16:55:06,814 DEBUG httpcore.connection: connect_tcp.started host='api.respond.io' port=443 local_address=None timeout=10.0 socket_options=None
+2025-11-21 16:55:06,915 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3f673b10>
+2025-11-21 16:55:06,916 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa3ffd2600> server_hostname='api.respond.io' timeout=10.0
+2025-11-21 16:55:06,927 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3f673810>
+2025-11-21 16:55:06,928 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:55:06,928 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:55:06,929 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:55:06,929 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:55:06,929 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:55:07,923 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'52'), (b'Connection', b'keep-alive'), (b'Date', b'Fri, 21 Nov 2025 21:55:09 GMT'), (b'ETag', b'W/"34-FqYjicTlJ2ybEG6io6ETR6axO+A"'), (b'Cache-Control', b'no-store'), (b'Access-Control-Allow-Origin', b'*'), (b'X-RateLimit-Limit', b'20'), (b'X-RateLimit-Remaining', b'19'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 b90112984a8db4df44b48e2285863d52.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'LIM50-P2'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'c2XJr646n84_1OmWcCwAlIg97cDV8m5ff0jBJnE6li4aE4WyexiFrA==')])
+2025-11-21 16:55:07,924 INFO httpx: HTTP Request: POST https://api.respond.io/v2/contact/id:348845550/message "HTTP/1.1 200 OK"
+2025-11-21 16:55:07,924 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:55:07,924 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:55:07,924 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:55:07,924 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:55:07,924 INFO clients.respondio_client: Message sent successfully to id:348845550
+2025-11-21 16:55:07,925 DEBUG httpcore.connection: close.started
+2025-11-21 16:55:07,925 DEBUG httpcore.connection: close.complete
+2025-11-21 16:55:07,925 INFO services.message_processor: ✓ Response sent successfully via whatsapp_business
+2025-11-21 16:55:07,926 DEBUG utils.idempotency: Message 1763761465000000 marked as processed
+2025-11-21 16:55:07,926 INFO handler.event_handler: Message 1763761465000000 processed successfully
+2025-11-21 16:55:07,926 INFO __main__: ============================================================
+2025-11-21 16:55:07,926 INFO __main__:  WORKER: EVENTO DEENCOLADO
+2025-11-21 16:55:07,926 INFO __main__: Event type: <class 'dict'>
+2025-11-21 16:55:07,926 INFO __main__: Event keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:55:07,927 INFO __main__: Event content: {
+  "event_type": "message.received",
+  "event_id": "54cdf1a8-db7a-4833-a282-dc4314b02745",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763761465000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0U1RURDQ0U0QkQyNUM2QUZDQjY5RDI1QUY4RDIzMAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763761465000,
+    "message": {
+      "type": "text",
+      "text": "Cu\u00e1l es mi clave Otp?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:55:07,927 INFO __main__: Event type field: message.received
+2025-11-21 16:55:07,927 INFO __main__: ============================================================
+2025-11-21 16:55:07,927 INFO handler.event_handler: ============================================================
+2025-11-21 16:55:07,927 INFO handler.event_handler:  NUEVO EVENTO RECIBIDO EN HANDLER
+2025-11-21 16:55:07,927 INFO handler.event_handler:  Event data type: <class 'dict'>
+2025-11-21 16:55:07,927 INFO handler.event_handler:  Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:55:07,927 INFO handler.event_handler:  Event data: {
+  "event_type": "message.received",
+  "event_id": "54cdf1a8-db7a-4833-a282-dc4314b02745",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763761465000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0U1RURDQ0U0QkQyNUM2QUZDQjY5RDI1QUY4RDIzMAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763761465000,
+    "message": {
+      "type": "text",
+      "text": "Cu\u00e1l es mi clave Otp?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:55:07,927 INFO handler.event_handler: ============================================================
+2025-11-21 16:55:07,927 INFO handler.event_handler: Processing event: message.received
+2025-11-21 16:55:07,927 INFO handler.event_handler: Message ID: 1763761465000000
+2025-11-21 16:55:07,927 INFO handler.event_handler: Message data: {'messageId': 1763761465000000, 'channelMessageId': 'wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0U1RURDQ0U0QkQyNUM2QUZDQjY5RDI1QUY4RDIzMAA=', 'contactId': 348845550, 'channelId': 440215, 'traffic': 'incoming', 'timestamp': 1763761465000, 'message': {'type': 'text', 'text': 'Cuál es mi clave Otp?', 'messageTag': None}}
+2025-11-21 16:55:07,928 INFO handler.event_handler: Message 1763761465000000 already processed, skipping
+2025-11-21 16:55:07,928 INFO __main__: ============================================================
+2025-11-21 16:55:07,928 INFO __main__:  WORKER: EVENTO DEENCOLADO
+2025-11-21 16:55:07,928 INFO __main__: Event type: <class 'dict'>
+2025-11-21 16:55:07,929 INFO __main__: Event keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:55:07,929 INFO __main__: Event content: {
+  "event_type": "message.received",
+  "event_id": "1a782fb9-2419-496c-a6d3-f521acaba28a",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763761550000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzAyNDJFRTMyN0MyRDgzMUI2NTQ1QTQzMkQyN0JENAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763761550000,
+    "message": {
+      "type": "text",
+      "text": "Hola?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:55:07,929 INFO __main__: Event type field: message.received
+2025-11-21 16:55:07,929 INFO __main__: ============================================================
+2025-11-21 16:55:07,929 INFO handler.event_handler: ============================================================
+2025-11-21 16:55:07,929 INFO handler.event_handler:  NUEVO EVENTO RECIBIDO EN HANDLER
+2025-11-21 16:55:07,929 INFO handler.event_handler:  Event data type: <class 'dict'>
+2025-11-21 16:55:07,929 INFO handler.event_handler:  Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:55:07,929 INFO handler.event_handler:  Event data: {
+  "event_type": "message.received",
+  "event_id": "1a782fb9-2419-496c-a6d3-f521acaba28a",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763761550000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzAyNDJFRTMyN0MyRDgzMUI2NTQ1QTQzMkQyN0JENAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763761550000,
+    "message": {
+      "type": "text",
+      "text": "Hola?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:55:07,929 INFO handler.event_handler: ============================================================
+2025-11-21 16:55:07,929 INFO handler.event_handler: Processing event: message.received
+2025-11-21 16:55:07,929 INFO handler.event_handler: Message ID: 1763761550000000
+2025-11-21 16:55:07,929 INFO handler.event_handler: Message data: {'messageId': 1763761550000000, 'channelMessageId': 'wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzAyNDJFRTMyN0MyRDgzMUI2NTQ1QTQzMkQyN0JENAA=', 'contactId': 348845550, 'channelId': 440215, 'traffic': 'incoming', 'timestamp': 1763761550000, 'message': {'type': 'text', 'text': 'Hola?', 'messageTag': None}}
+2025-11-21 16:55:07,929 INFO handler.event_handler: Traffic: incoming
+2025-11-21 16:55:07,929 INFO handler.event_handler: Processing incoming message: 1763761550000000
+2025-11-21 16:55:07,929 INFO services.message_processor: ============================================================
+2025-11-21 16:55:07,929 INFO services.message_processor: PROCESANDO EVENTO EN MESSAGE_PROCESSOR
+2025-11-21 16:55:07,929 INFO services.message_processor: Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:55:07,929 INFO services.message_processor: ============================================================
+2025-11-21 16:55:07,929 INFO services.message_processor: Contact ID: 348845550
+2025-11-21 16:55:07,930 INFO services.message_processor: Channel ID: 440215
+2025-11-21 16:55:07,930 INFO services.message_processor: Channel Source: whatsapp_business
+2025-11-21 16:55:07,930 INFO services.message_processor: Message text: 'Hola?'
+2025-11-21 16:55:07,930 INFO services.message_processor: ✓ Validation passed - processing message from whatsapp_business
+2025-11-21 16:55:07,930 INFO services.message_processor: Processing message internally for 348845550 via whatsapp_business
+2025-11-21 16:55:07,930 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:55:07,930 DEBUG services.extraction_service: Phone normalized: +51960103874 → 960103874
+2025-11-21 16:55:07,930 INFO services.extraction_service: Session enriched with: ['phone']
+2025-11-21 16:55:07,931 DEBUG openai._base_client: Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-a2fe993b-d0c9-44ee-a198-46db3a9c232e', 'json_data': {'messages': [{'role': 'system', 'content': "Eres un asistente financiero. Responde SOLO en JSON con los campos: {intent, requires_identity, reason, concise_answer, followup_question}.\nintent puede ser: 'debt', 'otp', 'general'."}, {'role': 'user', 'content': 'Hola?'}], 'model': 'gpt-4o-mini', 'response_format': {'type': 'json_object'}, 'temperature': 0.2}}
+2025-11-21 16:55:07,932 DEBUG openai._base_client: Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-11-21 16:55:07,932 DEBUG httpcore.connection: close.started
+2025-11-21 16:55:07,933 DEBUG httpcore.connection: close.complete
+2025-11-21 16:55:07,933 DEBUG httpcore.connection: connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-11-21 16:55:08,028 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3ff33d10>
+2025-11-21 16:55:08,028 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa657c6570> server_hostname='api.openai.com' timeout=5.0
+2025-11-21 16:55:08,112 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3f6a6890>
+2025-11-21 16:55:08,112 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:55:08,112 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:55:08,112 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:55:08,112 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:55:08,112 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:55:09,572 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 21 Nov 2025 21:55:11 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-vavvh5igg1nn0pltmq1qgdlb'), (b'openai-processing-ms', b'1351'), (b'openai-project', b'proj_kuW8f325WLa4LAdBJa3ICcix'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'1365'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199950'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'15ms'), (b'x-request-id', b'req_b47907b20484461995de5ad7fcfb10bb'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9a236e02fa81e9ae-SCL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-11-21 16:55:09,572 INFO httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-21 16:55:09,572 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:55:09,573 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:55:09,573 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:55:09,573 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:55:09,573 DEBUG openai._base_client: HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 21 Nov 2025 21:55:11 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'user-vavvh5igg1nn0pltmq1qgdlb', 'openai-processing-ms': '1351', 'openai-project': 'proj_kuW8f325WLa4LAdBJa3ICcix', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '1365', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '200000', 'x-ratelimit-remaining-requests': '9999', 'x-ratelimit-remaining-tokens': '199950', 'x-ratelimit-reset-requests': '8.64s', 'x-ratelimit-reset-tokens': '15ms', 'x-request-id': 'req_b47907b20484461995de5ad7fcfb10bb', 'x-openai-proxy-wasm': 'v0.1', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '9a236e02fa81e9ae-SCL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-11-21 16:55:09,573 DEBUG openai._base_client: request_id: req_b47907b20484461995de5ad7fcfb10bb
+2025-11-21 16:55:09,574 INFO services.message_processor: Intent: general, requires_identity: False
+2025-11-21 16:55:09,574 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:55:09,575 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:55:09,575 DEBUG services.session_service: Pending intent cleared for 348845550
+2025-11-21 16:55:09,575 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:55:09,576 INFO services.message_processor: Response ready for 348845550 via whatsapp_business
+2025-11-21 16:55:09,576 INFO services.message_processor: Sending response to 348845550 via channel 440215 (whatsapp_business)
+2025-11-21 16:55:09,576 INFO services.message_processor: Response: Pedro, ¡Hola! ¿En qué puedo ayudarte hoy?...
+2025-11-21 16:55:09,576 INFO clients.respondio_client: [Respond.io] Sending to id:348845550 via channel 440215
+2025-11-21 16:55:09,576 DEBUG clients.respondio_client: [Respond.io] Payload: {'message': {'type': 'text', 'text': 'Pedro, ¡Hola! ¿En qué puedo ayudarte hoy?'}, 'channelId': 440215}
+2025-11-21 16:55:10,114 DEBUG httpcore.connection: connect_tcp.started host='api.respond.io' port=443 local_address=None timeout=10.0 socket_options=None
+2025-11-21 16:55:10,134 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3f6a5790>
+2025-11-21 16:55:10,134 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa402e7ec0> server_hostname='api.respond.io' timeout=10.0
+2025-11-21 16:55:10,172 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3f6a4610>
+2025-11-21 16:55:10,172 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:55:10,172 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:55:10,172 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:55:10,172 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:55:10,172 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:55:10,604 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'52'), (b'Connection', b'keep-alive'), (b'Date', b'Fri, 21 Nov 2025 21:55:12 GMT'), (b'ETag', b'W/"34-I1ZrJdTmEWSRkfX3RLyfKXVWO6w"'), (b'Cache-Control', b'no-store'), (b'Access-Control-Allow-Origin', b'*'), (b'X-RateLimit-Limit', b'20'), (b'X-RateLimit-Remaining', b'19'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 d7d2d082ef2deeb97c85fa0ec32cc66e.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'LIM50-P2'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'CsgK-KgcwHLYaEUf9UcxTDwOB7dHiLbA7QflCb22O27K9Ko022-YrQ==')])
+2025-11-21 16:55:10,604 INFO httpx: HTTP Request: POST https://api.respond.io/v2/contact/id:348845550/message "HTTP/1.1 200 OK"
+2025-11-21 16:55:10,604 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:55:10,604 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:55:10,604 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:55:10,604 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:55:10,604 INFO clients.respondio_client: Message sent successfully to id:348845550
+2025-11-21 16:55:10,604 DEBUG httpcore.connection: close.started
+2025-11-21 16:55:10,605 DEBUG httpcore.connection: close.complete
+2025-11-21 16:55:10,605 INFO services.message_processor: ✓ Response sent successfully via whatsapp_business
+2025-11-21 16:55:10,605 DEBUG utils.idempotency: Message 1763761550000000 marked as processed
+2025-11-21 16:55:10,605 INFO handler.event_handler: Message 1763761550000000 processed successfully
+2025-11-21 16:55:41,351 INFO __main__: ============================================================
+2025-11-21 16:55:41,352 INFO __main__:  WORKER: EVENTO DEENCOLADO
+2025-11-21 16:55:41,352 INFO __main__: Event type: <class 'dict'>
+2025-11-21 16:55:41,352 INFO __main__: Event keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:55:41,352 INFO __main__: Event content: {
+  "event_type": "message.received",
+  "event_id": "4ae82f64-8b38-4b88-9314-bfe9fcec3ca9",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763762136000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzRGMkM1RTE3MzVGNTM5MzQxODhDRUUzRTEyMjI4RAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762136000,
+    "message": {
+      "type": "text",
+      "text": "Cu\u00e1l es el.estado de mi deuda?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:55:41,352 INFO __main__: Event type field: message.received
+2025-11-21 16:55:41,352 INFO __main__: ============================================================
+2025-11-21 16:55:41,352 INFO handler.event_handler: ============================================================
+2025-11-21 16:55:41,352 INFO handler.event_handler:  NUEVO EVENTO RECIBIDO EN HANDLER
+2025-11-21 16:55:41,352 INFO handler.event_handler:  Event data type: <class 'dict'>
+2025-11-21 16:55:41,352 INFO handler.event_handler:  Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:55:41,352 INFO handler.event_handler:  Event data: {
+  "event_type": "message.received",
+  "event_id": "4ae82f64-8b38-4b88-9314-bfe9fcec3ca9",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763762136000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzRGMkM1RTE3MzVGNTM5MzQxODhDRUUzRTEyMjI4RAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762136000,
+    "message": {
+      "type": "text",
+      "text": "Cu\u00e1l es el.estado de mi deuda?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:55:41,352 INFO handler.event_handler: ============================================================
+2025-11-21 16:55:41,352 INFO handler.event_handler: Processing event: message.received
+2025-11-21 16:55:41,352 INFO handler.event_handler: Message ID: 1763762136000000
+2025-11-21 16:55:41,352 INFO handler.event_handler: Message data: {'messageId': 1763762136000000, 'channelMessageId': 'wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzRGMkM1RTE3MzVGNTM5MzQxODhDRUUzRTEyMjI4RAA=', 'contactId': 348845550, 'channelId': 440215, 'traffic': 'incoming', 'timestamp': 1763762136000, 'message': {'type': 'text', 'text': 'Cuál es el.estado de mi deuda?', 'messageTag': None}}
+2025-11-21 16:55:41,353 INFO handler.event_handler: Traffic: incoming
+2025-11-21 16:55:41,353 INFO handler.event_handler: Processing incoming message: 1763762136000000
+2025-11-21 16:55:41,353 INFO services.message_processor: ============================================================
+2025-11-21 16:55:41,353 INFO services.message_processor: PROCESANDO EVENTO EN MESSAGE_PROCESSOR
+2025-11-21 16:55:41,353 INFO services.message_processor: Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:55:41,353 INFO services.message_processor: ============================================================
+2025-11-21 16:55:41,353 INFO services.message_processor: Contact ID: 348845550
+2025-11-21 16:55:41,353 INFO services.message_processor: Channel ID: 440215
+2025-11-21 16:55:41,353 INFO services.message_processor: Channel Source: whatsapp_business
+2025-11-21 16:55:41,353 INFO services.message_processor: Message text: 'Cuál es el.estado de mi deuda?'
+2025-11-21 16:55:41,353 INFO services.message_processor: ✓ Validation passed - processing message from whatsapp_business
+2025-11-21 16:55:41,353 INFO services.message_processor: Processing message internally for 348845550 via whatsapp_business
+2025-11-21 16:55:41,354 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:55:41,354 DEBUG services.extraction_service: Phone normalized: +51960103874 → 960103874
+2025-11-21 16:55:41,354 INFO services.extraction_service: Session enriched with: ['phone']
+2025-11-21 16:55:41,355 DEBUG openai._base_client: Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-ec8f8456-2d25-43d5-a3cb-888e6819563d', 'json_data': {'messages': [{'role': 'system', 'content': "Eres un asistente financiero. Responde SOLO en JSON con los campos: {intent, requires_identity, reason, concise_answer, followup_question}.\nintent puede ser: 'debt', 'otp', 'general'."}, {'role': 'user', 'content': 'Cuál es el.estado de mi deuda?'}], 'model': 'gpt-4o-mini', 'response_format': {'type': 'json_object'}, 'temperature': 0.2}}
+2025-11-21 16:55:41,356 DEBUG openai._base_client: Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-11-21 16:55:41,356 DEBUG httpcore.connection: close.started
+2025-11-21 16:55:41,356 DEBUG httpcore.connection: close.complete
+2025-11-21 16:55:41,356 DEBUG httpcore.connection: connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-11-21 16:55:41,441 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3f6b28d0>
+2025-11-21 16:55:41,441 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa657c6570> server_hostname='api.openai.com' timeout=5.0
+2025-11-21 16:55:41,491 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3f6b0e50>
+2025-11-21 16:55:41,491 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:55:41,492 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:55:41,492 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:55:41,492 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:55:41,492 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:55:43,331 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 21 Nov 2025 21:55:42 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-vavvh5igg1nn0pltmq1qgdlb'), (b'openai-processing-ms', b'1429'), (b'openai-project', b'proj_kuW8f325WLa4LAdBJa3ICcix'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'1441'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199943'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'17ms'), (b'x-request-id', b'req_00df1cfc27cb463094cab2df27717ff1'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9a236ec598607831-SCL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-11-21 16:55:43,332 INFO httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-21 16:55:43,332 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:55:43,332 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:55:43,332 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:55:43,332 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:55:43,332 DEBUG openai._base_client: HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 21 Nov 2025 21:55:42 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'user-vavvh5igg1nn0pltmq1qgdlb', 'openai-processing-ms': '1429', 'openai-project': 'proj_kuW8f325WLa4LAdBJa3ICcix', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '1441', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '200000', 'x-ratelimit-remaining-requests': '9999', 'x-ratelimit-remaining-tokens': '199943', 'x-ratelimit-reset-requests': '8.64s', 'x-ratelimit-reset-tokens': '17ms', 'x-request-id': 'req_00df1cfc27cb463094cab2df27717ff1', 'x-openai-proxy-wasm': 'v0.1', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '9a236ec598607831-SCL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-11-21 16:55:43,332 DEBUG openai._base_client: request_id: req_00df1cfc27cb463094cab2df27717ff1
+2025-11-21 16:55:43,333 INFO services.message_processor: Intent: debt, requires_identity: True
+2025-11-21 16:55:43,333 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:55:43,336 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:55:43,337 INFO services.session_service: Pending intent set for 348845550: debt
+2025-11-21 16:55:43,337 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:55:43,337 INFO services.message_processor: Response ready for 348845550 via whatsapp_business
+2025-11-21 16:55:43,337 INFO services.message_processor: Sending response to 348845550 via channel 440215 (whatsapp_business)
+2025-11-21 16:55:43,337 INFO services.message_processor: Response: Pedro, ¿Puedes proporcionar tu número de identificación o algún dato que verifique tu identidad?...
+2025-11-21 16:55:43,338 INFO clients.respondio_client: [Respond.io] Sending to id:348845550 via channel 440215
+2025-11-21 16:55:43,338 DEBUG clients.respondio_client: [Respond.io] Payload: {'message': {'type': 'text', 'text': 'Pedro, ¿Puedes proporcionar tu número de identificación o algún dato que verifique tu identidad?'}, 'channelId': 440215}
+2025-11-21 16:55:43,731 DEBUG httpcore.connection: connect_tcp.started host='api.respond.io' port=443 local_address=None timeout=10.0 socket_options=None
+2025-11-21 16:55:43,792 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3f6d07d0>
+2025-11-21 16:55:43,793 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa3ffd2f00> server_hostname='api.respond.io' timeout=10.0
+2025-11-21 16:55:43,807 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3f6d0810>
+2025-11-21 16:55:43,808 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:55:43,808 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:55:43,808 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:55:43,808 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:55:43,808 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:55:44,757 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'52'), (b'Connection', b'keep-alive'), (b'Date', b'Fri, 21 Nov 2025 21:55:44 GMT'), (b'ETag', b'W/"34-+BxwhRkcsOb2hfTx1yCYQ5JeZcQ"'), (b'Cache-Control', b'no-store'), (b'Access-Control-Allow-Origin', b'*'), (b'X-RateLimit-Limit', b'20'), (b'X-RateLimit-Remaining', b'19'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 a95232657939f052320289c47cff1d7a.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'LIM50-P2'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'O5Odu5VYRx1dQRhRl0zBJAMq7uyzS3wzIfgn9NgOAu9fBtyFr_7dIQ==')])
+2025-11-21 16:55:44,758 INFO httpx: HTTP Request: POST https://api.respond.io/v2/contact/id:348845550/message "HTTP/1.1 200 OK"
+2025-11-21 16:55:44,758 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:55:44,758 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:55:44,759 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:55:44,759 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:55:44,759 INFO clients.respondio_client: Message sent successfully to id:348845550
+2025-11-21 16:55:44,759 DEBUG httpcore.connection: close.started
+2025-11-21 16:55:44,759 DEBUG httpcore.connection: close.complete
+2025-11-21 16:55:44,759 INFO services.message_processor: ✓ Response sent successfully via whatsapp_business
+2025-11-21 16:55:44,760 DEBUG utils.idempotency: Message 1763762136000000 marked as processed
+2025-11-21 16:55:44,760 INFO handler.event_handler: Message 1763762136000000 processed successfully
+2025-11-21 16:55:56,786 INFO __main__: ============================================================
+2025-11-21 16:55:56,786 INFO __main__:  WORKER: EVENTO DEENCOLADO
+2025-11-21 16:55:56,786 INFO __main__: Event type: <class 'dict'>
+2025-11-21 16:55:56,786 INFO __main__: Event keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:55:56,786 INFO __main__: Event content: {
+  "event_type": "message.received",
+  "event_id": "5c201fe8-2af4-4253-9173-cefee1234b7a",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763762151000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzEwODM4OTIzMTI4REE4ODUwQjMzQTU1NEIxQzQ3QwA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762151000,
+    "message": {
+      "type": "text",
+      "text": "73895873",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:55:56,786 INFO __main__: Event type field: message.received
+2025-11-21 16:55:56,786 INFO __main__: ============================================================
+2025-11-21 16:55:56,786 INFO handler.event_handler: ============================================================
+2025-11-21 16:55:56,786 INFO handler.event_handler:  NUEVO EVENTO RECIBIDO EN HANDLER
+2025-11-21 16:55:56,786 INFO handler.event_handler:  Event data type: <class 'dict'>
+2025-11-21 16:55:56,786 INFO handler.event_handler:  Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:55:56,786 INFO handler.event_handler:  Event data: {
+  "event_type": "message.received",
+  "event_id": "5c201fe8-2af4-4253-9173-cefee1234b7a",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763762151000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzEwODM4OTIzMTI4REE4ODUwQjMzQTU1NEIxQzQ3QwA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762151000,
+    "message": {
+      "type": "text",
+      "text": "73895873",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:55:56,786 INFO handler.event_handler: ============================================================
+2025-11-21 16:55:56,787 INFO handler.event_handler: Processing event: message.received
+2025-11-21 16:55:56,787 INFO handler.event_handler: Message ID: 1763762151000000
+2025-11-21 16:55:56,787 INFO handler.event_handler: Message data: {'messageId': 1763762151000000, 'channelMessageId': 'wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzEwODM4OTIzMTI4REE4ODUwQjMzQTU1NEIxQzQ3QwA=', 'contactId': 348845550, 'channelId': 440215, 'traffic': 'incoming', 'timestamp': 1763762151000, 'message': {'type': 'text', 'text': '73895873', 'messageTag': None}}
+2025-11-21 16:55:56,788 INFO handler.event_handler: Traffic: incoming
+2025-11-21 16:55:56,788 INFO handler.event_handler: Processing incoming message: 1763762151000000
+2025-11-21 16:55:56,788 INFO services.message_processor: ============================================================
+2025-11-21 16:55:56,788 INFO services.message_processor: PROCESANDO EVENTO EN MESSAGE_PROCESSOR
+2025-11-21 16:55:56,788 INFO services.message_processor: Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:55:56,788 INFO services.message_processor: ============================================================
+2025-11-21 16:55:56,788 INFO services.message_processor: Contact ID: 348845550
+2025-11-21 16:55:56,788 INFO services.message_processor: Channel ID: 440215
+2025-11-21 16:55:56,788 INFO services.message_processor: Channel Source: whatsapp_business
+2025-11-21 16:55:56,788 INFO services.message_processor: Message text: '73895873'
+2025-11-21 16:55:56,788 INFO services.message_processor: ✓ Validation passed - processing message from whatsapp_business
+2025-11-21 16:55:56,788 INFO services.message_processor: Processing message internally for 348845550 via whatsapp_business
+2025-11-21 16:55:56,788 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:55:56,788 DEBUG services.extraction_service: DNI extracted: 73895873
+2025-11-21 16:55:56,788 DEBUG services.extraction_service: Phone normalized: +51960103874 → 960103874
+2025-11-21 16:55:56,788 INFO services.extraction_service: Session enriched with: ['dni', 'phone']
+2025-11-21 16:55:56,789 DEBUG openai._base_client: Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-af6327b6-7e53-48aa-9e88-a4cfe7ac4d5d', 'json_data': {'messages': [{'role': 'system', 'content': "Eres un asistente financiero. Responde SOLO en JSON con los campos: {intent, requires_identity, reason, concise_answer, followup_question}.\nintent puede ser: 'debt', 'otp', 'general'."}, {'role': 'user', 'content': '73895873'}], 'model': 'gpt-4o-mini', 'response_format': {'type': 'json_object'}, 'temperature': 0.2}}
+2025-11-21 16:55:56,789 DEBUG openai._base_client: Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-11-21 16:55:56,790 DEBUG httpcore.connection: close.started
+2025-11-21 16:55:56,790 DEBUG httpcore.connection: close.complete
+2025-11-21 16:55:56,790 DEBUG httpcore.connection: connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-11-21 16:55:56,846 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3f6d25d0>
+2025-11-21 16:55:56,846 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa657c6570> server_hostname='api.openai.com' timeout=5.0
+2025-11-21 16:55:56,904 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3f6d2610>
+2025-11-21 16:55:56,904 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:55:56,904 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:55:56,904 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:55:56,904 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:55:56,904 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:55:59,156 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 21 Nov 2025 21:55:59 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-vavvh5igg1nn0pltmq1qgdlb'), (b'openai-processing-ms', b'2139'), (b'openai-project', b'proj_kuW8f325WLa4LAdBJa3ICcix'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'2152'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199949'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'15ms'), (b'x-request-id', b'req_08c6a2e66a2d4d36a03c7048d083452c'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9a236f28fc70e7d9-SCL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-11-21 16:55:59,156 INFO httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-21 16:55:59,156 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:55:59,157 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:55:59,157 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:55:59,157 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:55:59,157 DEBUG openai._base_client: HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 21 Nov 2025 21:55:59 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'user-vavvh5igg1nn0pltmq1qgdlb', 'openai-processing-ms': '2139', 'openai-project': 'proj_kuW8f325WLa4LAdBJa3ICcix', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '2152', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '200000', 'x-ratelimit-remaining-requests': '9999', 'x-ratelimit-remaining-tokens': '199949', 'x-ratelimit-reset-requests': '8.64s', 'x-ratelimit-reset-tokens': '15ms', 'x-request-id': 'req_08c6a2e66a2d4d36a03c7048d083452c', 'x-openai-proxy-wasm': 'v0.1', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '9a236f28fc70e7d9-SCL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-11-21 16:55:59,157 DEBUG openai._base_client: request_id: req_08c6a2e66a2d4d36a03c7048d083452c
+2025-11-21 16:55:59,157 INFO services.message_processor: Intent: otp, requires_identity: True
+2025-11-21 16:55:59,157 INFO services.message_processor: Searching OTP for phone: 960103874
+2025-11-21 16:55:59,161 INFO azure.core.pipeline.policies.http_logging_policy: Request URL: 'https://ais-doctor-sol-rag-dev.search.windows.net/indexes('idx-clave-otp')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '94'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': 'dd27af86-c724-11f0-b2c4-00155d58e299'
+    'User-Agent': 'azsdk-python-search-documents/11.6.0 Python/3.11.14 (Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39)'
+A body is sent with the request
+2025-11-21 16:55:59,461 DEBUG urllib3.connectionpool: https://ais-doctor-sol-rag-dev.search.windows.net:443 "POST /indexes('idx-clave-otp')/docs/search.post.search?api-version=2025-09-01 HTTP/1.1" 200 None
+2025-11-21 16:55:59,462 INFO azure.core.pipeline.policies.http_logging_policy: Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': 'dd27af86-c724-11f0-b2c4-00155d58e299'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Fri, 21 Nov 2025 21:55:59 GMT'
+2025-11-21 16:55:59,466 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:55:59,467 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:55:59,467 DEBUG services.session_service: Pending intent cleared for 348845550
+2025-11-21 16:55:59,467 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:55:59,467 INFO services.message_processor: Response ready for 348845550 via whatsapp_business
+2025-11-21 16:55:59,467 INFO services.message_processor: Sending response to 348845550 via channel 440215 (whatsapp_business)
+2025-11-21 16:55:59,467 INFO services.message_processor: Response: Pedro, No encontré una clave OTP activa para el número 960103874. ¿Puedes verificarlo?...
+2025-11-21 16:55:59,467 INFO clients.respondio_client: [Respond.io] Sending to id:348845550 via channel 440215
+2025-11-21 16:55:59,467 DEBUG clients.respondio_client: [Respond.io] Payload: {'message': {'type': 'text', 'text': 'Pedro, No encontré una clave OTP activa para el número 960103874. ¿Puedes verificarlo?'}, 'channelId': 440215}
+2025-11-21 16:55:59,561 DEBUG httpcore.connection: connect_tcp.started host='api.respond.io' port=443 local_address=None timeout=10.0 socket_options=None
+2025-11-21 16:55:59,577 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3f4dc0d0>
+2025-11-21 16:55:59,578 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa3ffd3260> server_hostname='api.respond.io' timeout=10.0
+2025-11-21 16:55:59,587 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3f4dc050>
+2025-11-21 16:55:59,588 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:55:59,588 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:55:59,588 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:55:59,588 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:55:59,588 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:56:00,603 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'52'), (b'Connection', b'keep-alive'), (b'Date', b'Fri, 21 Nov 2025 21:56:00 GMT'), (b'ETag', b'W/"34-Xx/qPfLsyHfEV8LT+J2sr5t3O2w"'), (b'Cache-Control', b'no-store'), (b'Access-Control-Allow-Origin', b'*'), (b'X-RateLimit-Limit', b'20'), (b'X-RateLimit-Remaining', b'19'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 d57b2a5738f58b3120f0223cecca8c6c.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'LIM50-P2'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'M77LeRj9xRemdH9pECck5SgN-SUNw2_wIlf_EVGi5w7Y5pcmhb350A==')])
+2025-11-21 16:56:00,603 INFO httpx: HTTP Request: POST https://api.respond.io/v2/contact/id:348845550/message "HTTP/1.1 200 OK"
+2025-11-21 16:56:00,603 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:56:00,603 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:56:00,603 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:56:00,603 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:56:00,604 INFO clients.respondio_client: Message sent successfully to id:348845550
+2025-11-21 16:56:00,604 DEBUG httpcore.connection: close.started
+2025-11-21 16:56:00,604 DEBUG httpcore.connection: close.complete
+2025-11-21 16:56:00,604 INFO services.message_processor: ✓ Response sent successfully via whatsapp_business
+2025-11-21 16:56:00,604 DEBUG utils.idempotency: Message 1763762151000000 marked as processed
+2025-11-21 16:56:00,604 INFO handler.event_handler: Message 1763762151000000 processed successfully
+2025-11-21 16:57:31,034 INFO __main__: ============================================================
+2025-11-21 16:57:31,034 INFO __main__:  WORKER: EVENTO DEENCOLADO
+2025-11-21 16:57:31,034 INFO __main__: Event type: <class 'dict'>
+2025-11-21 16:57:31,034 INFO __main__: Event keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:57:31,034 INFO __main__: Event content: {
+  "event_type": "message.received",
+  "event_id": "4ac9b129-c841-4de5-8fdc-df92b1c4356e",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763762244000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzdDRkQ0NTZBOUE4N0RBNDY3NkU0RUM1OTk2REI2QQA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762244000,
+    "message": {
+      "type": "text",
+      "text": "Te pregunt\u00e9 por el estado de mi deuda, no mi otp",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:57:31,035 INFO __main__: Event type field: message.received
+2025-11-21 16:57:31,035 INFO __main__: ============================================================
+2025-11-21 16:57:31,035 INFO handler.event_handler: ============================================================
+2025-11-21 16:57:31,035 INFO handler.event_handler:  NUEVO EVENTO RECIBIDO EN HANDLER
+2025-11-21 16:57:31,035 INFO handler.event_handler:  Event data type: <class 'dict'>
+2025-11-21 16:57:31,035 INFO handler.event_handler:  Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:57:31,035 INFO handler.event_handler:  Event data: {
+  "event_type": "message.received",
+  "event_id": "4ac9b129-c841-4de5-8fdc-df92b1c4356e",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763762244000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzdDRkQ0NTZBOUE4N0RBNDY3NkU0RUM1OTk2REI2QQA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762244000,
+    "message": {
+      "type": "text",
+      "text": "Te pregunt\u00e9 por el estado de mi deuda, no mi otp",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:57:31,036 INFO handler.event_handler: ============================================================
+2025-11-21 16:57:31,036 INFO handler.event_handler: Processing event: message.received
+2025-11-21 16:57:31,036 INFO handler.event_handler: Message ID: 1763762244000000
+2025-11-21 16:57:31,036 INFO handler.event_handler: Message data: {'messageId': 1763762244000000, 'channelMessageId': 'wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzdDRkQ0NTZBOUE4N0RBNDY3NkU0RUM1OTk2REI2QQA=', 'contactId': 348845550, 'channelId': 440215, 'traffic': 'incoming', 'timestamp': 1763762244000, 'message': {'type': 'text', 'text': 'Te pregunté por el estado de mi deuda, no mi otp', 'messageTag': None}}
+2025-11-21 16:57:31,036 INFO handler.event_handler: Traffic: incoming
+2025-11-21 16:57:31,037 INFO handler.event_handler: Processing incoming message: 1763762244000000
+2025-11-21 16:57:31,037 INFO services.message_processor: ============================================================
+2025-11-21 16:57:31,037 INFO services.message_processor: PROCESANDO EVENTO EN MESSAGE_PROCESSOR
+2025-11-21 16:57:31,037 INFO services.message_processor: Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:57:31,037 INFO services.message_processor: ============================================================
+2025-11-21 16:57:31,037 INFO services.message_processor: Contact ID: 348845550
+2025-11-21 16:57:31,037 INFO services.message_processor: Channel ID: 440215
+2025-11-21 16:57:31,037 INFO services.message_processor: Channel Source: whatsapp_business
+2025-11-21 16:57:31,037 INFO services.message_processor: Message text: 'Te pregunté por el estado de mi deuda, no mi otp'
+2025-11-21 16:57:31,037 INFO services.message_processor: ✓ Validation passed - processing message from whatsapp_business
+2025-11-21 16:57:31,037 INFO services.message_processor: Processing message internally for 348845550 via whatsapp_business
+2025-11-21 16:57:31,037 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:57:31,037 DEBUG services.extraction_service: Phone normalized: +51960103874 → 960103874
+2025-11-21 16:57:31,037 INFO services.extraction_service: Session enriched with: ['phone']
+2025-11-21 16:57:31,038 DEBUG openai._base_client: Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-845ad10b-71a0-4f61-bcf6-21f69f6115cd', 'json_data': {'messages': [{'role': 'system', 'content': "Eres un asistente financiero. Responde SOLO en JSON con los campos: {intent, requires_identity, reason, concise_answer, followup_question}.\nintent puede ser: 'debt', 'otp', 'general'."}, {'role': 'user', 'content': 'Te pregunté por el estado de mi deuda, no mi otp'}], 'model': 'gpt-4o-mini', 'response_format': {'type': 'json_object'}, 'temperature': 0.2}}
+2025-11-21 16:57:31,038 DEBUG openai._base_client: Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-11-21 16:57:31,042 DEBUG httpcore.connection: close.started
+2025-11-21 16:57:31,043 DEBUG httpcore.connection: close.complete
+2025-11-21 16:57:31,044 DEBUG httpcore.connection: connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-11-21 16:57:31,100 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3f6d2ed0>
+2025-11-21 16:57:31,100 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa657c6570> server_hostname='api.openai.com' timeout=5.0
+2025-11-21 16:57:31,204 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3f6d1610>
+2025-11-21 16:57:31,205 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:57:31,205 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:57:31,205 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:57:31,205 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:57:31,205 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:57:34,660 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 21 Nov 2025 21:57:34 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-vavvh5igg1nn0pltmq1qgdlb'), (b'openai-processing-ms', b'1624'), (b'openai-project', b'proj_kuW8f325WLa4LAdBJa3ICcix'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'2111'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199939'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'18ms'), (b'x-request-id', b'req_6185a4f69a814049bf1f5b2497bea473'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9a23717768a6e79c-SCL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-11-21 16:57:34,660 INFO httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-21 16:57:34,660 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:57:34,661 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:57:34,661 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:57:34,661 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:57:34,661 DEBUG openai._base_client: HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 21 Nov 2025 21:57:34 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'user-vavvh5igg1nn0pltmq1qgdlb', 'openai-processing-ms': '1624', 'openai-project': 'proj_kuW8f325WLa4LAdBJa3ICcix', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '2111', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '200000', 'x-ratelimit-remaining-requests': '9999', 'x-ratelimit-remaining-tokens': '199939', 'x-ratelimit-reset-requests': '8.64s', 'x-ratelimit-reset-tokens': '18ms', 'x-request-id': 'req_6185a4f69a814049bf1f5b2497bea473', 'x-openai-proxy-wasm': 'v0.1', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '9a23717768a6e79c-SCL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-11-21 16:57:34,661 DEBUG openai._base_client: request_id: req_6185a4f69a814049bf1f5b2497bea473
+2025-11-21 16:57:34,661 INFO services.message_processor: Intent: debt, requires_identity: True
+2025-11-21 16:57:34,661 INFO services.message_processor: Searching debt for DNI: 73895873
+2025-11-21 16:57:34,663 INFO azure.core.pipeline.policies.http_logging_policy: Request URL: 'https://ais-doctor-sol-rag-dev.search.windows.net/indexes('idx-estado-deuda')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '204'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': '16144232-c725-11f0-b2c4-00155d58e299'
+    'User-Agent': 'azsdk-python-search-documents/11.6.0 Python/3.11.14 (Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39)'
+A body is sent with the request
+2025-11-21 16:57:34,673 DEBUG urllib3.connectionpool: Starting new HTTPS connection (1): ais-doctor-sol-rag-dev.search.windows.net:443
+2025-11-21 16:57:35,934 DEBUG urllib3.connectionpool: https://ais-doctor-sol-rag-dev.search.windows.net:443 "POST /indexes('idx-estado-deuda')/docs/search.post.search?api-version=2025-09-01 HTTP/1.1" 200 None
+2025-11-21 16:57:35,935 INFO azure.core.pipeline.policies.http_logging_policy: Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': '16144232-c725-11f0-b2c4-00155d58e299'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Fri, 21 Nov 2025 21:57:36 GMT'
+2025-11-21 16:57:35,974 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:57:35,974 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:57:35,974 DEBUG services.session_service: Pending intent cleared for 348845550
+2025-11-21 16:57:36,058 DEBUG openai._base_client: Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-943cd9f3-a282-4477-94be-30c8a151b9a7', 'json_data': {'messages': [{'role': 'system', 'content': 'Eres un asistente financiero amable. Usa SOLO los datos proporcionados para responder.\nSi la pregunta es sobre monto total de deuda, responde con el monto y un mensaje claro.\nSi es sobre fecha de vencimiento, responde con la fecha y un mensaje claro.\nNo inventes datos.'}, {'role': 'user', 'content': 'Pregunta: Te pregunté por el estado de mi deuda, no mi otp\nDatos: [{"Nombre": "Pedro", "Estado": "Active", "Monto": 500.0, "Vencimiento": "2024-02-15T00:00:00Z", "TotalDeuda": 500.0, "Principal": 450.0, "Intereses": 40.0, "Gastos": 10.0, "Mora": 0.0, "Penalidad": 0.0}]\nTipo de consulta: Necesito verificar tu identidad para acceder a la información de tu deuda.'}], 'model': 'gpt-4o-mini', 'temperature': 0.1}}
+2025-11-21 16:57:36,059 DEBUG openai._base_client: Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-11-21 16:57:36,059 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:57:36,059 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:57:36,059 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:57:36,059 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:57:36,059 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:57:37,006 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 21 Nov 2025 21:57:37 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-vavvh5igg1nn0pltmq1qgdlb'), (b'openai-processing-ms', b'757'), (b'openai-project', b'proj_kuW8f325WLa4LAdBJa3ICcix'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'769'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9998'), (b'x-ratelimit-remaining-tokens', b'199837'), (b'x-ratelimit-reset-requests', b'13.955s'), (b'x-ratelimit-reset-tokens', b'48ms'), (b'x-request-id', b'req_44688da699ee47929e0bbff930662776'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9a237195fc6ee79c-SCL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-11-21 16:57:37,006 INFO httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-21 16:57:37,006 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:57:37,007 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:57:37,007 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:57:37,007 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:57:37,007 DEBUG openai._base_client: HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 21 Nov 2025 21:57:37 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'user-vavvh5igg1nn0pltmq1qgdlb', 'openai-processing-ms': '757', 'openai-project': 'proj_kuW8f325WLa4LAdBJa3ICcix', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '769', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '200000', 'x-ratelimit-remaining-requests': '9998', 'x-ratelimit-remaining-tokens': '199837', 'x-ratelimit-reset-requests': '13.955s', 'x-ratelimit-reset-tokens': '48ms', 'x-request-id': 'req_44688da699ee47929e0bbff930662776', 'x-openai-proxy-wasm': 'v0.1', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '9a237195fc6ee79c-SCL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-11-21 16:57:37,007 DEBUG openai._base_client: request_id: req_44688da699ee47929e0bbff930662776
+2025-11-21 16:57:37,008 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:57:37,008 INFO services.message_processor: Response ready for 348845550 via whatsapp_business
+2025-11-21 16:57:37,008 INFO services.message_processor: Sending response to 348845550 via channel 440215 (whatsapp_business)
+2025-11-21 16:57:37,008 INFO services.message_processor: Response: Pedro, El monto total de tu deuda es de 500.0. Si necesitas más información, no dudes en preguntar....
+2025-11-21 16:57:37,008 INFO clients.respondio_client: [Respond.io] Sending to id:348845550 via channel 440215
+2025-11-21 16:57:37,008 DEBUG clients.respondio_client: [Respond.io] Payload: {'message': {'type': 'text', 'text': 'Pedro, El monto total de tu deuda es de 500.0. Si necesitas más información, no dudes en preguntar.'}, 'channelId': 440215}
+2025-11-21 16:57:37,070 DEBUG httpcore.connection: connect_tcp.started host='api.respond.io' port=443 local_address=None timeout=10.0 socket_options=None
+2025-11-21 16:57:37,245 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3f6a4fd0>
+2025-11-21 16:57:37,245 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa3ffd31d0> server_hostname='api.respond.io' timeout=10.0
+2025-11-21 16:57:37,263 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3f6a4bd0>
+2025-11-21 16:57:37,263 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:57:37,264 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:57:37,264 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:57:37,264 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:57:37,264 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:57:38,390 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'52'), (b'Connection', b'keep-alive'), (b'Date', b'Fri, 21 Nov 2025 21:57:38 GMT'), (b'ETag', b'W/"34-YWv8okwwnKh7lLFUkJgrLwqmIhI"'), (b'Cache-Control', b'no-store'), (b'Access-Control-Allow-Origin', b'*'), (b'X-RateLimit-Limit', b'20'), (b'X-RateLimit-Remaining', b'19'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 b90112984a8db4df44b48e2285863d52.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'LIM50-P2'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'LJoc87eMXU1icTG9zRTMECe1i_180eZ4zwVyycSjKPwb1Lx0AeFS6Q==')])
+2025-11-21 16:57:38,390 INFO httpx: HTTP Request: POST https://api.respond.io/v2/contact/id:348845550/message "HTTP/1.1 200 OK"
+2025-11-21 16:57:38,390 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:57:38,390 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:57:38,390 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:57:38,390 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:57:38,391 INFO clients.respondio_client: Message sent successfully to id:348845550
+2025-11-21 16:57:38,391 DEBUG httpcore.connection: close.started
+2025-11-21 16:57:38,391 DEBUG httpcore.connection: close.complete
+2025-11-21 16:57:38,391 INFO services.message_processor: ✓ Response sent successfully via whatsapp_business
+2025-11-21 16:57:38,391 DEBUG utils.idempotency: Message 1763762244000000 marked as processed
+2025-11-21 16:57:38,391 INFO handler.event_handler: Message 1763762244000000 processed successfully
+2025-11-21 16:58:50,816 INFO __main__: ============================================================
+2025-11-21 16:58:50,816 INFO __main__:  WORKER: EVENTO DEENCOLADO
+2025-11-21 16:58:50,816 INFO __main__: Event type: <class 'dict'>
+2025-11-21 16:58:50,816 INFO __main__: Event keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:58:50,817 INFO __main__: Event content: {
+  "event_type": "message.received",
+  "event_id": "38988f27-7ec7-494e-9653-3f1841dbe8ee",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763762326000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0VGOTlDOTJFNzVEQkQxRjRCOUVEMEY2NTNFQjY3NAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762326000,
+    "message": {
+      "type": "text",
+      "text": "Tengo mora?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:58:50,817 INFO __main__: Event type field: message.received
+2025-11-21 16:58:50,817 INFO __main__: ============================================================
+2025-11-21 16:58:50,817 INFO handler.event_handler: ============================================================
+2025-11-21 16:58:50,817 INFO handler.event_handler:  NUEVO EVENTO RECIBIDO EN HANDLER
+2025-11-21 16:58:50,817 INFO handler.event_handler:  Event data type: <class 'dict'>
+2025-11-21 16:58:50,817 INFO handler.event_handler:  Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:58:50,817 INFO handler.event_handler:  Event data: {
+  "event_type": "message.received",
+  "event_id": "38988f27-7ec7-494e-9653-3f1841dbe8ee",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763762326000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0VGOTlDOTJFNzVEQkQxRjRCOUVEMEY2NTNFQjY3NAA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762326000,
+    "message": {
+      "type": "text",
+      "text": "Tengo mora?",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:58:50,817 INFO handler.event_handler: ============================================================
+2025-11-21 16:58:50,817 INFO handler.event_handler: Processing event: message.received
+2025-11-21 16:58:50,817 INFO handler.event_handler: Message ID: 1763762326000000
+2025-11-21 16:58:50,817 INFO handler.event_handler: Message data: {'messageId': 1763762326000000, 'channelMessageId': 'wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQ0VGOTlDOTJFNzVEQkQxRjRCOUVEMEY2NTNFQjY3NAA=', 'contactId': 348845550, 'channelId': 440215, 'traffic': 'incoming', 'timestamp': 1763762326000, 'message': {'type': 'text', 'text': 'Tengo mora?', 'messageTag': None}}
+2025-11-21 16:58:50,818 INFO handler.event_handler: Traffic: incoming
+2025-11-21 16:58:50,818 INFO handler.event_handler: Processing incoming message: 1763762326000000
+2025-11-21 16:58:50,818 INFO services.message_processor: ============================================================
+2025-11-21 16:58:50,818 INFO services.message_processor: PROCESANDO EVENTO EN MESSAGE_PROCESSOR
+2025-11-21 16:58:50,818 INFO services.message_processor: Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:58:50,819 INFO services.message_processor: ============================================================
+2025-11-21 16:58:50,819 INFO services.message_processor: Contact ID: 348845550
+2025-11-21 16:58:50,819 INFO services.message_processor: Channel ID: 440215
+2025-11-21 16:58:50,819 INFO services.message_processor: Channel Source: whatsapp_business
+2025-11-21 16:58:50,819 INFO services.message_processor: Message text: 'Tengo mora?'
+2025-11-21 16:58:50,819 INFO services.message_processor: ✓ Validation passed - processing message from whatsapp_business
+2025-11-21 16:58:50,820 INFO services.message_processor: Processing message internally for 348845550 via whatsapp_business
+2025-11-21 16:58:50,821 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:58:50,821 DEBUG services.extraction_service: Phone normalized: +51960103874 → 960103874
+2025-11-21 16:58:50,821 INFO services.extraction_service: Session enriched with: ['phone']
+2025-11-21 16:58:50,821 DEBUG openai._base_client: Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-e7eda46f-f3ee-4331-825f-0f7a9fc682fe', 'json_data': {'messages': [{'role': 'system', 'content': "Eres un asistente financiero. Responde SOLO en JSON con los campos: {intent, requires_identity, reason, concise_answer, followup_question}.\nintent puede ser: 'debt', 'otp', 'general'."}, {'role': 'user', 'content': 'Tengo mora?'}], 'model': 'gpt-4o-mini', 'response_format': {'type': 'json_object'}, 'temperature': 0.2}}
+2025-11-21 16:58:50,822 DEBUG openai._base_client: Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-11-21 16:58:50,823 DEBUG httpcore.connection: close.started
+2025-11-21 16:58:50,823 DEBUG httpcore.connection: close.complete
+2025-11-21 16:58:50,823 DEBUG httpcore.connection: connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-11-21 16:58:50,894 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3ff43450>
+2025-11-21 16:58:50,894 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa657c6570> server_hostname='api.openai.com' timeout=5.0
+2025-11-21 16:58:50,958 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3ff41850>
+2025-11-21 16:58:50,959 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:58:50,959 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:58:50,959 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:58:50,959 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:58:50,959 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:58:52,617 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 21 Nov 2025 21:58:52 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-vavvh5igg1nn0pltmq1qgdlb'), (b'openai-processing-ms', b'1486'), (b'openai-project', b'proj_kuW8f325WLa4LAdBJa3ICcix'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'1499'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199947'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'15ms'), (b'x-request-id', b'req_35513f2bef464ab6b980e39eb73f161d'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9a2373691952b510-SCL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-11-21 16:58:52,617 INFO httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-21 16:58:52,617 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:58:52,623 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:58:52,623 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:58:52,623 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:58:52,623 DEBUG openai._base_client: HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 21 Nov 2025 21:58:52 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'user-vavvh5igg1nn0pltmq1qgdlb', 'openai-processing-ms': '1486', 'openai-project': 'proj_kuW8f325WLa4LAdBJa3ICcix', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '1499', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '200000', 'x-ratelimit-remaining-requests': '9999', 'x-ratelimit-remaining-tokens': '199947', 'x-ratelimit-reset-requests': '8.64s', 'x-ratelimit-reset-tokens': '15ms', 'x-request-id': 'req_35513f2bef464ab6b980e39eb73f161d', 'x-openai-proxy-wasm': 'v0.1', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '9a2373691952b510-SCL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-11-21 16:58:52,623 DEBUG openai._base_client: request_id: req_35513f2bef464ab6b980e39eb73f161d
+2025-11-21 16:58:52,623 INFO services.message_processor: Intent: debt, requires_identity: True
+2025-11-21 16:58:52,623 INFO services.message_processor: Searching debt for DNI: 73895873
+2025-11-21 16:58:52,625 INFO azure.core.pipeline.policies.http_logging_policy: Request URL: 'https://ais-doctor-sol-rag-dev.search.windows.net/indexes('idx-estado-deuda')/docs/search.post.search?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '204'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': '448c639c-c725-11f0-b2c4-00155d58e299'
+    'User-Agent': 'azsdk-python-search-documents/11.6.0 Python/3.11.14 (Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39)'
+A body is sent with the request
+2025-11-21 16:58:52,885 DEBUG urllib3.connectionpool: https://ais-doctor-sol-rag-dev.search.windows.net:443 "POST /indexes('idx-estado-deuda')/docs/search.post.search?api-version=2025-09-01 HTTP/1.1" 200 None
+2025-11-21 16:58:52,886 INFO azure.core.pipeline.policies.http_logging_policy: Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': '448c639c-c725-11f0-b2c4-00155d58e299'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Fri, 21 Nov 2025 21:58:51 GMT'
+2025-11-21 16:58:52,890 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:58:52,891 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:58:52,891 DEBUG services.session_service: Pending intent cleared for 348845550
+2025-11-21 16:58:52,896 DEBUG openai._base_client: Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-2ac72a12-bbaa-4726-b399-5ff0fa9fbc37', 'json_data': {'messages': [{'role': 'system', 'content': 'Eres un asistente financiero amable. Usa SOLO los datos proporcionados para responder.\nSi la pregunta es sobre monto total de deuda, responde con el monto y un mensaje claro.\nSi es sobre fecha de vencimiento, responde con la fecha y un mensaje claro.\nNo inventes datos.'}, {'role': 'user', 'content': 'Pregunta: Tengo mora?\nDatos: [{"Nombre": "Pedro", "Estado": "Active", "Monto": 500.0, "Vencimiento": "2024-02-15T00:00:00Z", "TotalDeuda": 500.0, "Principal": 450.0, "Intereses": 40.0, "Gastos": 10.0, "Mora": 0.0, "Penalidad": 0.0}]\nTipo de consulta: Para verificar si tienes mora, necesito confirmar tu identidad y acceder a tu información financiera.'}], 'model': 'gpt-4o-mini', 'temperature': 0.1}}
+2025-11-21 16:58:52,897 DEBUG openai._base_client: Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-11-21 16:58:52,898 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:58:52,898 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:58:52,899 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:58:52,899 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:58:52,899 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:58:54,836 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 21 Nov 2025 21:58:54 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-vavvh5igg1nn0pltmq1qgdlb'), (b'openai-processing-ms', b'679'), (b'openai-project', b'proj_kuW8f325WLa4LAdBJa3ICcix'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'1026'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9998'), (b'x-ratelimit-remaining-tokens', b'199841'), (b'x-ratelimit-reset-requests', b'14.271s'), (b'x-ratelimit-reset-tokens', b'47ms'), (b'x-request-id', b'req_ad419fdde6644f6f8466c3c8424e45cb'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9a2373759892b510-SCL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-11-21 16:58:54,836 INFO httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-21 16:58:54,836 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:58:54,836 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:58:54,836 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:58:54,836 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:58:54,836 DEBUG openai._base_client: HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 21 Nov 2025 21:58:54 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'user-vavvh5igg1nn0pltmq1qgdlb', 'openai-processing-ms': '679', 'openai-project': 'proj_kuW8f325WLa4LAdBJa3ICcix', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '1026', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '200000', 'x-ratelimit-remaining-requests': '9998', 'x-ratelimit-remaining-tokens': '199841', 'x-ratelimit-reset-requests': '14.271s', 'x-ratelimit-reset-tokens': '47ms', 'x-request-id': 'req_ad419fdde6644f6f8466c3c8424e45cb', 'x-openai-proxy-wasm': 'v0.1', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '9a2373759892b510-SCL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-11-21 16:58:54,837 DEBUG openai._base_client: request_id: req_ad419fdde6644f6f8466c3c8424e45cb
+2025-11-21 16:58:54,837 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:58:54,838 INFO services.message_processor: Response ready for 348845550 via whatsapp_business
+2025-11-21 16:58:54,838 INFO services.message_processor: Sending response to 348845550 via channel 440215 (whatsapp_business)
+2025-11-21 16:58:54,838 INFO services.message_processor: Response: Pedro, No tienes mora. Tu estado es activo y el monto de mora es 0.0....
+2025-11-21 16:58:54,838 INFO clients.respondio_client: [Respond.io] Sending to id:348845550 via channel 440215
+2025-11-21 16:58:54,838 DEBUG clients.respondio_client: [Respond.io] Payload: {'message': {'type': 'text', 'text': 'Pedro, No tienes mora. Tu estado es activo y el monto de mora es 0.0.'}, 'channelId': 440215}
+2025-11-21 16:58:54,917 DEBUG httpcore.connection: connect_tcp.started host='api.respond.io' port=443 local_address=None timeout=10.0 socket_options=None
+2025-11-21 16:58:55,054 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3f4e4f90>
+2025-11-21 16:58:55,055 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa3ffd3020> server_hostname='api.respond.io' timeout=10.0
+2025-11-21 16:58:55,061 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3f4e51d0>
+2025-11-21 16:58:55,062 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:58:55,062 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:58:55,062 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:58:55,062 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:58:55,062 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:58:56,104 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'52'), (b'Connection', b'keep-alive'), (b'Date', b'Fri, 21 Nov 2025 21:58:56 GMT'), (b'ETag', b'W/"34-y//95g8Mm5M1Jh5657pIhJ00eIM"'), (b'Cache-Control', b'no-store'), (b'Access-Control-Allow-Origin', b'*'), (b'X-RateLimit-Limit', b'20'), (b'X-RateLimit-Remaining', b'19'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 13bdfe51c955b72c24c041717e9e9508.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'LIM50-P2'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'KG_W2t0c3dfhufaVvX9QLW-twoT-or9AmbalUMa1vHIoV6oqxJafmw==')])
+2025-11-21 16:58:56,105 INFO httpx: HTTP Request: POST https://api.respond.io/v2/contact/id:348845550/message "HTTP/1.1 200 OK"
+2025-11-21 16:58:56,105 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:58:56,105 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:58:56,105 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:58:56,105 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:58:56,105 INFO clients.respondio_client: Message sent successfully to id:348845550
+2025-11-21 16:58:56,105 DEBUG httpcore.connection: close.started
+2025-11-21 16:58:56,105 DEBUG httpcore.connection: close.complete
+2025-11-21 16:58:56,106 INFO services.message_processor: ✓ Response sent successfully via whatsapp_business
+2025-11-21 16:58:56,106 DEBUG utils.idempotency: Message 1763762326000000 marked as processed
+2025-11-21 16:58:56,106 INFO handler.event_handler: Message 1763762326000000 processed successfully
+2025-11-21 16:59:12,048 INFO __main__: ============================================================
+2025-11-21 16:59:12,048 INFO __main__:  WORKER: EVENTO DEENCOLADO
+2025-11-21 16:59:12,048 INFO __main__: Event type: <class 'dict'>
+2025-11-21 16:59:12,049 INFO __main__: Event keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:59:12,049 INFO __main__: Event content: {
+  "event_type": "message.received",
+  "event_id": "7ea6b185-cd8e-47c2-a55b-7336f7e93ad1",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763762348000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzA3RjY4NUUzRDExOEQ4Qzk1OEJBQTU4NEM0NUU5RgA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762348000,
+    "message": {
+      "type": "text",
+      "text": "Chevre, me voy a dormir",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:59:12,050 INFO __main__: Event type field: message.received
+2025-11-21 16:59:12,050 INFO __main__: ============================================================
+2025-11-21 16:59:12,050 INFO handler.event_handler: ============================================================
+2025-11-21 16:59:12,050 INFO handler.event_handler:  NUEVO EVENTO RECIBIDO EN HANDLER
+2025-11-21 16:59:12,051 INFO handler.event_handler:  Event data type: <class 'dict'>
+2025-11-21 16:59:12,051 INFO handler.event_handler:  Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:59:12,051 INFO handler.event_handler:  Event data: {
+  "event_type": "message.received",
+  "event_id": "7ea6b185-cd8e-47c2-a55b-7336f7e93ad1",
+  "contact": {
+    "id": 348845550,
+    "firstName": "Pedro L\u00f3pez",
+    "lastName": "Chavarr\u00eda",
+    "phone": "+51960103874",
+    "email": null,
+    "language": null,
+    "profilePic": null,
+    "countryCode": "PE",
+    "status": "open",
+    "assignee": {
+      "id": null,
+      "firstName": null,
+      "lastName": null,
+      "email": null
+    },
+    "created_at": 1763737368,
+    "lifecycle": null,
+    "customFields": {}
+  },
+  "message": {
+    "messageId": 1763762348000000,
+    "channelMessageId": "wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzA3RjY4NUUzRDExOEQ4Qzk1OEJBQTU4NEM0NUU5RgA=",
+    "contactId": 348845550,
+    "channelId": 440215,
+    "traffic": "incoming",
+    "timestamp": 1763762348000,
+    "message": {
+      "type": "text",
+      "text": "Chevre, me voy a dormir",
+      "messageTag": null
+    }
+  },
+  "channel": {
+    "id": 440215,
+    "name": "Whatsapp Business",
+    "source": "whatsapp_business",
+    "meta": null,
+    "created_at": 1763733796
+  },
+  "conversation": null
+}
+2025-11-21 16:59:12,052 INFO handler.event_handler: ============================================================
+2025-11-21 16:59:12,052 INFO handler.event_handler: Processing event: message.received
+2025-11-21 16:59:12,052 INFO handler.event_handler: Message ID: 1763762348000000
+2025-11-21 16:59:12,052 INFO handler.event_handler: Message data: {'messageId': 1763762348000000, 'channelMessageId': 'wamid.HBgLNTE5NjAxMDM4NzQVAgASGCBBQzA3RjY4NUUzRDExOEQ4Qzk1OEJBQTU4NEM0NUU5RgA=', 'contactId': 348845550, 'channelId': 440215, 'traffic': 'incoming', 'timestamp': 1763762348000, 'message': {'type': 'text', 'text': 'Chevre, me voy a dormir', 'messageTag': None}}
+2025-11-21 16:59:12,053 INFO handler.event_handler: Traffic: incoming
+2025-11-21 16:59:12,054 INFO handler.event_handler: Processing incoming message: 1763762348000000
+2025-11-21 16:59:12,054 INFO services.message_processor: ============================================================
+2025-11-21 16:59:12,054 INFO services.message_processor: PROCESANDO EVENTO EN MESSAGE_PROCESSOR
+2025-11-21 16:59:12,054 INFO services.message_processor: Event data keys: ['event_type', 'event_id', 'contact', 'message', 'channel', 'conversation']
+2025-11-21 16:59:12,054 INFO services.message_processor: ============================================================
+2025-11-21 16:59:12,054 INFO services.message_processor: Contact ID: 348845550
+2025-11-21 16:59:12,055 INFO services.message_processor: Channel ID: 440215
+2025-11-21 16:59:12,055 INFO services.message_processor: Channel Source: whatsapp_business
+2025-11-21 16:59:12,055 INFO services.message_processor: Message text: 'Chevre, me voy a dormir'
+2025-11-21 16:59:12,055 INFO services.message_processor: ✓ Validation passed - processing message from whatsapp_business
+2025-11-21 16:59:12,055 INFO services.message_processor: Processing message internally for 348845550 via whatsapp_business
+2025-11-21 16:59:12,056 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:59:12,056 DEBUG services.extraction_service: Phone normalized: +51960103874 → 960103874
+2025-11-21 16:59:12,057 INFO services.extraction_service: Session enriched with: ['phone']
+2025-11-21 16:59:12,058 DEBUG openai._base_client: Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'idempotency_key': 'stainless-python-retry-af50fd2c-b171-4bc4-9e55-5c413c547e1d', 'json_data': {'messages': [{'role': 'system', 'content': "Eres un asistente financiero. Responde SOLO en JSON con los campos: {intent, requires_identity, reason, concise_answer, followup_question}.\nintent puede ser: 'debt', 'otp', 'general'."}, {'role': 'user', 'content': 'Chevre, me voy a dormir'}], 'model': 'gpt-4o-mini', 'response_format': {'type': 'json_object'}, 'temperature': 0.2}}
+2025-11-21 16:59:12,061 DEBUG openai._base_client: Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2025-11-21 16:59:12,061 DEBUG httpcore.connection: close.started
+2025-11-21 16:59:12,061 DEBUG httpcore.connection: close.complete
+2025-11-21 16:59:12,061 DEBUG httpcore.connection: connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-11-21 16:59:12,144 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3f692d50>
+2025-11-21 16:59:12,145 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa657c6570> server_hostname='api.openai.com' timeout=5.0
+2025-11-21 16:59:12,200 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efa3f692050>
+2025-11-21 16:59:12,200 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:59:12,200 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:59:12,201 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:59:12,201 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:59:12,201 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:59:13,682 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 21 Nov 2025 21:59:13 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-vavvh5igg1nn0pltmq1qgdlb'), (b'openai-processing-ms', b'1155'), (b'openai-project', b'proj_kuW8f325WLa4LAdBJa3ICcix'), (b'openai-version', b'2020-10-01'), (b'x-envoy-upstream-service-time', b'1174'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'200000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'199945'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'16ms'), (b'x-request-id', b'req_ce7c70b09a3e403db93584ab54231952'), (b'x-openai-proxy-wasm', b'v0.1'), (b'cf-cache-status', b'DYNAMIC'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'cloudflare'), (b'CF-RAY', b'9a2373eecaa7e7ad-SCL'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2025-11-21 16:59:13,683 INFO httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-21 16:59:13,683 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:59:13,683 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:59:13,683 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:59:13,683 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:59:13,683 DEBUG openai._base_client: HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers({'date': 'Fri, 21 Nov 2025 21:59:13 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'access-control-expose-headers': 'X-Request-ID', 'openai-organization': 'user-vavvh5igg1nn0pltmq1qgdlb', 'openai-processing-ms': '1155', 'openai-project': 'proj_kuW8f325WLa4LAdBJa3ICcix', 'openai-version': '2020-10-01', 'x-envoy-upstream-service-time': '1174', 'x-ratelimit-limit-requests': '10000', 'x-ratelimit-limit-tokens': '200000', 'x-ratelimit-remaining-requests': '9999', 'x-ratelimit-remaining-tokens': '199945', 'x-ratelimit-reset-requests': '8.64s', 'x-ratelimit-reset-tokens': '16ms', 'x-request-id': 'req_ce7c70b09a3e403db93584ab54231952', 'x-openai-proxy-wasm': 'v0.1', 'cf-cache-status': 'DYNAMIC', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'x-content-type-options': 'nosniff', 'server': 'cloudflare', 'cf-ray': '9a2373eecaa7e7ad-SCL', 'content-encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400'})
+2025-11-21 16:59:13,683 DEBUG openai._base_client: request_id: req_ce7c70b09a3e403db93584ab54231952
+2025-11-21 16:59:13,684 INFO services.message_processor: Intent: general, requires_identity: False
+2025-11-21 16:59:13,684 DEBUG services.session_service: Session loaded for contact 348845550
+2025-11-21 16:59:13,685 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:59:13,685 DEBUG services.session_service: Pending intent cleared for 348845550
+2025-11-21 16:59:13,685 DEBUG services.session_service: Session saved for contact 348845550
+2025-11-21 16:59:13,685 INFO services.message_processor: Response ready for 348845550 via whatsapp_business
+2025-11-21 16:59:13,685 INFO services.message_processor: Sending response to 348845550 via channel 440215 (whatsapp_business)
+2025-11-21 16:59:13,685 INFO services.message_processor: Response: Pedro, ¡Buenas noches! Que descanses bien....
+2025-11-21 16:59:13,685 INFO clients.respondio_client: [Respond.io] Sending to id:348845550 via channel 440215
+2025-11-21 16:59:13,685 DEBUG clients.respondio_client: [Respond.io] Payload: {'message': {'type': 'text', 'text': 'Pedro, ¡Buenas noches! Que descanses bien.'}, 'channelId': 440215}
+2025-11-21 16:59:13,749 DEBUG httpcore.connection: connect_tcp.started host='api.respond.io' port=443 local_address=None timeout=10.0 socket_options=None
+2025-11-21 16:59:13,768 DEBUG httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3f6a6690>
+2025-11-21 16:59:13,768 DEBUG httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x7efa3ffd3020> server_hostname='api.respond.io' timeout=10.0
+2025-11-21 16:59:13,787 DEBUG httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x7efa3f6a62d0>
+2025-11-21 16:59:13,787 DEBUG httpcore.http11: send_request_headers.started request=<Request [b'POST']>
+2025-11-21 16:59:13,788 DEBUG httpcore.http11: send_request_headers.complete
+2025-11-21 16:59:13,788 DEBUG httpcore.http11: send_request_body.started request=<Request [b'POST']>
+2025-11-21 16:59:13,788 DEBUG httpcore.http11: send_request_body.complete
+2025-11-21 16:59:13,788 DEBUG httpcore.http11: receive_response_headers.started request=<Request [b'POST']>
+2025-11-21 16:59:15,023 DEBUG httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Content-Length', b'52'), (b'Connection', b'keep-alive'), (b'Date', b'Fri, 21 Nov 2025 21:59:15 GMT'), (b'ETag', b'W/"34-1XIQmSr8a5/636ZRAlBjiK9DbOY"'), (b'Cache-Control', b'no-store'), (b'Access-Control-Allow-Origin', b'*'), (b'X-RateLimit-Limit', b'20'), (b'X-RateLimit-Remaining', b'19'), (b'X-Cache', b'Miss from cloudfront'), (b'Via', b'1.1 3fc3bd13aa87a17977461ca83c01c070.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'LIM50-P2'), (b'Alt-Svc', b'h3=":443"; ma=86400'), (b'X-Amz-Cf-Id', b'd9yb1GCVcH8rnRmyJ2gjNaahlJavlwtzVK17nf8EdPM_tY_ZWcx12g==')])
+2025-11-21 16:59:15,024 INFO httpx: HTTP Request: POST https://api.respond.io/v2/contact/id:348845550/message "HTTP/1.1 200 OK"
+2025-11-21 16:59:15,024 DEBUG httpcore.http11: receive_response_body.started request=<Request [b'POST']>
+2025-11-21 16:59:15,024 DEBUG httpcore.http11: receive_response_body.complete
+2025-11-21 16:59:15,024 DEBUG httpcore.http11: response_closed.started
+2025-11-21 16:59:15,024 DEBUG httpcore.http11: response_closed.complete
+2025-11-21 16:59:15,024 INFO clients.respondio_client: Message sent successfully to id:348845550
+2025-11-21 16:59:15,024 DEBUG httpcore.connection: close.started
+2025-11-21 16:59:15,024 DEBUG httpcore.connection: close.complete
+2025-11-21 16:59:15,024 INFO services.message_processor: ✓ Response sent successfully via whatsapp_business
+2025-11-21 16:59:15,026 DEBUG utils.idempotency: Message 1763762348000000 marked as processed
+2025-11-21 16:59:15,026 INFO handler.event_handler: Message 1763762348000000 processed successfully
+^C^C2025-11-21 17:00:58,372 INFO __main__: Worker stopped by user
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/Pedro Lopez/Desktop/ai-virtual-assistant/worker.py", line 38, in <module>
+    asyncio.run(worker_loop())
+  File "/usr/lib/python3.11/asyncio/runners.py", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+2025-11-21 17:00:58,647 DEBUG httpcore.connection: close.started
+2025-11-21 17:00:58,647 DEBUG httpcore.connection: close.complete

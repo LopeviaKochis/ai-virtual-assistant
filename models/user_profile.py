@@ -3,7 +3,9 @@ from typing import Optional, Dict, Any
 from datetime import datetime
 
 class UserProfile(BaseModel):
-    """Perfil completo del usuario con historial."""
+    """
+    Perfil completo del usuario con historial.
+    """
     
     # Identificadores
     contactId: str  # Respond.io Contact ID (partition key)

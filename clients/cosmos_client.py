@@ -98,7 +98,7 @@ class CosmosDBClient:
         if "id" not in profile:
             profile["id"] = contact_id
 
-        serializable_profile = self.serialize_for_cosmos(profile)
+        serializable_profile = self._serialize_for_cosmos(profile)
         
         try:
             result = self.container.upsert_item(body=serializable_profile)

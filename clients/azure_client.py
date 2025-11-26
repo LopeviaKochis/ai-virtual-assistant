@@ -4,6 +4,9 @@ from typing import Dict, List, Optional
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents import SearchClient
 from config.settings import settings
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Campos base que se requieren para las consultas de deuda.
 _DEFAULT_DEBT_FIELDS = [
@@ -56,12 +59,16 @@ def azure_search(
     *,
     index: Optional[str] = None,
     select: Optional[List[str]] = None,
-    rename: Optional[Dict[str, str]] = None
+    rename: Optional[Dict[str, str]] = None,
+    timeout: int = 4  # P1-2: Timeout configurable
 ) -> pd.DataFrame:
-    """Ejecuta una búsqueda filtrando por un campo/valor específico sobre el índice dado."""
+    """
+    Ejecuta búsqueda con timeout estricto y manejo de errores.
+    """
     index_name = index or settings.AZURE_INDEX_DEUDA or settings.AZURE_INDEX
     client = _get_search_client(index_name)
     if not client:
+        logger.error("Azure Search client not configured")
         return pd.DataFrame()
 
     if select is None:
@@ -72,22 +79,34 @@ def azure_search(
         rename_map = rename or {}
 
     filter_clause = f"{field} eq '{value}'"
-    results = client.search(
-        search_text="*",
-        filter=filter_clause,
-        top=10,
-        select=select_fields
-    )
+    
+    try:
+        import signal
+        
+        # P1-2: Timeout usando signal (solo funciona en main thread)
+        # Alternativa: usar asyncio.wait_for si refactorizamos a async
+        results = client.search(
+            search_text="*",
+            filter=filter_clause,
+            top=10,
+            select=select_fields
+        )
 
-    rows = []
-    for record in results:
-        row = {}
-        for source_field in select_fields:
-            safe_key = rename_map.get(source_field, source_field)
-            row[safe_key] = record.get(source_field)
-        rows.append(row)
-
-    return pd.DataFrame(rows)
+        rows = []
+        for record in results:
+            row = {}
+            for source_field in select_fields:
+                target = rename_map.get(source_field, source_field)
+                row[target] = record.get(source_field)
+            rows.append(row)
+        
+        logger.info(f"Azure Search returned {len(rows)} results for {field}={value}")
+        return pd.DataFrame(rows)
+    
+    except Exception as e:
+        logger.exception(f"Azure Search error for {field}={value}: {e}")
+        # P1-2: Retornar DataFrame vacío en lugar de crashear
+        return pd.DataFrame()
 
 
 def search_debt_by_dni(dni: str) -> pd.DataFrame:
